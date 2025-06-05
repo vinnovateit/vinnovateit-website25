@@ -1,15 +1,9 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import Stars from "./components/Stars";
 import "./globals.css";
+import { Orbitron, Plus_Jakarta_Sans } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" });
+const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
 
 export const metadata = {
   title: "Create Next App",
@@ -18,12 +12,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="en" className={`${orbitron.variable} ${plusJakarta.variable}`}>
+      
+        <body className="bg-black text-white">{children}</body>
+      
+      
     </html>
   );
 }
