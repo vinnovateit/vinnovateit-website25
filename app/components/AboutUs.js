@@ -5,15 +5,56 @@ import React from 'react';
 export default function AboutUs() {
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen w-full"
+      className="flex flex-col items-center justify-center min-h-screen w-full relative"
       style={{
         background: 'none',
         minHeight: '100vh',
         padding: 0,
         margin: 0,
-        overflow: 'hidden',
+        overflow: 'visible',
       }}
     >
+      {/* Overlay image at top-right */}
+      <img
+        src="/3D_object_About_us.png" // replace with your image path
+        alt="Overlay"
+        style={{
+          position: 'absolute',
+          top: -325,
+          right: -10,
+          width: '650px', // adjust size as needed
+          height: 'auto',
+          zIndex: 50, // high enough to be above all content
+          pointerEvents: 'none', // so it doesn't block clicks
+        }}
+      />
+      {/* Overlay image at Bottom left */}
+      <img
+        src="/3D_object1_About_us.png" // replace with your image path
+        alt="Overlay"
+        style={{
+          position: 'absolute',
+          bottom: -250,
+          left: -10,
+          width: '250px', // adjust size as needed
+          height: 'auto',
+          zIndex: 0, // high enough to be above all content
+          pointerEvents: 'none', // so it doesn't block clicks
+        }}
+      />
+      <h1
+        className="text-6xl md:text-8xl font-bold mb-12 tracking-wider transform transition-transform duration-500"
+        style={{
+          fontFamily: 'Orbitron, monospace',
+          background: 'radial-gradient(circle at 50% 50%, #fff 0%, #e6e6e6 60%, #bfc0c2 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          color: 'transparent',
+        }}
+      >
+        ABOUT US
+      </h1>
       <div
         className="w-full max-w-6xl mx-auto"
         style={{
@@ -79,11 +120,12 @@ export default function AboutUs() {
               <div
                 style={{
                   color: '#e2e6f3',
-                  fontFamily: 'Inter, sans-serif',
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
                   fontSize: '1.72rem',
-                  lineHeight: 1.65,
+                  lineHeight: 1.3,
                   whiteSpace: 'pre-line',
-                  fontWeight: 300,
+                  fontWeight: 100,
+                  paddingBottom: '1.5rem',
                 }}
               >
                 VinnovateIT is the one stop destination for
@@ -109,9 +151,8 @@ export default function AboutUs() {
                 alt="Robot Character"
                 className="object-contain"
                 style={{
-                  width: '27rem',
-                  height: '22.5rem',
-                 // filter: 'drop-shadow(0 0 4.5px #bdbdbd)',
+                  width: '32rem',
+                  height: '28rem',
                   marginRight: '-3rem',
                   marginTop: '1.5rem',
                 }}
