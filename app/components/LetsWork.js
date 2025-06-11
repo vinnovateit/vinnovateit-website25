@@ -1,44 +1,104 @@
-"use client";
+import React, { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import React from "react";
+const LetsWork = () => {
+  const containerRef = useRef(null);
+  const imagesRef = useRef([]);
+  
+  const images = [
+    '/letswork_3.png',
+    '/letswork_1.png',
+    '/letswork.png', // Central image (index 2)
+  ];
 
-export default function LetsWork() {
+  useEffect(() => {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    const container = containerRef.current;
+    const imageElements = imagesRef.current;
+
+    if (!container || imageElements.length === 0) return;
+
+    // Set initial states - hide all images except central
+    gsap.set(imageElements, { 
+      opacity: 0
+    });
+
+    // Show only the central image initially (index 2)
+    gsap.set(imageElements[2], { 
+      opacity: 1
+    });
+
+    // Create scroll timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+        pin: false,
+        onUpdate: (self) => {
+          const progress = self.progress;
+          
+          // Move central image from top to center (transform Y)
+          const centralOffset = progress < 0.5 ? -100 + (progress * 2 * 100) : 0;
+          gsap.set(imageElements[2], {
+            y: centralOffset
+          });
+
+          // Reveal images above central image first (indices 0, 1)
+          [0, 1].forEach((index) => {
+            const startProgress = 0.1 + (index * 0.15);
+            const endProgress = startProgress + 0.2;
+            
+            if (progress >= startProgress && progress <= endProgress) {
+              const localProgress = (progress - startProgress) / (endProgress - startProgress);
+              gsap.set(imageElements[index], {
+                opacity: localProgress
+              });
+            } else if (progress > endProgress) {
+              gsap.set(imageElements[index], {
+                opacity: 1
+              });
+            } else {
+              gsap.set(imageElements[index], {
+                opacity: 0
+              });
+            }
+          });              
+        }
+      }
+    });
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
-    <div className="bg-black py-15 text-center">
-        <img
-        src="/letswork3.png"
-        alt="LET’S WORK Topmost"
-        className="mx-auto w-[95%] md:w-[85%] lg:w-[91%] mb-0"
-      />
-      {/* Top LET’S WORK image – stays in place */}
-      <img
-        src="/LET’S WORK (1).png"
-        alt="LET’S WORK Top"
-        className="mx-auto w-[88%] md:w-[75%] lg:w-[91%] mb-35"
-      />
-
-      {/* Main white LET’S WORK image – moved upward independently */}
-      <div className="-mt-40">
-        <img
-          src="/letswork.png"
-          alt="LET’S WORK"
-          className="mx-auto w-[95%] md:w-[85%] lg:w-[95%] mb-50"
-        />
-      </div>
-      <div className="absolute left-1/2 transform -translate-x-1/2 mt-[-200px] z-0">
-        <img
-          src="/letswork4.png"
-          alt="LET’S WORK 4"
-           className="mx-auto w-[90vw] max-w-none"
-        />
-      </div>
-        <div className="absolute left-1/2 transform -translate-x-1/2 mt-[-100px] z-0">
+    <div className="h-[40vh] md:h-[75vh] bg-[#0b0013]">
+      <div 
+        ref={containerRef}
+        className="flex flex-col relative"
+      >
+        {images.map((src, index) => (
           <img
-            src="/letswork4.png"
-            alt="LET’S WORK 4 Bottom"
-            className="mx-auto w-[90vw] max-w-none"
+            key={index}
+            ref={(el) => (imagesRef.current[index] = el)}
+            src={src}
+            alt={`Image ${index + 1}`}
+            className="w-full block relative"
+            style={{
+              zIndex: index === 2 ? 10 : 1
+            }}
           />
-        </div>
+        ))}
+      </div>
     </div>
   );
-}
+};
+
+export default LetsWork;
