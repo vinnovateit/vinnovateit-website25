@@ -1,42 +1,171 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef, useLayoutEffect, useState, useEffect } from "react";
 import { Linkedin, Instagram, Github } from "lucide-react";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Board() {
-  const [startIndex, setStartIndex] = useState(0);
+  const carouselRef = useRef(null);
+  const containerRef = useRef(null);
   const [screenSize, setScreenSize] = useState('desktop');
-  
-  // Check for screen size
+
+  // Screen size detection
   useEffect(() => {
     const checkScreenSize = () => {
       const width = window.innerWidth;
-      if (width < 768) {
-        setScreenSize('mobile');
-      } else if (width < 1024) {
-        setScreenSize('tablet');
-      } else {
-        setScreenSize('desktop');
-      }
+      if (width < 768) setScreenSize('mobile');
+      else if (width < 1024) setScreenSize('tablet');
+      else setScreenSize('desktop');
     };
     
     checkScreenSize();
     window.addEventListener('resize', checkScreenSize);
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
-  
+
   const getVisibleCount = () => {
     switch (screenSize) {
       case 'mobile': return 1;
       case 'tablet': return 3;
-      case 'desktop': return 5;
       default: return 5;
     }
   };
-  
-  const visibleCount = getVisibleCount();
+
+  // Telephone dial effect GSAP ScrollTrigger setup for 14 cards
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    const carousel = carouselRef.current;
+    if (!container || !carousel) return;
+
+    const cards = gsap.utils.toArray(carousel.children);
+    const totalCards = cards.length; // 14 cards
+    
+    // Calculate the total width needed for scrolling
+    const cardWidth = screenSize === 'mobile' ? 320 : screenSize === 'tablet' ? 272 : 288;
+    const totalWidth = cardWidth * totalCards;
+    const containerWidth = container.offsetWidth;
+    
+    // Adjust scroll distance to ensure all cards (especially 3-13) can reach center
+    // We need extra scroll distance to position the last cards in center
+    const extraScrollForLastCards = cardWidth * 2; // Extra space for last 2 cards
+    const scrollDistance = totalWidth - containerWidth + extraScrollForLastCards;
+
+    // Set up the horizontal scroll animation with telephone dial effect
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        pin: true,
+        scrub: 1.2,
+        start: "center center",
+        end: () => `+=${scrollDistance * 2}`, // Increased multiplier for longer scroll
+        invalidateOnRefresh: true,
+        anticipatePin: 1,
+        refreshPriority: 1,
+        onUpdate: (self) => {
+          // Telephone dial effect - scale cards based on distance from center
+          const containerCenter = containerWidth / 2;
+          
+          cards.forEach((card, index) => {
+            const cardRect = card.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            const cardCenter = cardRect.left + cardRect.width / 2 - containerRect.left;
+            
+            // Calculate distance from center (0 to 1, where 0 is center)
+            const distanceFromCenter = Math.abs(cardCenter - containerCenter) / containerCenter;
+            const clampedDistance = Math.min(distanceFromCenter, 1);
+            
+            // Enhanced scaling for better visibility of center cards
+            const minScale = 0.6;
+            const maxScale = 1.3;
+            const scale = maxScale - (clampedDistance * (maxScale - minScale));
+            
+            // Enhanced opacity for better contrast
+            const minOpacity = 0.4;
+            const maxOpacity = 1;
+            const opacity = maxOpacity - (clampedDistance * (maxOpacity - minOpacity));
+            
+            // Calculate blur (0 at center, 3px at edges)
+            const maxBlur = 3;
+            const blur = clampedDistance * maxBlur;
+            
+            // Calculate vertical offset for curved effect
+            const maxYOffset = screenSize === 'mobile' ? 30 : screenSize === 'tablet' ? 40 : 50;
+            const yOffset = Math.sin(clampedDistance * Math.PI / 2) * maxYOffset;
+            
+            // Apply transforms
+            gsap.set(card, {
+              scale: scale,
+              opacity: opacity,
+              filter: `blur(${blur}px)`,
+              y: yOffset,
+              zIndex: Math.round((1 - clampedDistance) * 100),
+              transformOrigin: "center center",
+            });
+          });
+        }
+      }
+    });
+
+    // Animate the carousel container with adjusted distance
+    tl.to(carousel, {
+      x: -scrollDistance,
+      ease: "none",
+      duration: 1
+    });
+
+    // Initial setup for telephone dial effect
+    const containerCenter = containerWidth / 2;
+    cards.forEach((card, index) => {
+      const cardRect = card.getBoundingClientRect();
+      const containerRect = container.getBoundingClientRect();
+      const cardCenter = cardRect.left + cardRect.width / 2 - containerRect.left;
+      const distanceFromCenter = Math.abs(cardCenter - containerCenter) / containerCenter;
+      const clampedDistance = Math.min(distanceFromCenter, 1);
+      
+      const minScale = 0.6;
+      const maxScale = 1.3;
+      const scale = maxScale - (clampedDistance * (maxScale - minScale));
+      const opacity = 1 - (clampedDistance * 0.6);
+      const blur = clampedDistance * 3;
+      const maxYOffset = screenSize === 'mobile' ? 30 : screenSize === 'tablet' ? 40 : 50;
+      const yOffset = Math.sin(clampedDistance * Math.PI / 2) * maxYOffset;
+      const shadowIntensity = (1 - clampedDistance) * 0.5;
+      
+      gsap.set(card, {
+        scale: scale,
+        opacity: opacity,
+        filter: `blur(${blur}px)`,
+        y: yOffset,
+        zIndex: Math.round((1 - clampedDistance) * 100),
+        boxShadow: `0 ${10 + shadowIntensity * 20}px ${20 + shadowIntensity * 30}px rgba(147, 51, 234, ${shadowIntensity})`
+      });
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, [screenSize]);
 
   const boardMembers = [
+    {
+      name: "Raunak Mehta",
+      post: "Events Head",
+      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Raunak+Mehta",
+      linkedin: "raunak-mehta",
+      instagram: "raunak_mehta",
+      github: "raunak-mehta"
+    },
+    {
+      name: "Ayush Kumar",
+      post: "Projects Head",
+      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Priya+Sharma",
+      linkedin: "priya-sharma",
+      instagram: "priya_sharma",
+      github: "priya-sharma"
+    },
     {
       name: "Soumojit Ganguly",
       post: "President",
@@ -63,7 +192,7 @@ export default function Board() {
     },
     {
       name: "Tanmay Malhotra",
-      post: "Treasurer",
+      post: "Co Secretary",
       photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Tanmay+Malhotra",
       linkedin: "tanmay-malhotra",
       instagram: "tanmay_malhotra",
@@ -71,31 +200,32 @@ export default function Board() {
     },
     {
       name: "Janvi Chandra",
-      post: "Event Coordinator",
+      post: "Design Head",
       photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Janvi+Chandra",
       linkedin: "janvi-chandra",
       instagram: "janvi_chandra",
       github: "janvi-chandra"
     },
     {
-      name: "Girijat Purohit",
-      post: "Technical Lead",
-      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Girijat+Purohit",
-      linkedin: "girijat-purohit",
-      instagram: "girijat_p",
-      github: "girijat-purohit"
-    },
-    {
       name: "Ayush Kumar",
-      post: "Marketing Head",
+      post: "Tech Head",
       photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Ayush+Kumar",
       linkedin: "ayush-kumar",
       instagram: "ayush_kumar",
       github: "ayush-kumar"
     },
     {
+      name: "Girijat Purohit",
+      post: "Management Head",
+      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Girijat+Purohit",
+      linkedin: "girijat-purohit",
+      instagram: "girijat_p",
+      github: "girijat-purohit"
+    },
+    
+    {
       name: "Mihir Joshi",
-      post: "Design Lead",
+      post: "Creative Head",
       photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Mihir+Joshi",
       linkedin: "mihir-joshi",
       instagram: "mihir_joshi",
@@ -103,37 +233,39 @@ export default function Board() {
     },
     {
       name: "Raunak Mehta",
-      post: "Operations Manager",
+      post: "Events Head",
       photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Raunak+Mehta",
       linkedin: "raunak-mehta",
       instagram: "raunak_mehta",
       github: "raunak-mehta"
     },
     {
-      name: "Priya Sharma",
-      post: "Content Manager",
+      name: "Ayush Kumar",
+      post: "Projects Head",
       photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Priya+Sharma",
       linkedin: "priya-sharma",
       instagram: "priya_sharma",
       github: "priya-sharma"
-    }
+    },
+    {
+      name: "Soumojit Ganguly",
+      post: "President",
+      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Soumojit+Ganguly",
+      linkedin: "soumojit-ganguly",
+      instagram: "syro_official",
+      github: "soumojit-ganguly"
+    },
+    {
+      name: "Arjan Sinha",
+      post: "Vice President",
+      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Arjan+Sinha",
+      linkedin: "arjan-sinha",
+      instagram: "arjan_sinha",
+      github: "arjan-sinha"
+    },
   ];
 
-  const handleNext = () => {
-    if (startIndex + visibleCount < boardMembers.length) {
-      setStartIndex(startIndex + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (startIndex > 0) {
-      setStartIndex(startIndex - 1);
-    }
-  };
-
   const renderCard = (member, index) => {
-    const relativeIndex = index - startIndex;
-    
     // Mobile view - single card
     if (screenSize === 'mobile') {
       return (
@@ -141,16 +273,14 @@ export default function Board() {
           key={index}
           className="w-80 h-[26rem] flex-shrink-0 flex flex-col items-center justify-center"
         >
-          
-          
           {/* Card Background */}
-          <div className="relative w-72 h-[22rem] bg-purple-900/20 backdrop-blur-md rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden">
+          <div className="relative w-72 h-[22rem] bg-purple-900/20 backdrop-blur-md rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-300 hover:shadow-purple-500/25">
             {/* Member Photo */}
             <div className="p-5">
               <img
                 src={member.photo}
                 alt={member.name}
-                className="w-full h-52 object-cover rounded-2xl border border-purple-400/50"
+                className="w-full h-52 object-cover rounded-2xl border border-purple-400/50 transition-all duration-300"
               />
             </div>
             
@@ -202,29 +332,21 @@ export default function Board() {
       );
     }
     
-    // Tablet view - 3 cards with center focus
+    // Tablet view - 3 cards
     if (screenSize === 'tablet') {
-      let scale = 'scale-90';
-      let zIndex = 'z-10';
-      
-      if (relativeIndex === 1) { // Center card
-        scale = 'scale-105';
-        zIndex = 'z-20';
-      }
-      
       return (
         <div
           key={index}
-          className={`w-68 h-[24rem] flex-shrink-0 flex flex-col items-center justify-center transition-all duration-300 ${scale} ${zIndex}`}
+          className="w-68 h-[24rem] flex-shrink-0 flex flex-col items-center justify-center"
         >
           {/* Card Background */}
-          <div className="relative w-60 h-[21rem] bg-purple-900/20 backdrop-blur-md rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden">
+          <div className="relative w-60 h-[21rem] bg-purple-900/20 backdrop-blur-md rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-300 hover:shadow-purple-500/25">
             {/* Member Photo */}
             <div className="p-4">
               <img
                 src={member.photo}
                 alt={member.name}
-                className="w-full h-44 object-cover rounded-2xl border border-purple-400/50"
+                className="w-full h-44 object-cover rounded-2xl border border-purple-400/50 transition-all duration-300"
               />
             </div>
             
@@ -276,30 +398,20 @@ export default function Board() {
       );
     }
     
-    // Desktop view - 5 cards with center focus and scaling
-    let scale = 'scale-80';
-    let zIndex = 'z-10';
-    
-    if (relativeIndex === 1 || relativeIndex === 3) {
-      scale = 'scale-95';
-    } else if (relativeIndex === 2) { // Center card
-      scale = 'scale-115';
-      zIndex = 'z-20';
-    }
-    
+    // Desktop view - 5 cards
     return (
       <div
         key={index}
-        className={`w-72 h-[26rem] flex-shrink-0 flex flex-col items-center justify-center transition-all duration-300 ${scale} ${zIndex}`}
+        className="w-72 h-[26rem] flex-shrink-0 flex flex-col items-center justify-center"
       >
         {/* Card Background */}
-        <div className="relative w-64 h-[22rem] bg-purple-900/20 backdrop-blur-md rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden">
+        <div className="relative w-64 h-[22rem] bg-purple-900/20 backdrop-blur-md rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-purple-500/25">
           {/* Member Photo */}
           <div className="p-5">
             <img
               src={member.photo}
               alt={member.name}
-              className="w-full h-48 object-cover rounded-2xl border border-purple-400/50"
+              className="w-full h-48 object-cover rounded-2xl border border-purple-400/50 transition-all duration-300"
             />
           </div>
           
@@ -351,10 +463,11 @@ export default function Board() {
     );
   };
 
-  const visibleMembers = boardMembers.slice(startIndex, startIndex + visibleCount);
-
   return (
-    <div className="relative flex flex-col items-center min-h-screen px-4 lg:px-6 pt-16 md:pt-20 lg:pt-24 pb-12 lg:pb-20 bg-gradient-to-b from-purple-900/20 via-black to-purple-900/20">
+    <div 
+      ref={containerRef}
+      className="relative flex flex-col items-center min-h-screen px-4 lg:px-6 pt-16 md:pt-20 lg:pt-24 pb-12 lg:pb-20 bg-gradient-to-b from-purple-900/20 via-black to-purple-900/20 overflow-hidden"
+    >
       {/* Background Decorations - Responsive */}
       <img
         src="/flower3.png"
@@ -381,44 +494,18 @@ export default function Board() {
       </h1>
 
       {/* Carousel Container */}
-      <div className="relative w-full max-w-7xl">
-        {/* Left Button */}
-        <button
-          onClick={handlePrev}
-          disabled={startIndex === 0}
-          className="absolute left-2 md:left-4 lg:left-8 top-1/2 transform -translate-y-1/2 text-white text-2xl md:text-3xl lg:text-4xl font-bold px-2 md:px-4 py-2 z-30 hover:text-purple-400 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed hover:scale-110"
+      <div className="relative w-full perspective-1000">
+        <div
+          ref={carouselRef}
+          className="flex items-center"
+          style={{ 
+            width: `${boardMembers.length * (screenSize === 'mobile' ? 320 : screenSize === 'tablet' ? 272 : 288)}px`,
+            willChange: 'transform',
+            transformStyle: 'preserve-3d'
+          }}
         >
-          ←
-        </button>
-
-        {/* Cards Container */}
-        <div className="flex justify-center items-center space-x-4 md:space-x-6 lg:space-x-8 px-16 md:px-20 lg:px-24">
-          {visibleMembers.map((member, index) => renderCard(member, startIndex + index))}
+          {boardMembers.map((member, index) => renderCard(member, index))}
         </div>
-
-        {/* Right Button */}
-        <button
-          onClick={handleNext}
-          disabled={startIndex + visibleCount >= boardMembers.length}
-          className="absolute right-2 md:right-4 lg:right-8 top-1/2 transform -translate-y-1/2 text-white text-2xl md:text-3xl lg:text-4xl font-bold px-2 md:px-4 py-2 z-30 hover:text-purple-400 transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed hover:scale-110"
-        >
-          →
-        </button>
-      </div>
-
-      {/* Dots Indicator */}
-      <div className="flex justify-center mt-8 space-x-2">
-        {Array.from({ length: Math.ceil(boardMembers.length / visibleCount) }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setStartIndex(index * visibleCount)}
-            className={`w-2 h-2 rounded-full transition-all duration-200 ${
-              Math.floor(startIndex / visibleCount) === index 
-                ? 'bg-purple-400 w-6' 
-                : 'bg-purple-400/40 hover:bg-purple-400/70'
-            }`}
-          />
-        ))}
       </div>
     </div>
   );
