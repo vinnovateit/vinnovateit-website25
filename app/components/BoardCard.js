@@ -6,7 +6,7 @@ const MemberCard = ({ member, screenSize }) => {
     switch (screenSize) {
       case 'mobile':
         return {
-          container: "w-90 h-[26rem] flex-shrink-0 flex flex-col items-center justify-center px-4",
+          container: "w-90 h-[30rem] flex-shrink-0 flex flex-col items-center justify-center px-4",
           card: "relative w-72 h-[22rem] bg-purple-900/20 rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-300 hover:shadow-purple-500/25",
           imageContainer: "p-5",
           image: "w-full h-52 object-cover rounded-2xl border border-purple-400/50 transition-all duration-300",
@@ -30,7 +30,7 @@ const MemberCard = ({ member, screenSize }) => {
         };
       default: // desktop
         return {
-          container: "w-85 h-[26rem] flex-shrink-0 flex flex-col items-center justify-center px-6",
+          container: "w-85 h-[30rem] flex-shrink-0 flex flex-col items-center justify-center px-6",
           card: "relative w-64 h-[22rem] bg-purple-900/20 rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-500 hover:shadow-purple-500/25",
           imageContainer: "p-5",
           image: "w-full h-48 object-cover rounded-2xl border border-purple-400/50 transition-all duration-300",

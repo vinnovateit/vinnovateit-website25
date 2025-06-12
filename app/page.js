@@ -6,11 +6,13 @@ import Projects from "./components/Projects";
 import Board from "./components/Board";
 import Footer from "./components/Footer";
 import Stars from "./components/Stars";
+import Navbar from "./components/Navbar";
 
 export default function Home() {
   return (
 
     <Stars>
+      <Navbar/>
       <Hero/>
      <AboutUs/>
      <Domains/>
