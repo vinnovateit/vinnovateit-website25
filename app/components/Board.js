@@ -34,33 +34,33 @@ export default function Board() {
     }
   };
 
-  // Telephone dial effect GSAP ScrollTrigger setup for 14 cards
+  // Telephone dial effect GSAP ScrollTrigger setup
   useLayoutEffect(() => {
     const container = containerRef.current;
     const carousel = carouselRef.current;
     if (!container || !carousel) return;
 
     const cards = gsap.utils.toArray(carousel.children);
-    const totalCards = cards.length; // 14 cards
+    const totalCards = cards.length;
     
-    // Calculate the total width needed for scrolling
-    const cardWidth = screenSize === 'mobile' ? 320 : screenSize === 'tablet' ? 272 : 288;
+    // Calculate the total width needed for scrolling with increased spacing
+    const cardWidth = screenSize === 'mobile' ? 360 : screenSize === 'tablet' ? 320 : 340;
     const totalWidth = cardWidth * totalCards;
     const containerWidth = container.offsetWidth;
     
-    // Adjust scroll distance to ensure all cards (especially 3-13) can reach center
-    // We need extra scroll distance to position the last cards in center
-    const extraScrollForLastCards = cardWidth * 2; // Extra space for last 2 cards
-    const scrollDistance = totalWidth - containerWidth + extraScrollForLastCards;
+    // Calculate scroll distance to ensure the last card (project lead) reaches center
+    const visibleCards = getVisibleCount();
+    const centerOffset = (visibleCards - 1) * cardWidth / 2;
+    const scrollDistance = totalWidth - containerWidth + centerOffset;
 
     // Set up the horizontal scroll animation with telephone dial effect
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
         pin: true,
-        scrub: 1.2,
+        scrub: 1.5,
         start: "center center",
-        end: () => `+=${scrollDistance * 2}`, // Increased multiplier for longer scroll
+        end: () => `+=${scrollDistance * 1.8}`, // Adjusted multiplier for smoother scroll
         invalidateOnRefresh: true,
         anticipatePin: 1,
         refreshPriority: 1,
@@ -116,7 +116,7 @@ export default function Board() {
       duration: 1
     });
 
-    // Initial setup for telephone dial effect
+    // Initial setup for telephone dial effect - FIXED: Removed inconsistent box shadow
     const containerCenter = containerWidth / 2;
     cards.forEach((card, index) => {
       const cardRect = card.getBoundingClientRect();
@@ -132,7 +132,6 @@ export default function Board() {
       const blur = clampedDistance * 3;
       const maxYOffset = screenSize === 'mobile' ? 30 : screenSize === 'tablet' ? 40 : 50;
       const yOffset = Math.sin(clampedDistance * Math.PI / 2) * maxYOffset;
-      const shadowIntensity = (1 - clampedDistance) * 0.5;
       
       gsap.set(card, {
         scale: scale,
@@ -140,7 +139,8 @@ export default function Board() {
         filter: `blur(${blur}px)`,
         y: yOffset,
         zIndex: Math.round((1 - clampedDistance) * 100),
-        boxShadow: `0 ${10 + shadowIntensity * 20}px ${20 + shadowIntensity * 30}px rgba(147, 51, 234, ${shadowIntensity})`
+        transformOrigin: "center center",
+        // Removed the inconsistent boxShadow that was causing the goofy shadow issue
       });
     });
 
@@ -151,20 +151,12 @@ export default function Board() {
 
   const boardMembers = [
     {
-      name: "Raunak Mehta",
-      post: "Events Head",
-      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Raunak+Mehta",
-      linkedin: "raunak-mehta",
-      instagram: "raunak_mehta",
-      github: "raunak-mehta"
-    },
-    {
-      name: "Ayush Kumar",
-      post: "Projects Head",
-      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Priya+Sharma",
-      linkedin: "priya-sharma",
-      instagram: "priya_sharma",
-      github: "priya-sharma"
+      name: "Dr. Rajesh Kumar",
+      post: "Chairperson",
+      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Dr.+Rajesh+Kumar",
+      linkedin: "dr-rajesh-kumar",
+      instagram: "dr_rajesh_kumar",
+      github: "dr-rajesh-kumar"
     },
     {
       name: "Soumojit Ganguly",
@@ -199,14 +191,6 @@ export default function Board() {
       github: "tanmay-malhotra"
     },
     {
-      name: "Janvi Chandra",
-      post: "Design Head",
-      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Janvi+Chandra",
-      linkedin: "janvi-chandra",
-      instagram: "janvi_chandra",
-      github: "janvi-chandra"
-    },
-    {
       name: "Ayush Kumar",
       post: "Tech Head",
       photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Ayush+Kumar",
@@ -215,21 +199,12 @@ export default function Board() {
       github: "ayush-kumar"
     },
     {
-      name: "Girijat Purohit",
-      post: "Management Head",
-      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Girijat+Purohit",
-      linkedin: "girijat-purohit",
-      instagram: "girijat_p",
-      github: "girijat-purohit"
-    },
-    
-    {
-      name: "Mihir Joshi",
-      post: "Creative Head",
-      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Mihir+Joshi",
-      linkedin: "mihir-joshi",
-      instagram: "mihir_joshi",
-      github: "mihir-joshi"
+      name: "Janvi Chandra",
+      post: "Design Head",
+      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Janvi+Chandra",
+      linkedin: "janvi-chandra",
+      instagram: "janvi_chandra",
+      github: "janvi-chandra"
     },
     {
       name: "Raunak Mehta",
@@ -240,38 +215,38 @@ export default function Board() {
       github: "raunak-mehta"
     },
     {
-      name: "Ayush Kumar",
-      post: "Projects Head",
+      name: "Girijat Purohit",
+      post: "Management Head",
+      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Girijat+Purohit",
+      linkedin: "girijat-purohit",
+      instagram: "girijat_p",
+      github: "girijat-purohit"
+    },
+    {
+      name: "Mihir Joshi",
+      post: "Creative Head",
+      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Mihir+Joshi",
+      linkedin: "mihir-joshi",
+      instagram: "mihir_joshi",
+      github: "mihir-joshi"
+    },
+    {
+      name: "Priya Sharma",
+      post: "Projects Lead",
       photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Priya+Sharma",
       linkedin: "priya-sharma",
       instagram: "priya_sharma",
       github: "priya-sharma"
-    },
-    {
-      name: "Soumojit Ganguly",
-      post: "President",
-      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Soumojit+Ganguly",
-      linkedin: "soumojit-ganguly",
-      instagram: "syro_official",
-      github: "soumojit-ganguly"
-    },
-    {
-      name: "Arjan Sinha",
-      post: "Vice President",
-      photo: "https://via.placeholder.com/400x300/6366f1/ffffff?text=Arjan+Sinha",
-      linkedin: "arjan-sinha",
-      instagram: "arjan_sinha",
-      github: "arjan-sinha"
-    },
+    }
   ];
 
   const renderCard = (member, index) => {
-    // Mobile view - single card
+    // Mobile view - single card with increased spacing
     if (screenSize === 'mobile') {
       return (
         <div
           key={index}
-          className="w-80 h-[26rem] flex-shrink-0 flex flex-col items-center justify-center"
+          className="w-90 h-[26rem] flex-shrink-0 flex flex-col items-center justify-center px-4"
         >
           {/* Card Background */}
           <div className="relative w-72 h-[22rem] bg-purple-900/20 backdrop-blur-md rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-300 hover:shadow-purple-500/25">
@@ -332,12 +307,12 @@ export default function Board() {
       );
     }
     
-    // Tablet view - 3 cards
+    // Tablet view - 3 cards with increased spacing
     if (screenSize === 'tablet') {
       return (
         <div
           key={index}
-          className="w-68 h-[24rem] flex-shrink-0 flex flex-col items-center justify-center"
+          className="w-80 h-[24rem] flex-shrink-0 flex flex-col items-center justify-center px-6"
         >
           {/* Card Background */}
           <div className="relative w-60 h-[21rem] bg-purple-900/20 backdrop-blur-md rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-300 hover:shadow-purple-500/25">
@@ -398,11 +373,11 @@ export default function Board() {
       );
     }
     
-    // Desktop view - 5 cards
+    // Desktop view - 5 cards with increased spacing
     return (
       <div
         key={index}
-        className="w-72 h-[26rem] flex-shrink-0 flex flex-col items-center justify-center"
+        className="w-85 h-[26rem] flex-shrink-0 flex flex-col items-center justify-center px-6"
       >
         {/* Card Background */}
         <div className="relative w-64 h-[22rem] bg-purple-900/20 backdrop-blur-md rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-purple-500/25">
@@ -499,7 +474,7 @@ export default function Board() {
           ref={carouselRef}
           className="flex items-center"
           style={{ 
-            width: `${boardMembers.length * (screenSize === 'mobile' ? 320 : screenSize === 'tablet' ? 272 : 288)}px`,
+            width: `${boardMembers.length * (screenSize === 'mobile' ? 360 : screenSize === 'tablet' ? 320 : 340)}px`,
             willChange: 'transform',
             transformStyle: 'preserve-3d'
           }}
