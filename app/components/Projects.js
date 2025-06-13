@@ -21,12 +21,11 @@ function BentoGridItem({ className, title, description }) {
     <div
       className={cn(
         // Darker gradient border + white glow
-        "relative rounded-2xl p-[1px] bg-gradient-to-tr from-[#2f2048] to-[#615399] shadow-[0_0_20px_6px_rgba(255,255,255,0.2)]",
+        "relative rounded-2xl p-px bg-gradient-to-tr from-slate-800 to-purple-600 shadow-[0_0_20px_6px_rgba(255,255,255,0.2)]",
         className
       )}
     >
-
-      <div className="flex flex-col justify-between h-full rounded-[14px] bg-[#1e1b2e] p-6">
+      <div className="flex flex-col justify-between h-full rounded-xl bg-slate-900 p-6">
         <div className="flex-1">
           <h3
             className="mb-4 text-3xl font-semibold text-white"
@@ -35,7 +34,7 @@ function BentoGridItem({ className, title, description }) {
             {title}
           </h3>
           <p
-            className="text-sm leading-relaxed text-purple-100/80"
+            className="text-sm leading-relaxed text-purple-100 opacity-80"
             style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
           >
             {description}
@@ -44,16 +43,15 @@ function BentoGridItem({ className, title, description }) {
 
         {/* Button matching the screenshot */}
         <div className="mt-6 flex items-center justify-end">
-          <button className="flex items-center gap-2 rounded-full bg-[#4d2a75] px-6 py-2 text-sm text-white transition duration-200">
+          <button className="flex items-center gap-2 rounded-full bg-purple-800 px-6 py-2 text-sm text-white transition duration-200 hover:bg-purple-700">
             explore
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="w-4 h-4" />
           </button>
         </div>
       </div>
     </div>
   );
 }
-
 
 // Card data
 const items = [
@@ -86,52 +84,42 @@ const items = [
 // Main component
 export default function Projects() {
   return (
-    <div className="min-h-screen relative overflow-visible">
+    <div className="min-h-screen w-full relative overflow-visible">
       <img
-        src="/3D_object_Projects.png" // replace with your image path
-        alt="Overlay"
-        style={{
-          position: 'absolute',
-          top: -325,
-          left: -10,
-          width: '300px', // adjust size as needed
-          height: 'auto',
-          zIndex: 50, // high enough to be above all content
-          pointerEvents: 'none', // so it doesn't block clicks
-        }}
+        src="/3D_object_Projects.png"
+        alt="3D Object Overlay"
+        className="absolute -top-80 -left-2 w-72 h-auto z-50 pointer-events-none"
       />
       <img
-        src="/Light_source_projects.png" // replace with your image path
-        alt="Overlay"
-        style={{
-          position: 'absolute',
-          top: '20px',
-          width: '1500px', // adjust size as needed
-          height: 'auto',
-          zIndex: 49, // high enough to be above all content
-          pointerEvents: 'none', // so it doesn't block clicks
-          mixBlendMode: 'screen', // Apply blending like "pass through"
-          opacity: 0.9,
+        src="/Light_source_projects.png"
+        alt="Light Source Overlay"
+        className="absolute top-5 left-0 w-full min-w-full h-auto z-40 pointer-events-none opacity-90"
+        style={{ 
+          mixBlendMode: 'screen',
+          objectFit: 'cover'
         }}
       />
-      <h1 
-        className="text-6xl md:text-8xl text-center font-bold text-white mb-12 tracking-wider transform transition-transform duration-500"
-        style={{ fontFamily: 'Orbitron, monospace' }}
-      >
-        PROJECTS
-      </h1>
+      
+      <div className="w-full min-h-screen">
+        <h1 
+          className="text-6xl md:text-8xl text-center font-bold text-white mb-12 pt-8 tracking-wider transform transition-transform duration-500"
+          style={{ fontFamily: 'Orbitron, monospace' }}
+        >
+          PROJECTS
+        </h1>
 
-      <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
-        <BentoGrid className="max-w-5xl mx-auto gap-6">
-          {items.map((item, i) => (
-            <BentoGridItem
-              key={i}
-              title={item.title}
-              description={item.description}
-              className={item.className}
-            />
-          ))}
-        </BentoGrid>
+        <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
+          <BentoGrid className="max-w-5xl mx-auto gap-6">
+            {items.map((item, i) => (
+              <BentoGridItem
+                key={i}
+                title={item.title}
+                description={item.description}
+                className={item.className}
+              />
+            ))}
+          </BentoGrid>
+        </div>
       </div>
     </div>
   );

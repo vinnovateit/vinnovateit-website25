@@ -16,13 +16,13 @@ export default function Domains() {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12">
       {/* Ring decoration - responsive positioning and sizing */}
-      <Image
+      {/* <Image
         src="/semi-sphere3.png"
         alt="Ring"
         width={650}
         height={650}
         className="absolute top-0 right-0 w-[300px] sm:w-[450px] lg:w-[650px] h-auto pointer-events-none opacity-80 mix-blend-screen"
-      />
+      /> */}
 
       {/* Flower decoration - responsive positioning and sizing */}
 
@@ -117,11 +117,11 @@ export default function Domains() {
                   key={index}
                   title={item.title}
                   icon={item.icon}
-                  width="w-[380px] xl:w-[420px]"
-                  height="h-[180px] xl:h-[200px]"
-                  iconSize="w-14 h-14 xl:w-16 xl:h-16"
-                  textSize="text-2xl xl:text-2xl"
-                  gradientHeight="h-16 xl:h-20"
+                  width="w-[380px]"
+                  height="h-[180px]"
+                  iconSize="w-14 h-14"
+                  textSize="text-2xl"
+                  gradientHeight="h-16"
                   className="hover:shadow-[0_0_40px_rgba(147,51,234,0.6)]"
                 />
               ))}
