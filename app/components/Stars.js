@@ -6,7 +6,7 @@ export default function Stars({ children, className = "" }) {
   return (
     <div className={`relative min-h-screen bg-black overflow-hidden ${className}`}>
       <div className="absolute inset-0">
-        {[...Array(350)].map((_, i) => (
+        {[...Array(800)].map((_, i) => (
           <div
             key={`star-${i}`}
             className="absolute bg-white rounded-full animate-pulse"
