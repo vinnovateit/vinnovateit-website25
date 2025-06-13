@@ -24,7 +24,7 @@ export default function Board() {
   return (
     <div 
       ref={containerRef}
-      className="relative flex flex-col items-center min-h-screen bg-black lg:px-6 pt-16 md:pt-20 lg:pt-24 pb-12 lg:pb-20 overflow-hidden"
+      className="z-80 relative flex flex-col items-center min-h-screen bg-black lg:px-6 md:pt-20 lg:pt-24 pb-12 lg:pb-20 overflow-hidden"
     >
       {/* Stars Background */}
       <div className="absolute inset-0">
@@ -48,7 +48,7 @@ export default function Board() {
       <img
         src="/flower3.png"
         alt="Flower"
-        className="absolute top-2 w-24 h-auto md:top-4 lg:w-[18rem] left-0 md:w-32 lg:top-6 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
+        className="absolute top-2 w-24 h-auto md:top-4 lg:w-[16rem] left-0 md:w-32 lg:top-8 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
       />
       <img
         src="/flower4.png"

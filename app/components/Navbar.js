@@ -118,7 +118,7 @@ const MainNavbar = () => {
   ];
 
   return (
-    <nav ref={navRef} className="fixed top-4 left-4 right-4 bg-black/90 backdrop-blur-md shadow-[0_0_30px_rgba(147,51,234,0.3)] z-50 rounded-full border border-purple-500/20">
+    <nav ref={navRef} className="z-100 fixed top-4 left-4 right-4 bg-black/90 backdrop-blur-md shadow-[0_0_30px_rgba(147,51,234,0.3)] rounded-full border border-purple-500/20">
       <div className="relative">
         <div className="container mx-auto px-8 py-2 flex justify-between items-center">
           <motion.div

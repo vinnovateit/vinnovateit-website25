@@ -10,9 +10,9 @@ export default function AboutUs() {
       <Image
         src="/3D_object_About_us.png"
         alt="Overlay"
-        width={650}
-        height={500}
-        className="absolute -top-80 -right-2 z-50 pointer-events-none w-[350px] md:w-[500px] lg:w-[650px] h-auto"
+        width={400}
+        height={350}
+        className="absolute -top-70 -right-2 z-50 pointer-events-none w-[250px] md:w-[300px] lg:w-[400px] h-auto"
       />
       
       {/* Overlay image at Bottom left */}
@@ -25,7 +25,7 @@ export default function AboutUs() {
       />
       
       <h1
-        className="text-6xl md:text-8xl font-bold mb-12 tracking-wider transform transition-transform duration-500"
+        className="text-5xl md:text-7xl font-bold mb-12 tracking-wider transform transition-transform duration-500"
         style={{
           fontFamily: 'Orbitron, monospace',
           background: 'radial-gradient(circle at 50% 50%, #fff 0%, #e6e6e6 60%, #bfc0c2 100%)',
@@ -89,7 +89,7 @@ export default function AboutUs() {
                 className="text-slate-200 pb-6 whitespace-pre-line font-thin leading-relaxed"
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  fontSize: '1.72rem',
+                  fontSize: '1.5rem',
                   lineHeight: 1.3,
                   fontWeight: 100,
                   color: '#e2e6f3',
@@ -125,13 +125,13 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-      <Image
+      {/* <Image
         src="/semi-sphere.png"
         alt="Ring"
         width={650}
         height={650}
         className="absolute top-125 right-0 w-[300px] sm:w-[450px] lg:w-[650px] h-auto pointer-events-none opacity-80 mix-blend-screen"
-      />
+      /> */}
     </div>
   );
 }
