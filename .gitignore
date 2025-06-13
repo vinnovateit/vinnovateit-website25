@@ -41,4 +41,4 @@ yarn-error.log*
 next-env.d.ts
 
 # cf-workers
-.open-next
+/.open-next/
