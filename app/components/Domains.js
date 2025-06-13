@@ -17,7 +17,7 @@ export default function Domains() {
     <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12">
       {/* Ring decoration - responsive positioning and sizing */}
       <Image
-        src="/ring.png"
+        src="/semi-sphere3.png"
         alt="Ring"
         width={650}
         height={650}
@@ -25,13 +25,7 @@ export default function Domains() {
       />
 
       {/* Flower decoration - responsive positioning and sizing */}
-      <Image
-        src="/flower.png"
-        alt="Flower"
-        width={320}
-        height={320}
-        className="absolute top-0 sm:top-8 left-0 h-40 w-40 sm:h-60 sm:w-60 lg:h-80 lg:w-80 pointer-events-none"
-      />
+
 
       <div className="max-w-7xl mx-auto text-center z-10">
         {/* Enhanced responsive heading - positioned below decorations on mobile */}
