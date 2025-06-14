@@ -97,7 +97,7 @@ export default function Footer() {
               textShadow: "0 0 10px rgba(255,255,255,0.7)"
             }}
           >
-            "Step into the realm of innovation– where creativity and imagination meet skills to lead to ever–lasting changes."
+            &quot;Step into the realm of innovation– where creativity and imagination meet skills to lead to ever–lasting changes.&quot;
           </h2>
         </div>
       </div>
