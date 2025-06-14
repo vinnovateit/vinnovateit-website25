@@ -36,7 +36,7 @@ export default function Footer() {
       {/* Main Quote */}
       <div className="text-center max-w-4xl mx-auto z-20 relative mb-16">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-8">
-          "Step into the realm of <span className="text-purple-400">innovation</span>– where creativity and imagination meet skills to lead to ever–lasting changes."
+          &quot;Step into the realm of <span className="text-purple-400">innovation</span>– where creativity and imagination meet skills to lead to ever–lasting changes.&quot;
         </h2>
         
         {/* Logo */}

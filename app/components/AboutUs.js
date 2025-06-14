@@ -90,8 +90,8 @@ export default function AboutUs() {
                 <br /><br />
 
                 To put it simply... we are the answer to the
-                question "What if Elon Musk and Albert
-                Einstein had a brain child?"
+                question &quot;What if Elon Musk and Albert
+                Einstein had a brain child?&quot;
 
                 <br /><br />
 
