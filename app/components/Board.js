@@ -64,7 +64,7 @@ export default function Board() {
       />
 
       {/* Main Content */}
-      <div className="relative flex flex-col items-center justify-center w-full px-4 mb-20 pt-16 md:pt-0">
+      <div className="relative flex flex-col items-center justify-center w-full px-4 mb-10 pt-16 md:pt-0">
         <div className="relative inline-block">
           {/* Top-left corner */}
           <span className="absolute -top-4 -left-6 w-8 h-0.5 bg-purple-300 md:w-10 md:h-2 md:-top-5 md:-left-7"></span>
@@ -76,7 +76,7 @@ export default function Board() {
           
           {/* Heading */}
           <h1
-            className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold text-purple-200 text-center tracking-widest relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] px-4 leading-tight"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-purple-200 text-center tracking-widest relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] px-4 leading-tight"
             style={{ fontFamily: "Orbitron, monospace" }}
           >
             <span className="block lg:inline">BOARD</span>
@@ -85,7 +85,7 @@ export default function Board() {
         </div>
 
         {/* Carousel Container */}
-        <div className="z-150 relative w-full perspective-1000 top-40">
+        <div className="z-150 relative w-full perspective-1000 top-15">
           <div className="w-full overflow-hidden">
             <div
               ref={carouselRef}
