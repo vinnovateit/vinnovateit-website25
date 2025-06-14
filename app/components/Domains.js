@@ -25,7 +25,13 @@ export default function Domains() {
       /> */}
 
       {/* Flower decoration - responsive positioning and sizing */}
-
+      <Image
+        src="/3D_object1_About_us.png"
+        alt="Overlay"
+        width={250}
+        height={200}
+        className="absolute top-20 -left-2 z-0 pointer-events-none w-[150px] md:w-[200px] lg:w-[250px] h-auto"
+      />
 
       <div className="max-w-7xl mx-auto text-center z-10">
         {/* Enhanced responsive heading - positioned below decorations on mobile */}
