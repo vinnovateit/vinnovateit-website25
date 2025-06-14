@@ -83,7 +83,7 @@ export default function Footer() {
 
             {/* Connect Button */}
             <button className="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-3 px-8 rounded-full shadow-lg hover:scale-105 hover:shadow-[0_0_25px_rgba(160,97,255,0.7)] transition-all duration-300 font-medium">
-              Let's connect
+              Let&apos;s connect
             </button>
           </div>
         </div>
