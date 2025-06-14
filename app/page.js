@@ -7,6 +7,7 @@ import Board from "./components/Board";
 import Footer from "./components/Footer";
 import Stars from "./components/Stars";
 import Navbar from "./components/Navbar";
+import LetsWork from "./components/LetsWork";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
      <Projects/>
      <Board/>
      <Footer/>
+     <LetsWork/>
     </Stars>
   );
 }

@@ -10,22 +10,15 @@ export default function AboutUs() {
       <Image
         src="/3D_object_About_us.png"
         alt="Overlay"
-        width={650}
-        height={500}
-        className="absolute -top-80 -right-2 z-50 pointer-events-none w-[350px] md:w-[500px] lg:w-[650px] h-auto"
+        width={400}
+        height={350}
+        className="absolute -top-70 sm:top-0 md:-top-80 -right-2 z-50 pointer-events-none w-[250px] md:w-[300px] lg:w-[400px] h-auto"
       />
       
       {/* Overlay image at Bottom left */}
-      <Image
-        src="/3D_object1_About_us.png"
-        alt="Overlay"
-        width={250}
-        height={200}
-        className="absolute -bottom-64 -left-2 z-0 pointer-events-none w-[250px] sm:w-[200px] xs:w-[150px] h-auto"
-      />
       
       <h1
-        className="text-6xl md:text-8xl font-bold mb-12 tracking-wider transform transition-transform duration-500"
+        className="text-5xl md:text-7xl font-bold mb-12 tracking-wider transform transition-transform duration-500"
         style={{
           fontFamily: 'Orbitron, monospace',
           background: 'radial-gradient(circle at 50% 50%, #fff 0%, #e6e6e6 60%, #bfc0c2 100%)',
@@ -38,7 +31,7 @@ export default function AboutUs() {
         ABOUT US
       </h1>
       
-      <div className="w-full max-w-6xl mx-auto relative z-10">
+      <div className="px-10 w-full max-w-6xl mx-auto relative z-10">
         {/* Terminal window */}
         <div className="backdrop-blur-2xl rounded-3xl overflow-hidden my-12" style={{ 
           backgroundColor: 'rgba(157, 148, 255, 0.03)', 
@@ -49,16 +42,14 @@ export default function AboutUs() {
             backgroundColor: 'rgba(28, 20, 240, 0.05)'
           }}>
             <div className="flex gap-3">
-              <div className="w-4 h-4 bg-red-500 rounded-full"></div>
-              <div className="w-4 h-4 bg-yellow-400 rounded-full"></div>
-              <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+              <div className="w-2 h-2 md:w-4 md:h-4 bg-red-500 rounded-full"></div>
+              <div className="w-2 h-2 md:w-4 md:h-4 bg-yellow-400 rounded-full"></div>
+              <div className="w-2 h-2 md:w-4 md:h-4 bg-green-500 rounded-full"></div>
             </div>
             <div
-              className="text-white font-bold text-center flex-1 relative z-20"
+              className="text-white font-bold text-center flex-1 relative z-20 text-[1rem] md:[1.5rem]" 
               style={{
                 fontFamily: 'monospace',
-                fontSize: '1.5rem',
-                letterSpacing: '0.05em',
                 textShadow: '0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4)',
               }}
             >
@@ -73,23 +64,20 @@ export default function AboutUs() {
             {/* Left side - Text content */}
             <div className="flex-1 text-left">
               <div
-                className="mb-9 font-semibold"
+                className="mb-9 font-semibold text-[1.2rem] md:text-[1.8rem]"
                 style={{
                   fontFamily: 'monospace',
-                  fontWeight: 600,
-                  fontSize: '1.8rem',
                   color: '#39FF14',
                 }}
               >
                 <span>&gt; </span>
-                <span className="text-white text-3xl">ls -a about_us</span>
+                <span className="text-white text-lg md:text-2xl">ls -a about_us</span>
               </div>
               
               <div
-                className="text-slate-200 pb-6 whitespace-pre-line font-thin leading-relaxed"
+                className="text-slate-200 pb-2 text-md md:text-xl whitespace-pre-line font-thin leading-relaxed"
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
-                  fontSize: '1.72rem',
                   lineHeight: 1.3,
                   fontWeight: 100,
                   color: '#e2e6f3',
@@ -102,8 +90,8 @@ export default function AboutUs() {
                 <br /><br />
 
                 To put it simply... we are the answer to the
-                question "What if Elon Musk and Albert
-                Einstein had a brain child?"
+                question &quot;What if Elon Musk and Albert
+                Einstein had a brain child?&quot;
 
                 <br /><br />
 
@@ -113,25 +101,25 @@ export default function AboutUs() {
             </div>
             
             {/* Right side - Robot image */}
-            <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center items-center mt-12 md:mt-0">
+            <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center items-center md:mt-0">
               <Image
                 src="/robot.png"
                 alt="Robot Character"
                 width={512}
                 height={448}
-                className="object-contain mr-[-3rem] mt-6 w-[18rem] h-[16rem] md:w-[24rem] md:h-[21rem] lg:w-[32rem] lg:h-[28rem]"
+                className="object-contain mr-[0] md:mr-[-3rem] mt-6 w-[18rem] h-[16rem] md:w-[24rem] md:h-[21rem] lg:w-[32rem] lg:h-[28rem]"
               />
             </div>
           </div>
         </div>
       </div>
-      <Image
+      {/* <Image
         src="/semi-sphere.png"
         alt="Ring"
         width={650}
         height={650}
         className="absolute top-125 right-0 w-[300px] sm:w-[450px] lg:w-[650px] h-auto pointer-events-none opacity-80 mix-blend-screen"
-      />
+      /> */}
     </div>
   );
 }
