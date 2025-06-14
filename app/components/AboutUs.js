@@ -12,7 +12,7 @@ export default function AboutUs() {
         alt="Overlay"
         width={400}
         height={350}
-        className="absolute -top-55 sm:top-0 md:-top-20 -right-2 z-50 pointer-events-none w-[250px] md:w-[300px] lg:w-[400px] h-auto"
+        className="absolute -top-70 sm:top-0 md:-top-80 -right-2 z-50 pointer-events-none w-[250px] md:w-[300px] lg:w-[400px] h-auto"
       />
       
       {/* Overlay image at Bottom left */}

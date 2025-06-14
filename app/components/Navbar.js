@@ -16,7 +16,7 @@ const MainNavbar = () => {
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1024);
     };
 
     checkMobile();
@@ -118,147 +118,154 @@ const MainNavbar = () => {
   ];
 
   return (
-    <nav ref={navRef} className="z-100 fixed top-4 left-4 right-4 bg-black/90 backdrop-blur-md shadow-[0_0_30px_rgba(147,51,234,0.3)] rounded-full border border-purple-500/20">
-      <div className="relative">
-        <div className="container mx-auto px-8 py-2 flex justify-between items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center"
-          >
-            <Image
-              src="/whiteLogoViit.svg"
-              alt="VIIT Logo"
-              width={isMobile ? 80 : 160}
-              height={isMobile ? 80 : 160}
-              priority
-            />
-          </motion.div>
+    <>
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+      `}</style>
+      <nav ref={navRef} className="z-100 fixed top-4 left-1/2 transform -translate-x-1/2 w-full lg:w-2/3 max-w-4xl bg-black/90 backdrop-blur-md shadow-[0_0_30px_rgba(147,51,234,0.3)] rounded-full border border-purple-500/20">
+        <div className="relative">
+          <div className="px-8 py-2 flex justify-between items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center"
+            >
+              <Image
+                src="/whiteLogoViit.svg"
+                alt="VIIT Logo"
+                width={isMobile ? 80 : 140}
+                height={isMobile ? 80 : 140}
+                priority
+              />
+            </motion.div>
 
-          <div className="hidden md:flex items-center space-x-8">
-            {navigationLinks.map((link, index) => (
-              <Link
-                key={index}
-                href={link.href}
-                className="text-white/90 hover:text-purple-400 transition-all font-medium text-sm"
-              >
-                {link.text}
-              </Link>
-            ))}
-            <div ref={socialIconsRef} className="flex items-center space-x-4 ml-6">
-              {socialLinks.map((social, index) => (
+            <div className="hidden lg:flex items-center space-x-8">
+              {navigationLinks.map((link, index) => (
                 <Link
                   key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`text-white/80 ${social.hoverColor} transition-all transform hover:scale-110`}
+                  href={link.href}
+                  className="text-white/90 hover:text-purple-400 transition-all font-medium text-sm tracking-wider"
+                  style={{ fontFamily: 'Orbitron, monospace' }}
                 >
-                  <div className="text-lg">
-                    {social.icon}
-                  </div>
+                  {link.text}
                 </Link>
               ))}
-            </div>
-          </div>
-
-          {/* Mobile hamburger menu */}
-          <div className="md:hidden">
-            <button 
-              onClick={toggleDrawer} 
-              className="p-1 flex flex-col items-center justify-center w-6 h-6 space-y-0.5"
-              aria-label="Toggle Menu"
-            >
-              <motion.div 
-                className="w-4 h-0.5 bg-white/90 origin-center"
-                animate={isDrawerOpen ? { rotate: 45, y: 2 } : { rotate: 0, y: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-              <motion.div 
-                className="w-4 h-0.5 bg-white/90"
-                animate={isDrawerOpen ? { opacity: 0 } : { opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-              <motion.div 
-                className="w-4 h-0.5 bg-white/90 origin-center"
-                animate={isDrawerOpen ? { rotate: -45, y: -2 } : { rotate: 0, y: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Drawer for Mobile */}
-      <AnimatePresence>
-        {isDrawerOpen && (
-          <motion.div
-            ref={sidebarRef}
-            initial={{ x: "100%", opacity: 0 }}
-            animate={{ x: "0%", opacity: 1 }}
-            exit={{ x: "100%", opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-4 right-4 w-80 bg-black/95 backdrop-blur-md z-[200] shadow-[0_0_40px_rgba(147,51,234,0.4)] rounded-2xl text-white border border-purple-500/30"
-            style={{ height: "calc(100vh - 2rem)" }}
-          >
-            <div className="flex justify-end items-center p-6 border-b border-gray-800">
-              <button onClick={toggleDrawer} className="p-2">
-                <div className="flex flex-col items-center justify-center w-8 h-8 space-y-1">
-                  <div className="w-6 h-0.5 bg-white transform rotate-45 translate-y-1" />
-                  <div className="w-6 h-0.5 bg-white transform -rotate-45 -translate-y-1" />
-                </div>
-              </button>
-            </div>
-
-            <div className="px-6 py-8">
-              <div className="space-y-3">
-                {navigationLinks.map((link, index) => (
-                  <Link
-                    key={index}
-                    href={link.href}
-                    className="sidebar-link block hover:text-purple-400 font-medium py-3 px-4 rounded-lg transition-all"
-                    onClick={() => setIsDrawerOpen(false)}
-                  >
-                    {link.text}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
-            <div className="px-6 py-6 border-t border-gray-800">
-              <p className="text-sm text-gray-400 text-center mb-4">Connect with us</p>
-              <div className="flex space-x-6 justify-center">
+              {/* <div ref={socialIconsRef} className="flex items-center space-x-4 ml-6">
                 {socialLinks.map((social, index) => (
                   <Link
                     key={index}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`text-white ${social.hoverColor} transition-all transform hover:scale-125`}
+                    className={`text-white/80 ${social.hoverColor} transition-all transform hover:scale-110`}
                   >
-                    {social.icon}
+                    <div className="text-lg">
+                      {social.icon}
+                    </div>
                   </Link>
                 ))}
-              </div>
+              </div> */}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
-      {/* Backdrop for mobile drawer */}
-      <AnimatePresence>
-        {isDrawerOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.6 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black z-[90] rounded-2xl"
-            onClick={toggleDrawer}
-          />
-        )}
-      </AnimatePresence>
-    </nav>
+            {/* Mobile and tablet hamburger menu */}
+            <div className="lg:hidden">
+              <button 
+                onClick={toggleDrawer} 
+                className="p-1 flex flex-col items-center justify-center w-6 h-6 space-y-0.5"
+                aria-label="Toggle Menu"
+              >
+                <motion.div 
+                  className="w-4 h-0.5 bg-white/90 origin-center"
+                  animate={isDrawerOpen ? { rotate: 45, y: 2 } : { rotate: 0, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.div 
+                  className="w-4 h-0.5 bg-white/90"
+                  animate={isDrawerOpen ? { opacity: 0 } : { opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <motion.div 
+                  className="w-4 h-0.5 bg-white/90 origin-center"
+                  animate={isDrawerOpen ? { rotate: -45, y: -2 } : { rotate: 0, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Drawer for Mobile */}
+        <AnimatePresence>
+          {isDrawerOpen && (
+            <motion.div
+              ref={sidebarRef}
+              initial={{ x: "100%", opacity: 0 }}
+              animate={{ x: "0%", opacity: 1 }}
+              exit={{ x: "100%", opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="fixed top-4 right-4 w-80 bg-black/95 backdrop-blur-md z-[200] shadow-[0_0_40px_rgba(147,51,234,0.4)] rounded-2xl text-white border border-purple-500/30"
+              style={{ height: "calc(100vh - 2rem)" }}
+            >
+              <div className="flex justify-end items-center p-6 border-b border-gray-800">
+                <button onClick={toggleDrawer} className="p-2">
+                  <div className="flex flex-col items-center justify-center w-8 h-8 space-y-1">
+                    <div className="w-6 h-0.5 bg-white transform rotate-45 translate-y-1" />
+                    <div className="w-6 h-0.5 bg-white transform -rotate-45 -translate-y-1" />
+                  </div>
+                </button>
+              </div>
+
+              <div className="px-6 py-8">
+                <div className="space-y-3">
+                  {navigationLinks.map((link, index) => (
+                    <Link
+                      key={index}
+                      href={link.href}
+                      className="sidebar-link block hover:text-purple-400 font-medium py-3 px-4 rounded-lg transition-all tracking-wider"
+                      style={{ fontFamily: 'Orbitron, monospace' }}
+                      onClick={() => setIsDrawerOpen(false)}
+                    >
+                      {link.text}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="px-6 py-6 border-t border-gray-800">
+                <p className="text-sm text-gray-400 text-center mb-4" style={{ fontFamily: 'Orbitron, monospace' }}>Connect with us</p>
+                <div className="flex space-x-6 justify-center">
+                  {socialLinks.map((social, index) => (
+                    <Link
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`text-white ${social.hoverColor} transition-all transform hover:scale-125`}
+                    >
+                      {social.icon}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Backdrop for mobile drawer */}
+        <AnimatePresence>
+          {isDrawerOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black z-[90] rounded-2xl"
+              onClick={toggleDrawer}
+            />
+          )}
+        </AnimatePresence>
+      </nav>
+    </>
   );
 };
 

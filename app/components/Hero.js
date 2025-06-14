@@ -1,45 +1,53 @@
-"use client"
+'use client';
 
 import React from 'react';
 import Link from 'next/link';
 
-const googleFontsLink = `
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rubik+Mono+One&family=DM+Sans&display=swap');
-`;
-
 export default function Hero() {
   return (
-    <>
-      {/* Inject Google Fonts */}
-      <style jsx global>{googleFontsLink}</style>
+    <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center overflow-hidden">
+      {/* Background circle */}
+      <img
+        src="/hero_3d1.png"
+        alt="Flower"
+        className="absolute w-24 h-auto top-0 lg:w-[16rem] left-0 md:w-32 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
+      />
+      <div
+        className="absolute -top-32 sm:-top-48 md:-top-64 lg:-top-150 left-1/2 transform -translate-x-1/2 
+                   w-[120vw] h-[120vw] sm:w-[100vw] sm:h-[100vw] md:w-[80vw] md:h-[80vw] 
+                   lg:w-[66vw] lg:h-[66vw] xl:w-[60vw] xl:h-[60vw] 
+                   bg-purple-500 rounded-full opacity-20 sm:opacity-25 md:opacity-30 blur-3xl"
+        style={{ filter: 'blur(100px)' }}
+      />
 
-      <div className="flex flex-col items-center justify-center min-h-screen px-6 py-12 text-center">
-        <div className="max-w-4xl mx-auto">
-          {/* Heading */}
-          <h1
-            className="text-6xl md:text-8xl font-bold text-white mb-6 tracking-wider transition-transform duration-500 relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
-            style={{ fontFamily: 'Orbitron, monospace' }}
+      <div className="max-w-5xl mx-auto relative z-10 w-full">
+        <h1
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-wide leading-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
+          style={{ fontFamily: 'var(--font-orbitron)' }}
+        >
+          VinnovateIT
+        </h1>
+
+        <p
+          className="text-gray-200 text-base sm:text-lg md:text-xl lg:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto"
+          style={{ fontFamily: 'var(--font-dm-sans)' }}
+        >
+          Think, Create, Innovate...
+        </p>
+
+        <Link href="#about">
+          <button
+            className="bg-white text-black px-8 py-3 rounded-full border border-purple-400 shadow-lg 
+                       hover:shadow-purple-500/40 hover:scale-105 active:scale-95 
+                       transition-all duration-300 font-medium text-base sm:text-lg"
+            style={{ fontFamily: 'var(--font-dm-sans)' }}
           >
-            VinnovateIT
-          </h1>
-
-          {/* Content */}
-          <div
-            className="text-gray-200 text-lg md:text-xl leading-relaxed space-y-8 max-w-3xl mx-auto mb-10"
-            style={{ fontFamily: 'DM Sans, sans-serif' }}
-          >
-            Think,Create,Innovate...
-          </div>
-
-          {/* Explore More Button */}
-          <Link href="#about">
-            <button className="bg-white text-black px-8 py-3 rounded-full border border-purple-400 shadow-lg hover:shadow-purple-500/40 hover:scale-105 transition-all duration-300">
-              Explore More
-            </button>
-          </Link>
-        </div>
+            Explore More
+          </button>
+        </Link>
       </div>
-    </>
-  )
-}
 
+      {/* Scroll indicator */}
+    </div>
+  );
+}
