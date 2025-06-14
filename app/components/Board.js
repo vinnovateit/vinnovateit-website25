@@ -28,7 +28,7 @@ export default function Board() {
     >
       {/* Stars Background */}
       <div className="absolute inset-0">
-        {[...Array(200)].map((_, i) => (
+        {[...Array(100)].map((_, i) => (
           <div
             key={`star-${i}`}
             className="absolute bg-white rounded-full animate-pulse"
@@ -48,37 +48,44 @@ export default function Board() {
       <img
         src="/flower3.png"
         alt="Flower"
-        className="absolute top-2 w-24 h-auto md:top-4 lg:w-[16rem] left-0 md:w-32 lg:top-8 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
+        className="absolute top-0 w-24 h-auto lg:w-[16rem] left-0 md:w-32 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
       />
       <img
         src="/flower4.png"
         alt="Flower Bottom Right"
-        className="absolute bottom-2 w-40 h-auto right-0 md:w-44 lg:bottom-6 lg:w-[28rem] opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
+        className="bottom-0 absolute w-40 h-auto right-0 md:w-44 lg:w-[28rem] opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
       />
       <img
         src="/ringmid.png"
         alt="Ring"
-        className="absolute top-8 left-1/2 transform -translate-x-1/2 w-[800px] h-[320px] md:w-[1000px] md:h-[400px] lg:w-[1200px] lg:h-[480px] xl:w-[1400px] xl:h-[560px] pointer-events-none mix-blend-screen opacity-60 md:opacity-70 lg:opacity-80 z-10"
+        className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[80vh] lg:w-[60vw]  
+                   pointer-events-none mix-blend-screen 
+                   opacity-60 md:opacity-70 lg:opacity-80 z-10"
       />
 
       {/* Main Content */}
-      <div className="relative z-20 w-full flex flex-col items-center">
-        <h1
-  className="relative text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-center text-purple-100 mb-10 md:mb-12 lg:mb-16 xl:mb-20 tracking-wider"
-  style={{
-    fontFamily: "Orbitron, monospace",
-    textShadow: "0 0 8px rgba(192, 128, 255, 0.9), 0 0 12px rgba(192, 128, 255, 0.6)",
-  }}
->
-  <span className="absolute -top-4 -left-4 w-6 h-6 border-t-4 border-l-4 border-purple-500"></span>
-  <span className="absolute -bottom-4 -right-4 w-6 h-6 border-b-4 border-r-4 border-purple-500"></span>
-  BOARD MEMBERS
-</h1>
+      <div className="relative flex flex-col items-center justify-center w-full px-4 mb-10 pt-16 md:pt-0">
+        <div className="relative inline-block">
+          {/* Top-left corner */}
+          <span className="absolute -top-4 -left-6 w-8 h-0.5 bg-purple-300 md:w-10 md:h-2 md:-top-5 md:-left-7"></span>
+          <span className="absolute -top-4 -left-6 w-0.5 h-8 bg-purple-300 md:w-2 md:h-10 md:-top-5 md:-left-7"></span>
 
-
+          {/* Bottom-right corner */}
+          <span className="absolute -bottom-4 -right-6 w-8 h-0.5 bg-purple-300 md:w-10 md:h-2 md:-bottom-5 md:-right-7"></span>
+          <span className="absolute -bottom-4 -right-6 w-0.5 h-8 bg-purple-300 md:w-2 md:h-10 md:-bottom-5 md:-right-7"></span>
+          
+          {/* Heading */}
+          <h1
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-bold text-purple-200 text-center tracking-widest relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] px-4 leading-tight"
+            style={{ fontFamily: "Orbitron, monospace" }}
+          >
+            <span className="block lg:inline">BOARD</span>
+            <span className="block lg:inline lg:ml-4">MEMBERS</span>
+          </h1>
+        </div>
 
         {/* Carousel Container */}
-        <div className="relative w-full perspective-1000">
+        <div className="z-150 relative w-full perspective-1000 top-15">
           <div className="w-full overflow-hidden">
             <div
               ref={carouselRef}

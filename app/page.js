@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Stars from "./components/Stars";
 import Navbar from "./components/Navbar";
 import LetsWork from "./components/LetsWork";
+import FooterBottom from "./components/FooterBottom";
 
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
      <Projects/>
      <Board/>
      <Footer/>
-     <LetsWork/>
+
     </Stars>
   );
 }
