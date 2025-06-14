@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -12,13 +13,15 @@ export default function Hero() {
         alt="Flower"
         className="absolute w-24 h-auto top-0 lg:w-[16rem] left-0 md:w-32 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
       />
-      <div
-        className="absolute -top-32 sm:-top-48 md:-top-64 lg:-top-150 left-1/2 transform -translate-x-1/2 
-                   w-[120vw] h-[120vw] sm:w-[100vw] sm:h-[100vw] md:w-[80vw] md:h-[80vw] 
-                   lg:w-[66vw] lg:h-[66vw] xl:w-[60vw] xl:h-[60vw] 
-                   bg-purple-500 rounded-full opacity-20 sm:opacity-25 md:opacity-30 blur-3xl"
-        style={{ filter: 'blur(100px)' }}
-      />
+      <div className="absolute top-0 left-1/2 w-[80rem] h-[60rem] md:w-[200rem] md:h-[180rem] -translate-x-1/2 -translate-y-1/2 opacity-60 z-0 pointer-events-none">
+        <Image
+          src="/hero.png"
+          alt="White Glow"
+          fill
+          className="object-contain"
+          priority
+        />
+      </div>
 
       <div className="max-w-5xl mx-auto relative z-10 w-full">
         <h1

@@ -1,59 +1,7 @@
 import React from "react";
-import { ArrowRight } from "lucide-react";
+import BentoGrid from "./BentoGrid";
+import BentoGridItem from "./BentoGridItems";
 
-// Utility for merging class names
-function cn(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
-// Grid container
-function BentoGrid({ className, children }) {
-  return (
-    <div className={cn("mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-5 gap-4 md:auto-rows-[280px]", className)}>
-      {children}
-    </div>
-  );
-}
-
-// Grid item
-function BentoGridItem({ className, title, description }) {
-  return (
-    <div
-      className={cn(
-        // Darker gradient border + white glow
-        "relative rounded-2xl p-px bg-gradient-to-tr from-slate-800 to-purple-600 shadow-[0_0_20px_6px_rgba(255,255,255,0.2)]",
-        className
-      )}
-    >
-      <div className="flex flex-col justify-between h-full rounded-xl bg-slate-900 p-6">
-        <div className="flex-1">
-          <h3
-            className="mb-4 text-3xl font-semibold text-white"
-            style={{ fontFamily: "Orbitron, monospace" }}
-          >
-            {title}
-          </h3>
-          <p
-            className="text-sm leading-relaxed text-purple-100 opacity-80"
-            style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
-          >
-            {description}
-          </p>
-        </div>
-
-        {/* Button matching the screenshot */}
-        <div className="mt-6 flex items-center justify-end">
-          <button className="flex items-center gap-2 rounded-full bg-purple-800 px-6 py-2 text-sm text-white transition duration-200 hover:bg-purple-700">
-            explore
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Card data
 const items = [
   {
     title: "messit",
@@ -88,28 +36,39 @@ export default function Projects() {
       <img
         src="/3D_object_Projects.png"
         alt="3D Object Overlay"
-        className="absolute -top-80 -left-2 w-72 h-auto z-50 pointer-events-none"
+        className="absolute -top-45 md:-top-80 -left-2 w-40 md:w-72 h-auto z-50 pointer-events-none"
       />
       <img
         src="/Light_source_projects.png"
         alt="Light Source Overlay"
-        className="absolute top-5 left-0 w-full min-w-full h-auto z-40 pointer-events-none opacity-90"
+        className="hidden md:block absolute top-0 left-0 w-full min-w-full h-auto z-40 pointer-events-none opacity-90"
         style={{ 
           mixBlendMode: 'screen',
           objectFit: 'cover'
         }}
       />
       
-      <div className="w-full min-h-screen">
-        <h1 
-          className="text-6xl md:text-8xl text-center font-bold text-white mb-12 pt-8 tracking-wider transform transition-transform duration-500"
-          style={{ fontFamily: 'Orbitron, monospace' }}
-        >
-          PROJECTS
-        </h1>
+      <div className="w-full text-center z-10">
+        <div className="relative inline-block mb-20 top-30">
+          {/* Top-left corner */}
+          <span className="absolute top-[-18] left-[-26] w-10 h-2 bg-purple-300"></span>
+          <span className="absolute top-[-18] left-[-26] w-2 h-10 bg-purple-300"></span>
+
+          {/* Bottom-right corner */}
+          <span className="absolute bottom-15 right-[-20] w-10 h-2 bg-purple-300"></span>
+          <span className="absolute bottom-15 right-[-20] w-2 h-10 bg-purple-300"></span>
+          
+          {/* Heading */}
+          <h1
+            className="text-4xl md:text-7xl font-bold text-purple-200 mb-20 tracking-widest relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
+            style={{ fontFamily: "Orbitron, monospace" }}
+          >
+            PROJECTS
+          </h1>
+        </div>
 
         <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
-          <BentoGrid className="max-w-5xl mx-auto gap-6">
+          <BentoGrid className="max-w-5xl gap-3">
             {items.map((item, i) => (
               <BentoGridItem
                 key={i}
