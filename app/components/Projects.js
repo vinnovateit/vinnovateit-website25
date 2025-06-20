@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import BentoGrid from "./BentoGrid";
 import BentoGridItem from "./BentoGridItems";
+import CardGrid from "./ProjectCard";
 
 const items = [
   {
@@ -35,6 +36,22 @@ const items = [
 export default function Projects() {
   return (
     <div className="min-h-screen w-full relative overflow-visible">
+      <div className="absolute inset-0">
+        {[...Array(100)].map((_, i) => (
+          <div
+            key={`star-${i}`}
+            className="absolute bg-white rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 2 + 0.5}px`,
+              height: `${Math.random() * 2 + 0.5}px`,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${Math.random() * 2 + 2}s`
+            }}
+          />
+        ))}
+      </div>
       <div className="absolute -top-45 md:-top-85 -left-2 w-40 md:w-80 h-auto z-50 pointer-events-none">
         <Image
           src="/3D_object_Projects.png"
@@ -76,7 +93,8 @@ export default function Projects() {
         </div>
 
         <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
-          <BentoGrid className="max-w-5xl gap-3">
+          <CardGrid/>
+          {/* <BentoGrid className="max-w-5xl gap-3">
             {items.map((item, i) => (
               <BentoGridItem
                 key={i}
@@ -85,7 +103,7 @@ export default function Projects() {
                 className={item.className}
               />
             ))}
-          </BentoGrid>
+          </BentoGrid> */}
         </div>
       </div>
     </div>
