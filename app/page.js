@@ -12,9 +12,8 @@ import FooterBottom from "./components/FooterBottom";
 
 export default function Home() {
   return (
-
-    <Stars>
-      <Navbar/>
+<div className="overflow-hidden">
+  <Navbar/>
       <Hero/>
      <AboutUs/>
      <Domains/>
@@ -22,7 +21,7 @@ export default function Home() {
      <Projects/>
      <Board/>
      <Footer/>
-
-    </Stars>
+</div>
+      
   );
 }

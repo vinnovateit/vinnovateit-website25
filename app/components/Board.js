@@ -25,7 +25,7 @@ export default function Board() {
   return (
     <div 
       ref={containerRef}
-      className="z-80 relative flex flex-col items-center min-h-screen bg-black lg:px-6 md:pt-20 lg:pt-24 pb-12 lg:pb-20 overflow-hidden"
+      className="relative flex flex-col items-center min-h-screen bg-black lg:px-6 md:pt-20 lg:pt-24 pb-12 lg:pb-20 overflow-hidden"
     >
       {/* Stars Background */}
       <div className="absolute inset-0">
