@@ -15,7 +15,8 @@ export default function AboutUs() {
         className="absolute -top-70 sm:top-0 md:-top-80 -right-2 z-50 pointer-events-none w-[250px] md:w-[300px] lg:w-[400px] h-auto"
       />
       
-      {/* Overlay image at Bottom left */}
+      {/* Big ring pushed to right corner */}
+      
       
       <h1
         className="text-5xl md:text-7xl font-bold mb-12 tracking-wider transform transition-transform duration-500"
@@ -37,9 +38,9 @@ export default function AboutUs() {
           backgroundColor: 'rgba(157, 148, 255, 0.03)', 
           boxShadow: '0 0 40px rgba(255, 255, 255, 0.6), 0 0 80px rgba(255, 255, 255, 0.3)' 
         }}>
-          {/* Terminal header */}
+          {/* Terminal header with updated background */}
           <div className="flex items-center justify-center px-6 py-3 backdrop-blur-xl border-b border-white/30 rounded-t-3xl relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/30 before:to-white/10 before:rounded-t-3xl before:pointer-events-none" style={{ 
-            backgroundColor: 'rgba(28, 20, 240, 0.05)'
+            backgroundColor: 'rgba(28, 31, 48, 0.52)'
           }}>
             <div className="flex gap-3">
               <div className="w-2 h-2 md:w-4 md:h-4 bg-red-500 rounded-full"></div>
@@ -57,9 +58,9 @@ export default function AboutUs() {
             </div>
           </div>
 
-          {/* Terminal content */}
+          {/* Terminal content with updated background */}
           <div className="flex flex-col md:flex-row items-start gap-0 md:gap-3 p-9 md:p-15 relative z-10 backdrop-blur-xl before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/15 before:to-transparent before:pointer-events-none" style={{ 
-            backgroundColor: 'rgba(157, 148, 255, 0.02)'
+            backgroundColor: 'rgba(157, 148, 255, 0.30)'
           }}>
             {/* Left side - Text content */}
             <div className="flex-1 text-left">
@@ -113,13 +114,7 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
-      {/* <Image
-        src="/semi-sphere.png"
-        alt="Ring"
-        width={650}
-        height={650}
-        className="absolute top-125 right-0 w-[300px] sm:w-[450px] lg:w-[650px] h-auto pointer-events-none opacity-80 mix-blend-screen"
-      /> */}
+      
     </div>
   );
 }

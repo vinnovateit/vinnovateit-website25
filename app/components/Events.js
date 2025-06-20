@@ -8,27 +8,27 @@ const events = [
   {
     name: "VINHACK",
     description: "A premier hackathon where innovative minds come together to build groundbreaking solutions and push the boundaries of technology.",
-    image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/globe.png",
   },
   {
     name: "VINCODE",
     description: "An intensive coding competition that challenges participants to solve complex problems and showcase their programming prowess.",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/pen.png",
   },
   {
     name: "VINPREP",
     description: "A comprehensive preparation program designed to equip students with essential skills for technical interviews and career advancement.",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=3542&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/robot.png",
   },
   {
     name: "VINTALKS",
     description: "Inspiring talks by industry leaders and experts sharing insights on the latest trends in technology and innovation.",
-    image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?q=80&w=3326&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/mobile.png",
   },
   {
     name: "VINFEST",
     description: "A vibrant festival celebrating technology, creativity, and community with workshops, exhibitions, and networking opportunities.",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/terminal.png",
   },
 ];
 
@@ -36,23 +36,14 @@ export default function Events() {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen px-6 py-16 overflow-hidden">
       {/* White Glow Background */}
-      <div className="absolute top-0 left-1/2 w-[80rem] h-[60rem] md:w-[200rem] md:h-[180rem] -translate-x-1/2 -translate-y-1/2 opacity-60 z-0 pointer-events-none">
-        <Image
-          src="/hero.png"
-          alt="White Glow"
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
 
       {/* Flashlight bg */}
-      <div className="hidden md:block absolute top-[0px] right-[0px] w-[2500px] h-[2400px] pointer-events-none z-0 opacity-75">
+      <div className="hidden md:block absolute top-0 -right-30 w-[2000px] h-[2500px] pointer-events-none z-0 opacity-75 transform rotate-12 origin-top-right">
         <Image
           src="/light.png"
           alt="Spotlight"
-          width={2500}
-          height={2000}
+          width={2400}
+          height={2200}
           className="object-contain opacity-75"
         />
       </div>

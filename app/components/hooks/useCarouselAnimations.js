@@ -19,8 +19,8 @@ export const useCarouselAnimation = (containerRef, carouselRef, screenSize, boar
     const cards = gsap.utils.toArray(carousel.children);
     const totalCards = cards.length;
     
-    const cardWidth = screenSize === 'mobile' ? 360 : screenSize === 'tablet' ? 320 : 340;
-    const cardGap = screenSize === 'mobile' ? 20 : screenSize === 'tablet' ? 40 : 60; // Increased gap for desktop
+    const cardWidth = screenSize === 'mobile' ? 360 : screenSize === 'tablet' ? 360 : 400;
+    const cardGap = screenSize === 'mobile' ? 20 : screenSize === 'tablet' ? 40 : 80; // Increased gap for desktop
     const totalWidth = (cardWidth * totalCards) + (cardGap * (totalCards - 1));
     const containerWidth = container.offsetWidth;
     
@@ -46,6 +46,7 @@ export const useCarouselAnimation = (containerRef, carouselRef, screenSize, boar
       scrollDistance = totalWidth - containerWidth + initialOffset;
       // Ensure last card can be properly centered with gap consideration
       scrollDistance += cardWidth / 2;
+      
     }
 
     // Set initial position of carousel

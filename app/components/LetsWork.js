@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
+import Image from 'next/image';
 
 const LetsWork = () => {
   const images = [
@@ -14,26 +15,32 @@ const LetsWork = () => {
 
   const AnimatedImage = ({ src, index, alt }) => {
     const ref = React.useRef(null);
-    const isInView = useInView(ref, { 
-      once: true, 
-      margin: "-20% 0px -20% 0px" 
+    const isInView = useInView(ref, {
+      once: true,
+      margin: "-20% 0px -20% 0px"
     });
 
     return (
-      <motion.img
+      <motion.div
         ref={ref}
-        src={src}
-        alt={alt}
-        className="w-full block"
         initial={{ opacity: 0, y: 100 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-        transition={{ 
-          duration: 0.8, 
+        transition={{
+          duration: 0.8,
           delay: index * 0.2,
           ease: [0.25, 0.46, 0.45, 0.94]
         }}
-        loading="lazy"
-      />
+        className="w-full relative aspect-[16/9] mb-4" // maintains responsive ratio
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="100vw"
+          priority={index === 0}
+        />
+      </motion.div>
     );
   };
 

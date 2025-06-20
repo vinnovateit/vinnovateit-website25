@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
@@ -39,48 +40,48 @@ export const AnimatedTestimonials = ({
         <div className="-mt-8">
           <div className="relative h-64 w-full md:h-[500px]">
             <AnimatePresence>
-              {events.map((event, index) => (
-                <motion.div
-                  key={event.image}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: -100,
-                    rotate: randomRotateY(),
-                  }}
-                  animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
-                    scale: isActive(index) ? 1 : 0.95,
-                    z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : randomRotateY(),
-                    zIndex: isActive(index)
-                      ? 40
-                      : events.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: randomRotateY(),
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute inset-0 origin-bottom"
-                >
-                  <img
-                    src={event.image}
-                    alt={event.name}
-                    width={600}
-                    height={500}
-                    draggable={false}
-                    className="h-full w-full rounded-3xl object-cover object-center shadow-2xl"
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
+  {events.map((event, index) => (
+    <motion.div
+      key={event.image}
+      initial={{
+        opacity: 0,
+        scale: 0.9,
+        z: -100,
+        rotate: randomRotateY(),
+      }}
+      animate={{
+        opacity: isActive(index) ? 1 : 0.7,
+        scale: isActive(index) ? 1 : 0.95,
+        z: isActive(index) ? 0 : -100,
+        rotate: isActive(index) ? 0 : randomRotateY(),
+        zIndex: isActive(index) ? 40 : events.length + 2 - index,
+        y: isActive(index) ? [0, -80, 0] : 0,
+      }}
+      exit={{
+        opacity: 0,
+        scale: 0.9,
+        z: 100,
+        rotate: randomRotateY(),
+      }}
+      transition={{
+        duration: 0.4,
+        ease: "easeInOut",
+      }}
+      className="absolute inset-0 origin-bottom"
+    >
+      <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl">
+        <Image
+          src={event.image}
+          alt={event.name}
+          fill
+          sizes="(max-width: 768px) 100vw, 600px"
+          priority
+          className="object-cover object-center"
+        />
+      </div>
+    </motion.div>
+  ))}
+</AnimatePresence>
           </div>
         </div>
 

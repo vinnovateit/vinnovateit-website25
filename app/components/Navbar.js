@@ -134,8 +134,8 @@ const MainNavbar = () => {
               <Image
                 src="/whiteLogoViit.svg"
                 alt="VIIT Logo"
-                width={isMobile ? 80 : 140}
-                height={isMobile ? 80 : 140}
+                width={isMobile ? 60 : 100}
+                height={isMobile ? 60 : 100}
                 priority
               />
             </motion.div>
