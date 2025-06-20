@@ -14,6 +14,7 @@ export default function Hero() {
   const subtitleRef = useRef(null);
   const buttonRef = useRef(null);
   const galaxyRef = useRef(null);
+  const aboutObjectRef = useRef(null); // New ref for the 3D about us object
 
   // Calculate star counts and galaxy counts based on screen size
   const getCounts = () => {
@@ -67,6 +68,8 @@ export default function Hero() {
       gsap.set(titleRef.current, { opacity: 0, y: 50, scale: 0.9 });
       gsap.set(subtitleRef.current, { opacity: 0, y: 30 });
       gsap.set(buttonRef.current, { opacity: 0, y: 20, scale: 0.9 });
+      // Set initial state for 3D about us object - comes from right (opposite to hero_3d1 which comes from left)
+      gsap.set(aboutObjectRef.current, { opacity: 0, scale: 0.8, rotation: 10, x: 100 });
 
       // Create master timeline
       const tl = gsap.timeline();
@@ -102,11 +105,21 @@ export default function Hero() {
         ease: "back.out(1.7)"
       }, "-=1.5")
       
-      // Ring animation - smooth scale and rotation
+      // Ring animation - smooth scale and rotation (from left)
       .to(ringRef.current, {
         opacity: 1,
         scale: 1,
         rotation: 0,
+        duration: 1.2,
+        ease: "power2.out"
+      }, "-=1.5")
+      
+      // 3D About Us object animation - comes from right (opposite direction)
+      .to(aboutObjectRef.current, {
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        x: 0,
         duration: 1.2,
         ease: "power2.out"
       }, "-=1.5")
@@ -317,7 +330,7 @@ export default function Hero() {
         ))}
       </div>
 
-      {/* Background circle */}
+      {/* Background circle - comes from left */}
       <div 
         ref={ringRef}
         className="absolute top-0 left-0 w-24 md:w-32 lg:w-[16rem] h-auto opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
@@ -329,6 +342,20 @@ export default function Hero() {
           height={256}
           className="w-full h-auto"
           priority
+        />
+      </div>
+
+      {/* 3D About Us Object - comes from right */}
+      <div 
+        ref={aboutObjectRef}
+        className="absolute -bottom-35 md:-bottom-55 -right-2 z-50 pointer-events-none"
+      >
+        <Image
+          src="/3D_object_About_us.png"
+          alt="Overlay"
+          width={400}
+          height={350}
+          className="w-[250px] md:w-[300px] lg:w-[400px] h-auto"
         />
       </div>
 
