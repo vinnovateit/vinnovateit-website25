@@ -36,23 +36,14 @@ export default function Events() {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen px-6 py-16 overflow-hidden">
       {/* White Glow Background */}
-      <div className="absolute top-0 left-1/2 w-[80rem] h-[60rem] md:w-[200rem] md:h-[180rem] -translate-x-1/2 -translate-y-1/2 opacity-60 z-0 pointer-events-none">
-        <Image
-          src="/hero.png"
-          alt="White Glow"
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
 
       {/* Flashlight bg */}
-      <div className="hidden md:block absolute top-[0px] right-[0px] w-[2500px] h-[2400px] pointer-events-none z-0 opacity-75">
+      <div className="hidden md:block absolute top-0 -right-30 w-[2000px] h-[2500px] pointer-events-none z-0 opacity-75 transform rotate-12 origin-top-right">
         <Image
           src="/light.png"
           alt="Spotlight"
-          width={2500}
-          height={2000}
+          width={2400}
+          height={2200}
           className="object-contain opacity-75"
         />
       </div>

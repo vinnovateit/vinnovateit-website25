@@ -36,7 +36,7 @@ export default function Projects() {
       <img
         src="/3D_object_Projects.png"
         alt="3D Object Overlay"
-        className="absolute -top-45 md:-top-80 -left-2 w-40 md:w-72 h-auto z-50 pointer-events-none"
+        className="absolute -top-45 md:-top-85 -left-2 w-40 md:w-80 h-auto z-50 pointer-events-none"
       />
       <img
         src="/Light_source_projects.png"

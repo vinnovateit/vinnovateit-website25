@@ -3,6 +3,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useRef } from "react";
+import Image from "next/image";
 import { useScreenSize } from '@/app/components/hooks/useScreenSize';
 import { useCarouselAnimation } from '@/app/components/hooks/useCarouselAnimations';
 import MemberCard from './BoardCard';
@@ -45,27 +46,40 @@ export default function Board() {
       </div>
 
       {/* Background Decorations */}
-      <img
-        src="/flower3.png"
-        alt="Flower"
-        className="absolute top-0 w-24 h-auto lg:w-[16rem] left-0 md:w-32 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
-      />
-      <img
-        src="/flower4.png"
-        alt="Flower Bottom Right"
-        className="bottom-0 absolute w-40 h-auto right-0 md:w-44 lg:w-[28rem] opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
-      />
-      <img
-        src="/ringmid.png"
-        alt="Ring"
-        className="absolute top-0 left-1/2 transform -translate-x-1/2 w-[80vh] lg:w-[60vw]  
-                   pointer-events-none mix-blend-screen 
-                   opacity-60 md:opacity-70 lg:opacity-80 z-10"
-      />
+      <div className="absolute top-0 left-0 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-64 lg:h-64 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10">
+        <Image
+          src="/flower3.png"
+          alt="Flower"
+          fill
+          className="object-contain"
+        />
+      </div>
+      
+      <div className="absolute bottom-0 right-0 w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10">
+        <Image
+          src="/flower4.png"
+          alt="Flower Bottom Right"
+          fill
+          className="object-contain"
+        />
+      </div>
+      
+      {/* Centered Big Ring */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                      w-[45rem] h-[45rem] 
+                      md:w-[90rem] md:h-[90rem]
+                      pointer-events-none mix-blend-screen opacity-60 md:opacity-70 lg:opacity-80 z-10">
+        <Image
+          src="/big_ring.png"
+          alt="Ring"
+          fill
+          className="object-contain"
+        />
+      </div>
 
       {/* Main Content */}
       <div className="relative flex flex-col items-center justify-center w-full px-4 mb-10 pt-16 md:pt-0">
-        <div className="relative inline-block">
+        <div className="relative inline-block mb-8 md:mb-12 lg:mb-16">
           {/* Top-left corner */}
           <span className="absolute -top-4 -left-6 w-8 h-0.5 bg-purple-300 md:w-10 md:h-2 md:-top-5 md:-left-7"></span>
           <span className="absolute -top-4 -left-6 w-0.5 h-8 bg-purple-300 md:w-2 md:h-10 md:-top-5 md:-left-7"></span>
@@ -85,11 +99,11 @@ export default function Board() {
         </div>
 
         {/* Carousel Container */}
-        <div className="z-150 relative w-full perspective-1000 top-15">
-          <div className="w-full overflow-hidden">
+        <div className="z-150 relative w-full perspective-1000 py-8 md:py-12 lg:py-16">
+          <div className="w-full overflow-hidden min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center">
             <div
               ref={carouselRef}
-              className="flex items-center"
+              className="flex items-center md:space-x-5 lg:space-x-10"
               style={{ 
                 width: `${boardMembers.length * getCardWidth()}px`,
                 willChange: 'transform',

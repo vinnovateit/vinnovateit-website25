@@ -13,7 +13,7 @@ export default function Hero() {
         alt="Flower"
         className="absolute w-24 h-auto top-0 lg:w-[16rem] left-0 md:w-32 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
       />
-      <div className="absolute top-0 left-1/2 w-[80rem] h-[60rem] md:w-[200rem] md:h-[180rem] -translate-x-1/2 -translate-y-1/2 opacity-60 z-0 pointer-events-none">
+      <div className="absolute top-0 left-1/2 w-[80rem] h-[60rem] md:w-[150rem] md:h-[180rem] -translate-x-1/2 -translate-y-1/2 opacity-60 z-0 pointer-events-none">
         <Image
           src="/hero.png"
           alt="White Glow"

@@ -17,6 +17,21 @@ export default function Domains() {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12">
       {/* Decorative elements */}
+      <div className="absolute -top-[20rem] left-[5rem] md:top-[-50rem] md:right-[-50rem] md:left-auto
+                w-[45rem] h-[45rem] 
+                md:w-[90rem] md:h-[90rem] 
+                pointer-events-none mix-blend-screen 
+                opacity-60 md:opacity-70 lg:opacity-80 
+                z-10">
+  <Image
+    src="/big_ring.png"
+    alt="Ring"
+    width={720}
+    height={720}
+    className="w-full h-full object-contain"
+  />
+</div>
+
       <Image
         src="/3D_object1_About_us.png"
         alt="Overlay"
@@ -36,7 +51,7 @@ export default function Domains() {
         
         {/* Simple flexbox layout */}
         <div
-          className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto"
+          className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mb-20"
           style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
         >
           {domains.map((item, index) => (
@@ -55,7 +70,7 @@ export default function Domains() {
         alt="Flower"
         width={550}
         height={550}
-        className="absolute bottom-0 right-0 w-64 sm:w-80 md:w-96 lg:w-[28rem] xl:w-[34rem] h-auto pointer-events-none select-none"
+        className="absolute bottom-0 right-0 w-64 sm:w-80 md:w-96 lg:w-[30rem] h-auto pointer-events-none select-none z-10"
         style={{ transform: 'translateY(55%)' }}
       />
     </div>
