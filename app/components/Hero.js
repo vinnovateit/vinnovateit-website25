@@ -2,17 +2,23 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from "next/image";
+import Image from 'next/image';
 
 export default function Hero() {
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center overflow-hidden">
       {/* Background circle */}
-      <img
-        src="/hero_3d1.png"
-        alt="Flower"
-        className="absolute w-24 h-auto top-0 lg:w-[16rem] left-0 md:w-32 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
-      />
+      <div className="absolute top-0 left-0 w-24 md:w-32 lg:w-[16rem] h-auto opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10">
+        <Image
+          src="/hero_3d1.png"
+          alt="Flower"
+          width={256}
+          height={256}
+          className="w-full h-auto"
+          priority
+        />
+      </div>
+
       <div className="absolute top-0 left-1/2 w-[80rem] h-[60rem] md:w-[150rem] md:h-[180rem] -translate-x-1/2 -translate-y-1/2 opacity-60 z-0 pointer-events-none">
         <Image
           src="/hero.png"

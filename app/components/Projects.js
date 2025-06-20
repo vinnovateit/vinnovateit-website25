@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import Image from "next/image";
 import BentoGrid from "./BentoGrid";
 import BentoGridItem from "./BentoGridItems";
 
@@ -29,25 +32,30 @@ const items = [
   },
 ];
 
-// Main component
 export default function Projects() {
   return (
     <div className="min-h-screen w-full relative overflow-visible">
-      <img
-        src="/3D_object_Projects.png"
-        alt="3D Object Overlay"
-        className="absolute -top-45 md:-top-85 -left-2 w-40 md:w-80 h-auto z-50 pointer-events-none"
-      />
-      <img
-        src="/Light_source_projects.png"
-        alt="Light Source Overlay"
-        className="hidden md:block absolute top-0 left-0 w-full min-w-full h-auto z-40 pointer-events-none opacity-90"
-        style={{ 
-          mixBlendMode: 'screen',
-          objectFit: 'cover'
-        }}
-      />
-      
+      <div className="absolute -top-45 md:-top-85 -left-2 w-40 md:w-80 h-auto z-50 pointer-events-none">
+        <Image
+          src="/3D_object_Projects.png"
+          alt="3D Object Overlay"
+          width={320}
+          height={320}
+          className="w-full h-auto"
+          priority
+        />
+      </div>
+
+      <div className="hidden md:block absolute top-0 left-0 w-full h-auto z-40 pointer-events-none opacity-90">
+        <Image
+          src="/Light_source_projects.png"
+          alt="Light Source Overlay"
+          fill
+          className="object-cover"
+          style={{ mixBlendMode: "screen" }}
+        />
+      </div>
+
       <div className="w-full text-center z-10">
         <div className="relative inline-block mb-20 top-30">
           {/* Top-left corner */}
@@ -57,7 +65,7 @@ export default function Projects() {
           {/* Bottom-right corner */}
           <span className="absolute bottom-15 right-[-20] w-10 h-2 bg-purple-300"></span>
           <span className="absolute bottom-15 right-[-20] w-2 h-10 bg-purple-300"></span>
-          
+
           {/* Heading */}
           <h1
             className="text-4xl md:text-7xl font-bold text-purple-200 mb-20 tracking-widest relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
