@@ -5,6 +5,7 @@ import Image from "next/image";
 import BentoGrid from "./BentoGrid";
 import BentoGridItem from "./BentoGridItems";
 import CardGrid from "./ProjectCard";
+import SectionHeading from "./SectionHeading";
 
 const items = [
   {
@@ -74,22 +75,8 @@ export default function Projects() {
       </div>
 
       <div className="w-full text-center z-10">
-        <div className="relative inline-block mb-20 top-30">
-          {/* Top-left corner */}
-          <span className="absolute top-[-18] left-[-26] w-10 h-2 bg-purple-300"></span>
-          <span className="absolute top-[-18] left-[-26] w-2 h-10 bg-purple-300"></span>
-
-          {/* Bottom-right corner */}
-          <span className="absolute bottom-15 right-[-20] w-10 h-2 bg-purple-300"></span>
-          <span className="absolute bottom-15 right-[-20] w-2 h-10 bg-purple-300"></span>
-
-          {/* Heading */}
-          <h1
-            className="text-4xl md:text-7xl font-bold text-purple-200 mb-20 tracking-widest relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
-            style={{ fontFamily: "Orbitron, monospace" }}
-          >
-            PROJECTS
-          </h1>
+        <div className="top-30">
+          <SectionHeading title="PROJECTS" />
         </div>
 
         <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
