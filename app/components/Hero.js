@@ -16,6 +16,17 @@ export default function Hero() {
   const aboutObjectRef = useRef(null); // New ref for the 3D about us object
   const orbsRef = useRef([]); // New ref for floating orbs
 
+  const handleExploreClick = (e) => {
+    e.preventDefault();
+    const targetSection = document.querySelector('#aboutus');
+    if (targetSection) {
+      targetSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Set initial states
@@ -247,17 +258,16 @@ export default function Hero() {
           Think, Create, Innovate...
         </p>
 
-        <Link href="#about">
-          <button
-            ref={buttonRef}
-            className="bg-white text-black px-8 py-3 rounded-full border border-purple-400 shadow-lg 
-                       hover:shadow-purple-500/40 hover:scale-105 active:scale-95 
-                       transition-all duration-300 font-medium text-base sm:text-lg"
-            style={{ fontFamily: 'var(--font-dm-sans)' }}
-          >
-            Explore More
-          </button>
-        </Link>
+        <button
+          ref={buttonRef}
+          onClick={handleExploreClick}
+          className="bg-white text-black px-8 py-3 rounded-full border border-purple-400 shadow-lg 
+                     hover:shadow-purple-500/40 hover:scale-105 active:scale-95 
+                     transition-all duration-300 font-medium text-base sm:text-lg"
+          style={{ fontFamily: 'var(--font-dm-sans)' }}
+        >
+          Explore More
+        </button>
       </div>
     </div>
   );
