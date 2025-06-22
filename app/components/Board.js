@@ -9,6 +9,7 @@ import { useCarouselAnimation } from '@/app/components/hooks/useCarouselAnimatio
 import MemberCard from './BoardCard';
 import { boardMembers } from '@/app/components/data/boardMembers';
 import SectionHeading from './SectionHeading';
+import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,23 +29,12 @@ export default function Board() {
       ref={containerRef}
       className="relative flex flex-col items-center min-h-screen bg-black lg:px-6 md:pt-20 lg:pt-24 pb-12 lg:pb-20 overflow-hidden"
     >
-      {/* Stars Background */}
-      <div className="absolute inset-0">
-        {[...Array(100)].map((_, i) => (
-          <div
-            key={`star-${i}`}
-            className="absolute bg-white rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 2 + 0.5}px`,
-              height: `${Math.random() * 2 + 0.5}px`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${Math.random() * 2 + 2}s`
-            }}
-          />
-        ))}
-      </div>
+      {/* Animated stars background */}
+      <AnimatedStarsBackground 
+        variant="simple" 
+        starCount={100}
+        zIndex={1}
+      />
 
       {/* Background Decorations */}
       <div className="absolute top-0 left-0 w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 lg:w-64 lg:h-64 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10">

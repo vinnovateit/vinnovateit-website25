@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { AnimatedTestimonials } from "./animated-testimonials";
 import SectionHeading from './SectionHeading';
+import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 const events = [
   {
@@ -35,7 +36,14 @@ const events = [
 
 export default function Events() {
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen px-6 py-16 overflow-hidden">
+    <div className="relative flex flex-col items-center justify-center min-h-screen px-6 py-16 overflow-hidden bg-black">
+      {/* Animated stars background */}
+      <AnimatedStarsBackground 
+        variant="simple" 
+        starCount={90}
+        zIndex={1}
+      />
+
       {/* White Glow Background */}
 
       {/* Flashlight bg */}

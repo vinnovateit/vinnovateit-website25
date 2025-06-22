@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import Image from "next/image";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -110,22 +111,11 @@ export default function AboutUs() {
       className="bg-black pt-10 flex flex-col items-center justify-center min-h-screen w-full relative p-0 m-0 overflow-visible"
     >
       {/* Animated stars background */}
-      <div className="absolute inset-0">
-        {[...Array(100)].map((_, i) => (
-          <div
-            key={`star-${i}`}
-            className="absolute bg-white rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 2 + 0.5}px`,
-              height: `${Math.random() * 2 + 0.5}px`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${Math.random() * 2 + 2}s`
-            }}
-          />
-        ))}
-      </div>
+      <AnimatedStarsBackground 
+        variant="simple" 
+        starCount={100}
+        zIndex={0}
+      />
       
       <h1
         className="text-5xl md:text-7xl font-bold mb-12 tracking-wider transform transition-transform duration-500"
