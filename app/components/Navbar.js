@@ -122,9 +122,27 @@ const MainNavbar = () => {
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
       `}</style>
-      <nav ref={navRef} className="z-100 fixed top-4 left-1/2 transform -translate-x-1/2 w-full lg:w-2/3 max-w-4xl bg-black/90 backdrop-blur-md shadow-[0_0_30px_rgba(147,51,234,0.3)] rounded-full border border-purple-500/20">
-        <div className="relative">
-          <div className="px-8 py-2 flex justify-between items-center">
+      <nav ref={navRef} className="z-100 fixed top-4 left-1/2 transform -translate-x-1/2 w-full lg:w-2/3 max-w-4xl rounded-full">
+        <div className="relative overflow-hidden rounded-full border border-purple-500/30 shadow-[0_0_30px_rgba(147,51,234,0.3)]">
+          {/* Glassmorphism backdrop */}
+          <div className="absolute inset-0 backdrop-blur-md bg-black/20 rounded-full" />
+          <svg
+            className="absolute inset-0 w-full h-full"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <mask id="navbarMask">
+                <rect
+                  width="100%"
+                  height="100%"
+                  fill="white"
+                  rx="50"
+                  ry="50"
+                />
+              </mask>
+            </defs>
+          </svg>
+          <div className="relative px-8 py-2 flex justify-between items-center bg-gradient-to-r from-purple-900/10 via-black/30 to-purple-900/10">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -204,10 +222,14 @@ const MainNavbar = () => {
               animate={{ x: "0%", opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed top-4 right-4 w-80 bg-black/95 backdrop-blur-md z-[200] shadow-[0_0_40px_rgba(147,51,234,0.4)] rounded-2xl text-white border border-purple-500/30"
+              className="fixed top-4 right-4 w-80 rounded-2xl text-white border border-purple-500/30 z-[200] shadow-[0_0_40px_rgba(147,51,234,0.4)] overflow-hidden"
               style={{ height: "calc(100vh - 2rem)" }}
             >
-              <div className="flex justify-end items-center p-6 border-b border-gray-800">
+              {/* Glassmorphism backdrop for drawer */}
+              <div className="absolute inset-0 backdrop-blur-md bg-black/60" />
+              <div className="absolute inset-0 bg-gradient-to-b from-purple-900/30 via-black/70 to-purple-900/30" />
+              <div className="relative">
+                <div className="flex justify-end items-center p-6 border-b border-gray-800/50">
                 <button onClick={toggleDrawer} className="p-2">
                   <div className="flex flex-col items-center justify-center w-8 h-8 space-y-1">
                     <div className="w-6 h-0.5 bg-white transform rotate-45 translate-y-1" />
@@ -232,7 +254,7 @@ const MainNavbar = () => {
                 </div>
               </div>
 
-              <div className="px-6 py-6 border-t border-gray-800">
+              <div className="px-6 py-6 border-t border-purple-500/20">
                 <p className="text-sm text-gray-400 text-center mb-4" style={{ fontFamily: 'Orbitron, monospace' }}>Connect with us</p>
                 <div className="flex space-x-6 justify-center">
                   {socialLinks.map((social, index) => (
@@ -246,7 +268,7 @@ const MainNavbar = () => {
                       {social.icon}
                     </Link>
                   ))}
-                </div>
+                </div>                </div>
               </div>
             </motion.div>
           )}
