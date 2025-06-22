@@ -10,6 +10,7 @@ import Link from "next/link";
 const MainNavbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const navRef = useRef(null);
   const sidebarRef = useRef(null);
   const socialIconsRef = useRef(null);
@@ -22,6 +23,41 @@ const MainNavbar = () => {
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll('#aboutus, #domains, #events, #projects, #board');
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        let visibleSection = '';
+        let maxRatio = 0;
+        
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio;
+            visibleSection = entry.target.id;
+          }
+        });
+        
+        if (visibleSection) {
+          setActiveSection(visibleSection);
+        } else if (window.scrollY < 200) {
+          // Clear active section when at the top (hacky ik)
+          setActiveSection('');
+        }
+      },
+      {
+        threshold: [0, 0.25, 0.5, 0.75, 1],
+        rootMargin: '-100px 0px -100px 0px' // cuz navbar
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
   }, []);
 
   useEffect(() => {
@@ -96,6 +132,20 @@ const MainNavbar = () => {
           },
         }
       );
+    }
+  };
+
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    const targetSection = document.querySelector(href);
+    if (targetSection) {
+      targetSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    if (isDrawerOpen) {
+      setIsDrawerOpen(false);
     }
   };
 
@@ -174,16 +224,25 @@ const MainNavbar = () => {
             </motion.div>
 
             <div className="hidden lg:flex items-center space-x-8">
-              {navigationLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.href}
-                  className="text-white/90 hover:text-purple-400 transition-all font-medium text-sm tracking-wider"
-                  style={{ fontFamily: 'Orbitron, monospace' }}
-                >
-                  {link.text}
-                </Link>
-              ))}
+              {navigationLinks.map((link, index) => {
+                const sectionId = link.href.replace('#', '');
+                const isActive = activeSection === sectionId;
+                return (
+                  <a
+                    key={index}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`transition-all font-medium text-sm tracking-wider cursor-pointer ${
+                      isActive 
+                        ? 'text-purple-400 scale-105' 
+                        : 'text-white/90 hover:text-purple-400'
+                    }`}
+                    style={{ fontFamily: 'Orbitron, monospace' }}
+                  >
+                    {link.text}
+                  </a>
+                );
+              })}
               {/* <div ref={socialIconsRef} className="flex items-center space-x-4 ml-6">
                 {socialLinks.map((social, index) => (
                   <Link
@@ -298,23 +357,31 @@ const MainNavbar = () => {
                 {/* Navigation Links - Centered */}
                 <div className="flex-1 flex flex-col justify-center items-center px-4 sm:px-6">
                   <div className="space-y-6 sm:space-y-8 md:space-y-10 text-center">
-                    {navigationLinks.map((link, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                      >
-                        <Link
-                          href={link.href}
-                          className="sidebar-link block hover:text-purple-400 font-medium text-xl sm:text-2xl md:text-3xl lg:text-4xl py-3 sm:py-4 px-4 sm:px-6 md:px-8 rounded-xl transition-all tracking-wider hover:bg-purple-900/20 hover:scale-105"
-                          style={{ fontFamily: 'Orbitron, monospace' }}
-                          onClick={() => setIsDrawerOpen(false)}
+                    {navigationLinks.map((link, index) => {
+                      const sectionId = link.href.replace('#', '');
+                      const isActive = activeSection === sectionId;
+                      return (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 50 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
                         >
-                          {link.text}
-                        </Link>
-                      </motion.div>
-                    ))}
+                          <a
+                            href={link.href}
+                            onClick={(e) => handleNavClick(e, link.href)}
+                            className={`sidebar-link block font-medium text-xl sm:text-2xl md:text-3xl lg:text-4xl py-3 sm:py-4 px-4 sm:px-6 md:px-8 rounded-xl transition-all tracking-wider hover:bg-purple-900/20 hover:scale-105 cursor-pointer ${
+                              isActive 
+                                ? 'text-purple-400 bg-purple-900/30 scale-105' 
+                                : 'hover:text-purple-400'
+                            }`}
+                            style={{ fontFamily: 'Orbitron, monospace' }}
+                          >
+                            {link.text}
+                          </a>
+                        </motion.div>
+                      );
+                    })}
                   </div>
                 </div>
 

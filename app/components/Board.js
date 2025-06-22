@@ -26,6 +26,7 @@ export default function Board() {
 
   return (
     <div 
+      id="board"
       ref={containerRef}
       className="relative flex flex-col items-center min-h-screen bg-black lg:px-6 md:pt-20 lg:pt-24 pb-12 lg:pb-20 overflow-hidden"
     >

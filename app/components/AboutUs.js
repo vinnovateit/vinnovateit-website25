@@ -107,6 +107,7 @@ export default function AboutUs() {
 
   return (
     <div 
+      id="aboutus"
       ref={containerRef}
       className="bg-black pt-10 flex flex-col items-center justify-center min-h-screen w-full relative p-0 m-0 overflow-visible"
     >

@@ -16,7 +16,7 @@ export default function Domains() {
   ];
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 bg-black">
+    <div id="domains" className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 bg-black">
       {/* Animated stars background */}
       <AnimatedStarsBackground 
         variant="simple" 

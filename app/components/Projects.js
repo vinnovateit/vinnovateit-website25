@@ -37,7 +37,7 @@ const items = [
 
 export default function Projects() {
   return (
-    <div className="min-h-screen w-full relative overflow-visible bg-black">
+    <div id="projects" className="min-h-screen w-full relative overflow-visible bg-black">
       {/* Animated stars background */}
       <AnimatedStarsBackground 
         variant="simple" 

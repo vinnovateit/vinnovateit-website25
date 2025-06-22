@@ -36,7 +36,7 @@ const events = [
 
 export default function Events() {
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen px-6 py-16 overflow-hidden bg-black">
+    <div id="events" className="relative flex flex-col items-center justify-center min-h-screen px-6 py-16 overflow-hidden bg-black">
       {/* Animated stars background */}
       <AnimatedStarsBackground 
         variant="simple" 
