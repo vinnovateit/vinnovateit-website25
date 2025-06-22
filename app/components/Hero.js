@@ -180,13 +180,13 @@ export default function Hero() {
       {/* Background circle - comes from left */}
       <div 
         ref={ringRef}
-        className="absolute top-0 left-0 w-24 md:w-32 lg:w-[16rem] h-auto opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
+        className="absolute -top-8 -left-8 md:-top-12 md:-left-12 lg:-top-16 lg:-left-16 w-32 md:w-40 lg:w-[20rem] h-auto opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
       >
         <Image
           src="/hero_3d1.png"
           alt="Flower"
-          width={256}
-          height={256}
+          width={320}
+          height={320}
           className="w-full h-auto"
           priority
         />
@@ -195,7 +195,7 @@ export default function Hero() {
       {/* 3D About Us Object - comes from right */}
       <div 
         ref={aboutObjectRef}
-        className="absolute -bottom-35 md:-bottom-55 -right-2 z-50 pointer-events-none"
+        className="absolute bottom-0 -right-40 w-64 sm:w-80 md:w-96 lg:w-[30rem] h-auto pointer-events-none select-none z-10"
       >
         <Image
           src="/3D_object_About_us.png"
