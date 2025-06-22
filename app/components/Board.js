@@ -73,12 +73,12 @@ export default function Board() {
         <SectionHeading 
           title="BOARD MEMBERS"
           className="text-center"
-          containerClassName="relative inline-block mb-8 md:mb-12 lg:mb-16"
+          containerClassName="relative inline-block mb-2 md:mb-3 lg:mb-4 mt-10 md:mt-32 lg:mt-36"
           isMultiline={true}
         />
 
         {/* Carousel Container */}
-        <div className="z-150 relative w-full perspective-1000 py-8 md:py-12 lg:py-16">
+        <div className="z-150 relative w-full perspective-1000 py-2 md:py-3 lg:py-4">
           <div className="w-full overflow-hidden min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center">
             <div
               ref={carouselRef}
