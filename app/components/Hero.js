@@ -345,32 +345,24 @@ export default function Hero() {
         />
       </div>
 
-      {/* 3D About Us Object - comes from right */}
       <div 
-        ref={aboutObjectRef}
-        className="absolute -bottom-35 md:-bottom-55 -right-2 z-50 pointer-events-none"
-      >
-        <Image
-          src="/3D_object_About_us.png"
-          alt="Overlay"
-          width={400}
-          height={350}
-          className="w-[250px] md:w-[300px] lg:w-[400px] h-auto"
-        />
-      </div>
-
-      <div 
-        ref={glowRef}
-        className="absolute top-0 left-1/2 w-[80rem] h-[60rem] md:w-[150rem] md:h-[180rem] -translate-x-1/2 -translate-y-1/2 opacity-60 z-0 pointer-events-none"
-      >
-        <Image
-          src="/hero.png"
-          alt="White Glow"
-          fill
-          className="object-contain"
-          priority
-        />
-      </div>
+        className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
+        style={{
+          width: '1800px',
+          height: '1800px',
+          background: `radial-gradient(ellipse at center, 
+            #A378FF 0%, 
+            rgba(163, 120, 255, 0.8) 15%, 
+            rgba(163, 120, 255, 0.6) 25%, 
+            rgba(163, 120, 255, 0.4) 35%, 
+            rgba(163, 120, 255, 0.2) 50%, 
+            rgba(163, 120, 255, 0.1) 65%, 
+            transparent 80%)`,
+          opacity: 0.75,
+          borderRadius: '50%',
+          filter: 'blur(60px)',
+        }}
+      ></div>
 
       <div className="max-w-5xl mx-auto relative z-10 w-full">
         <h1
