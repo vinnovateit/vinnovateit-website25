@@ -199,7 +199,8 @@ export default function Hero() {
           width={320}
           height={320}
           className="w-full h-auto"
-          priority
+          priority={true}
+          fetchPriority="high"
         />
       </div>
 
@@ -214,6 +215,8 @@ export default function Hero() {
           width={400}
           height={350}
           className="w-[250px] md:w-[300px] lg:w-[400px] h-auto"
+          priority={true}
+          fetchPriority="high"
         />
       </div>
 
