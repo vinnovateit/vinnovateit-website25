@@ -345,6 +345,20 @@ export default function Hero() {
         />
       </div>
 
+      {/* 3D About Us Object - comes from right */}
+      <div 
+        ref={aboutObjectRef}
+        className="absolute -bottom-35 md:-bottom-55 -right-2 z-50 pointer-events-none"
+      >
+        <Image
+          src="/3D_object_About_us.png"
+          alt="Overlay"
+          width={400}
+          height={350}
+          className="w-[250px] md:w-[300px] lg:w-[400px] h-auto"
+        />
+      </div>
+
       <div 
         className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none"
         style={{
