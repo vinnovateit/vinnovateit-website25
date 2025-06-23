@@ -3,6 +3,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { AnimatedTestimonials } from "./animated-testimonials";
+import SectionHeading from './SectionHeading';
+import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 const events = [
   {
@@ -34,7 +36,14 @@ const events = [
 
 export default function Events() {
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen px-6 py-16 overflow-hidden">
+    <div id="events" className="relative flex flex-col items-center justify-center min-h-screen px-6 py-16 overflow-hidden bg-black">
+      {/* Animated stars background */}
+      <AnimatedStarsBackground 
+        variant="simple" 
+        starCount={90}
+        zIndex={1}
+      />
+
       {/* White Glow Background */}
 
       {/* Flashlight bg */}
@@ -50,23 +59,10 @@ export default function Events() {
 
       {/* Content Wrapper */}
       <div className="max-w-7xl w-full text-center z-10">
-        <div className="relative inline-block mb-20">
-          {/* Top-left corner */}
-          <span className="absolute top-[-18] left-[-26] w-10 h-2 bg-purple-300"></span>
-          <span className="absolute top-[-18] left-[-26] w-2 h-10 bg-purple-300"></span>
-
-          {/* Bottom-right corner */}
-          <span className="absolute bottom-15 right-[-20] w-10 h-2 bg-purple-300"></span>
-          <span className="absolute bottom-15 right-[-20] w-2 h-10 bg-purple-300"></span>
-          
-          {/* Heading */}
-          <h1
-            className="text-5xl md:text-7xl font-bold text-purple-200 mb-20 tracking-widest relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
-            style={{ fontFamily: "Orbitron, monospace" }}
-          >
-            EVENTS
-          </h1>
-        </div>
+        <SectionHeading 
+          title="EVENTS" 
+          className="text-5xl md:text-7xl"
+        />
 
         {/* Events Testimonials */}
         <AnimatedTestimonials events={events} />

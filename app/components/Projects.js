@@ -4,6 +4,9 @@ import React from "react";
 import Image from "next/image";
 import BentoGrid from "./BentoGrid";
 import BentoGridItem from "./BentoGridItems";
+import CardGrid from "./ProjectCard";
+import SectionHeading from "./SectionHeading";
+import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 const items = [
   {
@@ -34,7 +37,14 @@ const items = [
 
 export default function Projects() {
   return (
-    <div className="min-h-screen w-full relative overflow-visible">
+    <div id="projects" className="min-h-screen w-full relative overflow-visible bg-black">
+      {/* Animated stars background */}
+      <AnimatedStarsBackground 
+        variant="simple" 
+        starCount={100}
+        zIndex={1}
+      />
+      
       <div className="absolute -top-45 md:-top-85 -left-2 w-40 md:w-80 h-auto z-50 pointer-events-none">
         <Image
           src="/3D_object_Projects.png"
@@ -57,26 +67,13 @@ export default function Projects() {
       </div>
 
       <div className="w-full text-center z-10">
-        <div className="relative inline-block mb-20 top-30">
-          {/* Top-left corner */}
-          <span className="absolute top-[-18] left-[-26] w-10 h-2 bg-purple-300"></span>
-          <span className="absolute top-[-18] left-[-26] w-2 h-10 bg-purple-300"></span>
-
-          {/* Bottom-right corner */}
-          <span className="absolute bottom-15 right-[-20] w-10 h-2 bg-purple-300"></span>
-          <span className="absolute bottom-15 right-[-20] w-2 h-10 bg-purple-300"></span>
-
-          {/* Heading */}
-          <h1
-            className="text-4xl md:text-7xl font-bold text-purple-200 mb-20 tracking-widest relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
-            style={{ fontFamily: "Orbitron, monospace" }}
-          >
-            PROJECTS
-          </h1>
+        <div className="top-30">
+          <SectionHeading title="PROJECTS" />
         </div>
 
         <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
-          <BentoGrid className="max-w-5xl gap-3">
+          <CardGrid/>
+          {/* <BentoGrid className="max-w-5xl gap-3">
             {items.map((item, i) => (
               <BentoGridItem
                 key={i}
@@ -85,7 +82,7 @@ export default function Projects() {
                 className={item.className}
               />
             ))}
-          </BentoGrid>
+          </BentoGrid> */}
         </div>
       </div>
     </div>

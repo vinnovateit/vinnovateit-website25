@@ -9,12 +9,12 @@ import Stars from "./components/Stars";
 import Navbar from "./components/Navbar";
 import LetsWork from "./components/LetsWork";
 import FooterBottom from "./components/FooterBottom";
+import CardGrid from "./components/ProjectCard";
 
 export default function Home() {
   return (
-
-    <Stars>
-      <Navbar/>
+<div className="overflow-hidden">
+  <Navbar/>
       <Hero/>
      <AboutUs/>
      <Domains/>
@@ -22,7 +22,7 @@ export default function Home() {
      <Projects/>
      <Board/>
      <Footer/>
-
-    </Stars>
+</div>
+      
   );
 }
