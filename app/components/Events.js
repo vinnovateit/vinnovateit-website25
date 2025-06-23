@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { AnimatedTestimonials } from "./animated-testimonials";
+import SectionHeading from './SectionHeading';
+import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 const events = [
   {
@@ -38,6 +40,7 @@ const events = [
 ];
 
 export default function Events() {
+
   const [flash, setFlash] = useState(false);
 
   useEffect(() => {
@@ -49,6 +52,7 @@ export default function Events() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 md:px-12 py-16 overflow-hidden">
@@ -68,24 +72,13 @@ export default function Events() {
       </div>
 
       {/* Content Wrapper */}
-      <div className="max-w-6xl w-full text-center z-10">
-        <div className="relative inline-block mb-12 sm:mb-16 md:mb-20">
-          {/* Top-left corner */}
-          <span className="absolute top-[-14px] left-[-20px] w-8 sm:w-10 h-1.5 bg-purple-300"></span>
-          <span className="absolute top-[-14px] left-[-20px] w-1.5 h-8 sm:h-10 bg-purple-300"></span>
 
-          {/* Bottom-right corner */}
-          <span className="absolute bottom-[-12px] right-[-16px] w-8 sm:w-10 h-1.5 bg-purple-300"></span>
-          <span className="absolute bottom-[-12px] right-[-16px] w-1.5 h-8 sm:h-10 bg-purple-300"></span>
+      <div className="max-w-7xl w-full text-center z-10">
+        <SectionHeading 
+          title="EVENTS" 
+          className="text-5xl md:text-7xl"
+        />
 
-          {/* Heading */}
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-purple-200 tracking-widest relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]"
-            style={{ fontFamily: "Orbitron, monospace" }}
-          >
-            EVENTS
-          </h1>
-        </div>
 
         {/* Events Testimonials */}
         <AnimatedTestimonials events={events} />

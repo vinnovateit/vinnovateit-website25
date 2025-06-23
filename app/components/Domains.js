@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import DomainCard from './DomainCard'; // Adjust the import path as needed
+import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 export default function Domains() {
   const domains = [
@@ -15,7 +16,14 @@ export default function Domains() {
   ];
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12">
+    <div id="domains" className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 bg-black">
+      {/* Animated stars background */}
+      <AnimatedStarsBackground 
+        variant="simple" 
+        starCount={80}
+        zIndex={1}
+      />
+      
       {/* Decorative elements */}
       <div className="absolute -top-[20rem] left-[5rem] md:top-[-50rem] md:right-[-50rem] md:left-auto
                 w-[45rem] h-[45rem] 
