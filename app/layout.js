@@ -1,4 +1,3 @@
-import Stars from "./components/Stars";
 import "./globals.css";
 import { Orbitron, Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
 
