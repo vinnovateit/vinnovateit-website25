@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import Image from "next/image";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -106,26 +107,16 @@ export default function AboutUs() {
 
   return (
     <div 
+      id="aboutus"
       ref={containerRef}
       className="bg-black pt-10 flex flex-col items-center justify-center min-h-screen w-full relative p-0 m-0 overflow-visible"
     >
       {/* Animated stars background */}
-      <div className="absolute inset-0">
-        {[...Array(100)].map((_, i) => (
-          <div
-            key={`star-${i}`}
-            className="absolute bg-white rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 2 + 0.5}px`,
-              height: `${Math.random() * 2 + 0.5}px`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${Math.random() * 2 + 2}s`
-            }}
-          />
-        ))}
-      </div>
+      <AnimatedStarsBackground 
+        variant="simple" 
+        starCount={100}
+        zIndex={0}
+      />
       
       <h1
         className="text-5xl md:text-7xl font-bold mb-12 tracking-wider transform transition-transform duration-500"
@@ -145,29 +136,55 @@ export default function AboutUs() {
         {/* Terminal window */}
         <div 
           ref={terminalRef}
-          className="backdrop-blur-2xl rounded-3xl overflow-hidden my-12" 
+          className="relative rounded-3xl overflow-hidden my-12 border border-purple-500/30" 
           style={{ 
-            backgroundColor: 'rgba(157, 148, 255, 0.03)', 
-            boxShadow: '0 0 40px rgba(255, 255, 255, 0.6), 0 0 80px rgba(255, 255, 255, 0.3)' 
+            boxShadow: '0 0 30px rgba(147, 51, 234, 0.3)',
           }}
         >
+          {/* Glassmorphic backdrop - similar to navbar */}
+          <div className="absolute inset-0 backdrop-blur-md bg-black/20 rounded-3xl" />
+          
+          {/* SVG mask for proper glass effect */}
+          <svg
+            className="absolute inset-0 w-full h-full"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <mask id="terminalMask">
+                <rect
+                  width="100%"
+                  height="100%"
+                  fill="white"
+                  rx="24"
+                  ry="24"
+                />
+              </mask>
+            </defs>
+          </svg>
+          
+          {/* Main gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/15 via-black/40 to-purple-900/15 rounded-3xl" />
           {/* Terminal header */}
           <div 
             ref={terminalHeaderRef}
-            className="flex items-center justify-center px-6 py-3 backdrop-blur-xl border-b border-white/30 rounded-t-3xl relative z-10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/30 before:to-white/10 before:rounded-t-3xl before:pointer-events-none" 
+            className="relative flex items-center justify-center px-6 py-3 border-b border-white/30 rounded-t-3xl z-20" 
             style={{ 
-              backgroundColor: 'rgba(28, 31, 48, 0.52)'
+              background: 'rgba(28, 31, 48, 0.52)',
+              boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
             }}
           >
-            <div className="flex gap-3">
+            {/* Header backdrop blur */}
+            <div className="absolute inset-0 backdrop-blur-md bg-black/30 rounded-t-3xl border border-white/15 border-b-0" />
+            
+            <div className="flex gap-3 relative z-10">
               <div className="w-2 h-2 md:w-4 md:h-4 bg-red-500 rounded-full"></div>
               <div className="w-2 h-2 md:w-4 md:h-4 bg-yellow-400 rounded-full"></div>
               <div className="w-2 h-2 md:w-4 md:h-4 bg-green-500 rounded-full"></div>
             </div>
             <div
-              className="text-white font-bold text-center flex-1 relative z-20 text-[1rem] md:[1.5rem]" 
+              className="text-white font-bold text-center flex-1 relative z-10 text-[1rem] md:text-[1.5rem]" 
               style={{
-                fontFamily: 'monospace',
+                fontFamily: 'JetBrains Mono, monospace',
                 textShadow: '0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4)',
               }}
             >
@@ -178,19 +195,18 @@ export default function AboutUs() {
           {/* Terminal content */}
           <div 
             ref={terminalContentRef}
-            className="flex flex-col md:flex-row items-start gap-0 md:gap-3 p-9 md:p-15 relative z-10 backdrop-blur-xl before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/15 before:to-transparent before:pointer-events-none" 
-            style={{ 
-              backgroundColor: 'rgba(157, 148, 255, 0.30)'
-            }}
+            className="relative flex flex-col md:flex-row items-start gap-0 md:gap-3 p-9 md:p-15 z-20" 
           >
+            {/* Content backdrop blur */}
+            <div className="absolute inset-0 backdrop-blur-sm bg-gradient-to-br from-purple-900/10 via-black/20 to-purple-900/10" />
             {/* Left side - Text content */}
-            <div className="flex-1 text-left">
+            <div className="flex-1 text-left relative z-10">
               <div
                 ref={commandRef}
-                className="mb-9 font-semibold text-[1.2rem] md:text-[1.8rem]"
+                className="mb-9 font-semibold text-[1.2rem] md:text-[1.8rem] relative z-10"
                 style={{
-                  fontFamily: 'monospace',
-                  color: '#39FF14',
+                  fontFamily: 'JetBrains Mono, monospace',
+                  color: '#33C265',
                 }}
               >
                 <span>&gt; </span>
@@ -200,7 +216,7 @@ export default function AboutUs() {
               
               <div
                 ref={textContentRef}
-                className="text-slate-200 pb-2 text-md md:text-xl whitespace-pre-line font-thin leading-relaxed"
+                className="text-slate-200 pb-2 text-md md:text-xl whitespace-pre-line font-thin leading-relaxed relative z-10"
                 style={{
                   fontFamily: "'Plus Jakarta Sans', sans-serif",
                   lineHeight: 1.3,
@@ -226,7 +242,7 @@ export default function AboutUs() {
             </div>
             
             {/* Right side - Robot image */}
-            <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center items-center md:mt-0">
+            <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center items-center md:mt-0 relative z-10">
               <Image
                 ref={robotImageRef}
                 src="/robot.png"

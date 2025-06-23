@@ -298,6 +298,7 @@ const ProjectShowcase = () => {
 
   const stars = generateDeterministicStars();
 
+
   return (
     <div ref={containerRef} className="min-h-screen bg-black text-white overflow-hidden">
       {/* Deterministic Starfield Background */}
@@ -319,6 +320,7 @@ const ProjectShowcase = () => {
             <span className="absolute -top-3 sm:-top-4 -left-4 sm:-left-6 w-8 sm:w-10 h-0.5 bg-purple-400 shadow-lg shadow-purple-400/50"></span>
             <span className="absolute -top-3 sm:-top-4 -left-4 sm:-left-6 w-0.5 h-8 sm:h-10 bg-purple-400 shadow-lg shadow-purple-400/50"></span>
 
+
             {/* Bottom-right corner */}
             <span className="absolute -bottom-3 sm:-bottom-4 -right-4 sm:-right-6 w-8 sm:w-10 h-0.5 bg-purple-400 shadow-lg shadow-purple-400/50"></span>
             <span className="absolute -bottom-3 sm:-bottom-4 -right-4 sm:-right-6 w-0.5 h-8 sm:h-10 bg-purple-400 shadow-lg shadow-purple-400/50"></span>
@@ -338,6 +340,7 @@ const ProjectShowcase = () => {
           >
             Explore a collection of innovative digital experiences crafted with cutting-edge technologies
           </p>
+
         </div>
       </section>
 
