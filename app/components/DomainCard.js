@@ -8,11 +8,13 @@ const DomainCard = ({
   return (
     <div
       className="w-80 h-40 rounded-2xl flex flex-col items-center justify-center relative overflow-hidden
-                 border bg-gradient-to-b from-[#8a2be21D] to-[#4c187c4D]"
+                 border bg-gradient-to-b from-[#8a2be21D] to-[#4c187c4D] transition-all duration-300 ease-in-out
+                 hover:shadow-purple-400
+                 cursor-pointer z-50"
       style={{ 
         backdropFilter: 'blur(12px)',
         border: '1px solid rgba(255, 255, 255, 0.15)',
-        boxShadow: '0 0.5rem 2rem rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+        boxShadow: '0 0.5rem 2rem rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 20px rgba(255, 255, 255, 0.1)'
       }}
     >
       <Image 

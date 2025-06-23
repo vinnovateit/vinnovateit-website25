@@ -38,9 +38,6 @@ body {
   }
 }
 
-.flicker {
-  animation: flicker 3s infinite;
-
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px; /* Account for fixed navbar */

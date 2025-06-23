@@ -28,17 +28,18 @@ export default function FooterBottom() {
         backgroundColor: 'rgba(0, 0, 0, 0.75)', // only background has opacity
       }}
     >
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-10 md:gap-8">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-8">
       {/* Left with Logo */}
-    <div className="text-sm max-w-md text-white">
-    {/* Logo */}
-    <Image
-      src="/assets/logo.png" 
-      alt="VinnovateIT Logo"
-      width={180}
-      height={80}
-      className="mb-2"
-    />
+    {/* Left with Logo */}
+<div className="text-sm max-w-md text-white flex flex-col items-center md:items-start text-center md:text-left">
+  {/* Logo */}
+  <Image
+    src="/assets/logo.png"
+    alt="VinnovateIT Logo"
+    width={180}
+    height={80}
+    className="mb-2"
+  />
 
   {/* Description */}
   <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
@@ -53,9 +54,9 @@ export default function FooterBottom() {
 
 
         {/* Right side */}
-        <div className="flex flex-col items-center md:items-end gap-6 w-full md:w-auto">
+        <div className="flex flex-col items-center md:items-end gap-1 md:gap-6 w-full md:w-auto">
           {/* Social Icons */}
-          <div className="flex flex-row flex-wrap justify-center md:justify-end gap-6">
+          <div className="flex flex-row flex-wrap justify-center md:justify-end gap-2 md:gap-6">
             {socials.map(({ name, icon: Icon, href }) => (
               <a
                 key={name}
@@ -73,7 +74,7 @@ export default function FooterBottom() {
 
           {/* Connect Button */}
           <button
-            className="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2.5 px-6 md:py-3 md:px-8 rounded-full shadow-lg hover:scale-105 hover:shadow-[0_0_25px_rgba(160,97,255,0.7)] transition-all duration-300 font-medium"
+            className="mt-5 bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2.5 px-6 md:py-3 md:px-8 rounded-full shadow-lg hover:scale-105 hover:shadow-[0_0_25px_rgba(160,97,255,0.7)] transition-all duration-300 font-medium"
             style={{ fontFamily: 'Orbitron, monospace' }}
           >
             Let&apos;s connect
