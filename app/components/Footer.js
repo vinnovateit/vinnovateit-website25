@@ -3,6 +3,8 @@
 import Image from 'next/image'
 import FooterBottom from './FooterBottom'
 import LetsWork from './LetsWork'
+import { motion } from 'framer-motion'
+
 
 export default function Footer() {
   return (
@@ -55,46 +57,66 @@ export default function Footer() {
         className="absolute top-[15rem] md:top-[10rem] -right-[16rem] md:right-0 transform pointer-events-none z-0" 
       /> 
       
-      {/* Decorative Blobs - Positioned higher to create space below */}
-      <div className="absolute top-0 left-0 w-full h-96 z-10">
-        <Image 
-          src="/assets/blob1.png" 
-          alt="Blob 1" 
-          width={300} 
-          height={300} 
-          className="absolute h-[150px] w-[150px] md:h-[300px] md:w-[300px] top-20 left-1/6" 
-        />
-        <Image 
-          src="/assets/blob2.png" 
-          alt="Blob 2" 
-          width={200} 
-          height={200} 
-          className="absolute h-[100px] w-[100px] md:h-[200px] md:w-[200px] top-70 left-2/6" 
-        />
-        <Image 
-          src="/assets/blob3.png" 
-          alt="Blob 3" 
-          width={300} 
-          height={300} 
-          className="absolute h-[150px] w-[150px] md:h-[300px] md:w-[300px] top-20 left-4/6 md:left-7/12 transform -translate-x-1/2" 
-        />
-        <Image 
-          src="/assets/blob4.png" 
-          alt="Blob 4" 
-          width={200} 
-          height={200} 
-          className="absolute top-70 left-4/6 h-[100px] w-[100px] md:h-[200px] md:w-[200px]" 
-        />
-      </div>
+{/* Decorative Blobs - Animated on scroll */}
+<div className="absolute top-6 left-0 w-full h-96 z-10">
+  {[
+    {
+      src: '/assets/blob1.png',
+      alt: 'Blob 1',
+      className: 'top-28 left-1/6',
+      delay: 0.1,
+      direction: 'top',
+    },
+    {
+      src: '/assets/blob2.png',
+      alt: 'Blob 2',
+      className: 'top-70 left-2/6',
+      delay: 0.2,
+      direction: 'bottom',
+    },
+    {
+      src: '/assets/blob3.png',
+      alt: 'Blob 3',
+      className: 'top-28 left-4/6 md:left-7/12 transform -translate-x-1/2',
+      delay: 0.3,
+      direction: 'top',
+    },
+    {
+      src: '/assets/blob4.png',
+      alt: 'Blob 4',
+      className: 'top-70 left-4/6',
+      delay: 0.4,
+      direction: 'bottom',
+    },
+  ].map(({ src, alt, className, delay, direction }, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: direction === 'top' ? -50 : 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay }}
+      viewport={{ once: true }}
+      className={`absolute h-[100px] w-[100px] md:h-[200px] md:w-[200px] ${className}`}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={300}
+        height={300}
+        className="h-full w-full"
+      />
+    </motion.div>
+  ))}
+</div>
+
 
       {/* Main Content - Pushed lower */}
-      <div className="relative z-20 flex flex-col items-center justify-center flex-grow mt-95">
+      <div className="relative z-20 flex flex-col items-center justify-center flex-grow mt-100">
         <div className="text-center max-w-4xl mx-auto">
           <h2 
             className="text-md sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-15 text-white"
             style={{ 
               fontFamily: "Plus Jakarta Sans, sans-serif",
-              textShadow: "0 0 10px rgba(255,255,255,0.7)"
+              textShadow: "0 0 20px rgba(138,43,226,0.7)"
             }}
           >
             &quot;Step into the realm of innovation– where creativity and imagination meet skills to lead to ever–lasting changes.&quot;

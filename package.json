@@ -17,7 +17,7 @@
     "@studio-freight/lenis": "^1.0.42",
     "@tabler/icons-react": "^3.34.0",
     "clsx": "^2.1.1",
-    "framer-motion": "^12.17.3",
+    "framer-motion": "^12.18.1",
     "gsap": "^3.13.0",
     "lucide-react": "^0.514.0",
     "motion": "^12.18.1",
