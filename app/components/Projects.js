@@ -133,6 +133,7 @@ const ProjectShowcase = () => {
         pin: true,
         pinSpacing: true,
         preventOverlaps: true,
+        anticipatePin: 1,
         onUpdate: (self) => {
           const progress = self.progress;
           const newProjectIndex = Math.min(
@@ -209,7 +210,7 @@ const ProjectShowcase = () => {
   }, [projects.length, isMobile]); // Removed currentProject from dependencies
 
   return (
-    <div id='projects' ref={containerRef} className="min-h-screen bg-black text-white overflow-hidden flex justify-center">
+    <div id='projects' ref={containerRef} className="min-h-screen bg-black text-white overflow-hidden flex justify-center relative z-20">
       {/* FIXED STARFIELD BACKGROUND */}
       <div className="fixed inset-0 z-0">
         {[...Array(150)].map((_, i) => (
@@ -228,14 +229,14 @@ const ProjectShowcase = () => {
       </div>
 
       {/* CENTERED CONTENT CONTAINER */}
-      <div className="w-full max-w-7xl flex flex-col items-center z-10 px-4">
+      <div className="w-full max-w-7xl flex flex-col items-center z-30 px-4 relative">
         <SectionHeading 
           title="PROJECTS" 
           className="text-5xl md:text-7xl"
         />
 
         {/* Projects Showcase */}
-        <section ref={stickyRef} className="relative z-10 min-h-screen w-full flex items-center justify-center py-16">
+        <section ref={stickyRef} className="relative z-40 min-h-screen w-full flex items-center justify-center py-16">
           <div className="w-full">
 
           {/* Progress Bar */}
