@@ -22,9 +22,8 @@ const socials = [
 export default function FooterBottom() {
   return (
     <div
-      className="relative z-30 w-full rounded-t-[40px] border-t border-l border-r drop-shadow-[0_0_40px_rgba(160,97,255,0.7)] shadow-[0_0_30px_rgba(160,97,255,0.8)] px-6 md:px-8 pb-8 pt-10"
+      className="relative z-30 w-full rounded-t-[40px] border-t border-l border-r drop-shadow-[0_0_40px_rgba(160,97,255,0.7)] shadow-[0_0_30px_rgba(160,97,255,0.8)] px-6 md:px-8 pb-8 pt-10 font-jakarta"
       style={{
-        fontFamily: 'var(--font-jakarta)',
         backgroundColor: 'rgba(0, 0, 0, 0.75)', // only background has opacity
       }}
     >
@@ -42,7 +41,7 @@ export default function FooterBottom() {
   />
 
   {/* Description */}
-  <p className="text-gray-300 leading-relaxed mb-4" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+  <p className="text-gray-300 leading-relaxed mb-4 font-jakarta">
     Lorem ipsum dolor sit amet consectetur. In ipsum dolor eget turpis. Egestas in aliquet sodales nisi.
   </p>
 
@@ -74,8 +73,7 @@ export default function FooterBottom() {
 
           {/* Connect Button */}
           <button
-            className="mt-5 bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2.5 px-6 md:py-3 md:px-8 rounded-full shadow-lg hover:scale-105 hover:shadow-[0_0_25px_rgba(160,97,255,0.7)] transition-all duration-300 font-medium"
-            style={{ fontFamily: 'Orbitron, monospace' }}
+            className="mt-5 bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2.5 px-6 md:py-3 md:px-8 rounded-full shadow-lg hover:scale-105 hover:shadow-[0_0_25px_rgba(160,97,255,0.7)] transition-all duration-300 font-medium font-orbitron"
           >
             Let&apos;s connect
           </button>

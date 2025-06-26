@@ -19,8 +19,7 @@ const SectionHeading = ({
 
       {/* Heading */}
       <h1
-        className={`text-4xl md:text-7xl font-bold text-purple-200 mb-20 tracking-widest relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] ${className}`}
-        style={{ fontFamily: "Orbitron, monospace" }}
+        className={`text-4xl md:text-7xl font-bold text-purple-200 mb-20 tracking-widest relative z-10 drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] font-orbitron ${className}`}
       >
         {isMultiline ? (
           title.split(' ').map((word, index) => (

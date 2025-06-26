@@ -247,16 +247,14 @@ export default function Hero() {
       <div className="max-w-5xl mx-auto relative z-10 w-full">
         <h1
           ref={titleRef}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-wide leading-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
-          style={{ fontFamily: 'var(--font-orbitron)' }}
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-wide leading-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] font-orbitron"
         >
           VinnovateIT
         </h1>
 
         <p
           ref={subtitleRef}
-          className="text-gray-200 text-base sm:text-lg md:text-xl lg:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto"
-          style={{ fontFamily: 'var(--font-dm-sans)' }}
+          className="text-gray-200 text-base sm:text-lg md:text-xl lg:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto font-dm-sans"
         >
           Think, Create, Innovate...
         </p>
@@ -266,8 +264,7 @@ export default function Hero() {
           onClick={handleExploreClick}
           className="bg-white text-black px-8 py-3 rounded-full border border-purple-400 shadow-lg 
                      hover:shadow-purple-500/40 hover:scale-105 active:scale-95 
-                     transition-all duration-300 font-medium text-base sm:text-lg"
-          style={{ fontFamily: 'var(--font-dm-sans)' }}
+                     transition-all duration-300 font-medium text-base sm:text-lg font-dm-sans"
         >
           Explore More
         </button>

@@ -165,8 +165,7 @@ export default function Domains() {
           />
         </div>
         <div
-          className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mb-20 relative z-30"
-          style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
+          className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mb-20 relative z-30 font-jakarta"
         >
           {domains.map((item, index) => (
             <div key={index} ref={addToRefs} className="relative z-30">

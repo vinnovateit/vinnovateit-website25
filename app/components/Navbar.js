@@ -232,12 +232,11 @@ const MainNavbar = () => {
                     key={index}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className={`transition-all font-medium text-sm tracking-wider cursor-pointer ${
+                    className={`transition-all font-medium text-sm tracking-wider cursor-pointer font-orbitron ${
                       isActive 
                         ? 'text-purple-400 scale-105' 
                         : 'text-white/90 hover:text-purple-400'
                     }`}
-                    style={{ fontFamily: 'Orbitron, monospace' }}
                   >
                     {link.text}
                   </a>
@@ -370,12 +369,11 @@ const MainNavbar = () => {
                           <a
                             href={link.href}
                             onClick={(e) => handleNavClick(e, link.href)}
-                            className={`sidebar-link block font-medium text-xl sm:text-2xl md:text-3xl lg:text-4xl py-3 sm:py-4 px-4 sm:px-6 md:px-8 rounded-xl transition-all tracking-wider hover:bg-purple-900/20 hover:scale-105 cursor-pointer ${
+                            className={`sidebar-link block font-medium text-xl sm:text-2xl md:text-3xl lg:text-4xl py-3 sm:py-4 px-4 sm:px-6 md:px-8 rounded-xl transition-all tracking-wider hover:bg-purple-900/20 hover:scale-105 cursor-pointer font-orbitron ${
                               isActive 
                                 ? 'text-purple-400 bg-purple-900/30 scale-105' 
                                 : 'hover:text-purple-400'
                             }`}
-                            style={{ fontFamily: 'Orbitron, monospace' }}
                           >
                             {link.text}
                           </a>
@@ -391,7 +389,7 @@ const MainNavbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.8 }}
                 >
-                  <p className="text-sm sm:text-base md:text-lg text-gray-300 text-center mb-4 sm:mb-6 md:mb-8" style={{ fontFamily: 'Orbitron, monospace' }}>Connect with us</p>
+                  <p className="text-sm sm:text-base md:text-lg text-gray-300 text-center mb-4 sm:mb-6 md:mb-8 font-orbitron">Connect with us</p>
                   <div className="flex space-x-6 sm:space-x-8 md:space-x-10 justify-center">
                     {socialLinks.map((social, index) => (
                       <motion.div

@@ -93,12 +93,7 @@ const CardGrid = () => {
 
   return (
     <>
-      {/* Google Fonts */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-      
-      <div className="min-h-screen p-8" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+      <div className="min-h-screen p-8 font-jakarta">
         <div className="max-w-7xl mx-auto">
           
           
@@ -159,10 +154,10 @@ const CardGrid = () => {
                         <X className="w-5 h-5 text-white" />
                       </button>
                       
-                      <h3 className="text-xl font-bold mb-4 pr-12 text-purple-300" style={{ fontFamily: 'Orbitron, monospace' }}>
+                      <h3 className="text-xl font-bold mb-4 pr-12 text-purple-300 font-orbitron">
                         {project.name}
                       </h3>
-                      <p className="text-sm leading-relaxed text-purple-100" style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}>
+                      <p className="text-sm leading-relaxed text-purple-100 font-jakarta">
                         {project.description}
                       </p>
                     </div>
@@ -170,24 +165,23 @@ const CardGrid = () => {
                     <div className="flex gap-2 mt-4">
                       <button 
                         onClick={(e) => e.stopPropagation()}
-                        className="px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 text-purple-300 hover:text-white"
+                        className="px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 text-purple-300 hover:text-white font-jakarta"
                         style={{
                           background: 'rgba(255, 255, 255, 0.1)',
                           backdropFilter: 'blur(10px)',
-                          border: '1px solid rgba(255, 255, 255, 0.2)',
-                          fontFamily: 'Plus Jakarta Sans, sans-serif'
+                          border: '1px solid rgba(255, 255, 255, 0.2)'
                         }}
                       >
                         View Project
                       </button>
                       <button 
                         onClick={(e) => e.stopPropagation()}
-                        className="px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 text-purple-300 hover:text-white"
+                        className="px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-200 text-purple-300 hover:text-white font-jakarta"
                         style={{
                           background: 'rgba(128, 90, 213, 0.1)',
                           backdropFilter: 'blur(10px)',
-                          border: '1px solid rgba(128, 90, 213, 0.3)',
-                          fontFamily: 'Plus Jakarta Sans, sans-serif'
+                          border: '1px solid rgba(128, 90, 213, 0.3)'
+                        }}
                         }}
                       >
                         Learn More
@@ -198,7 +192,7 @@ const CardGrid = () => {
                 
                 {/* Card Content */}
                 <div className="p-4">
-                  <h3 className="text-lg font-bold text-purple-300 group-hover:text-purple-200 transition-colors duration-300" style={{ fontFamily: 'Orbitron, monospace' }}>
+                  <h3 className="text-lg font-bold text-purple-300 group-hover:text-purple-200 transition-colors duration-300 font-orbitron">
                     {project.name}
                   </h3>
                 </div>

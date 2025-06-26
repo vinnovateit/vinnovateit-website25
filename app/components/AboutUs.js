@@ -130,9 +130,8 @@ export default function AboutUs() {
               <div className="w-2 h-2 md:w-4 md:h-4 bg-green-500 rounded-full"></div>
             </div>
             <div
-              className="text-white font-bold text-center flex-1 relative z-10 text-[1rem] md:text-[1.5rem]" 
+              className="text-white font-bold text-center flex-1 relative z-10 text-[1rem] md:text-[1.5rem] font-jetbrains" 
               style={{
-                fontFamily: 'JetBrains Mono, monospace',
                 textShadow: '0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4)',
               }}
             >
@@ -149,9 +148,8 @@ export default function AboutUs() {
             {/* Left side - Text content */}
             <div className="flex-1 text-left relative z-10">
               <div
-                className="mb-9 font-semibold text-[1.2rem] md:text-[1.8rem] relative z-10"
+                className="mb-9 font-semibold text-[1.2rem] md:text-[1.8rem] relative z-10 font-jetbrains"
                 style={{
-                  fontFamily: 'JetBrains Mono, monospace',
                   color: '#33C265',
                 }}
               >
@@ -162,9 +160,8 @@ export default function AboutUs() {
               
               <div
                 ref={textContentRef}
-                className="text-slate-200 pb-2 text-md md:text-xl whitespace-pre-line font-thin leading-relaxed relative z-10"
+                className="text-slate-200 pb-2 text-md md:text-xl whitespace-pre-line font-thin leading-relaxed relative z-10 font-jakarta"
                 style={{
-                  fontFamily: "'Plus Jakarta Sans', sans-serif",
                   lineHeight: 1.3,
                   fontWeight: 100,
                   color: '#e2e6f3',

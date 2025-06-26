@@ -256,9 +256,8 @@ export default function Footer() {
       <div className="relative z-20 flex flex-col items-center justify-center flex-grow mt-100">
         <div className="text-center max-w-4xl mx-auto">
           <h2 
-            className="text-md sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-15 text-white"
+            className="text-md sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-15 text-white font-jakarta"
             style={{ 
-              fontFamily: "Plus Jakarta Sans, sans-serif",
               textShadow: "0 0 20px rgba(138,43,226,0.7)"
             }}
           >
