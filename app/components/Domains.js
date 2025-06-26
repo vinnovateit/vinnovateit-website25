@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DomainCard from './DomainCard'; // Adjust the import path as needed
 import AnimatedStarsBackground from './AnimatedStarsBackground';
+import SectionHeading from './SectionHeading';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -164,14 +165,11 @@ export default function Domains() {
       />
 
       <div className="max-w-7xl mx-auto text-center z-20 w-full relative">
-        {/* Main heading */}
-        <h1 
-          ref={headingRef}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-12 sm:mb-16 md:mb-20 lg:mb-24 tracking-wider mt-32 sm:mt-0"
-          style={{ fontFamily: 'Orbitron, monospace' }}
-        >
-          Domains
-        </h1>
+        <div ref={headingRef}>
+          <SectionHeading 
+            title="DOMAINS"
+          />
+        </div>
         
         {/* Cards container with higher z-index */}
         <div

@@ -5,6 +5,7 @@ import Image from "next/image";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import AnimatedStarsBackground from './AnimatedStarsBackground';
+import SectionHeading from './SectionHeading';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -118,21 +119,11 @@ export default function AboutUs() {
         zIndex={0}
       />
       
-      <h1
-        className="text-5xl md:text-7xl font-bold mb-12 tracking-wider transform transition-transform duration-500"
-        style={{
-          fontFamily: 'Orbitron, monospace',
-          background: 'radial-gradient(circle at 50% 50%, #fff 0%, #e6e6e6 60%, #bfc0c2 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          color: 'transparent',
-        }}
-      >
-        ABOUT US
-      </h1>
-      
-      <div className="px-10 w-full max-w-6xl mx-auto relative z-10">
+      <SectionHeading 
+        title="ABOUT US"
+      />
+
+      <div className="px-10 w-full max-w-6xl mx-auto relative z-10 -mt-20">
         {/* Terminal window */}
         <div 
           ref={terminalRef}
