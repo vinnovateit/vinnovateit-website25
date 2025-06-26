@@ -126,7 +126,7 @@ export default function Domains() {
     <div 
       ref={containerRef}
       id="domains" 
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 bg-black overflow-hidden"
+      className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 overflow-hidden"
     >
       {/* Animated stars background */}
       <AnimatedStarsBackground 

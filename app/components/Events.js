@@ -47,7 +47,6 @@ const events = [
 ];
 
 export default function Events() {
-  const [flash, setFlash] = useState(false);
   const lightRef = useRef(null);
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
@@ -162,8 +161,6 @@ export default function Events() {
 
       // Enhanced scroll flash effect
       const handleScroll = () => {
-        setFlash(true);
-        
         // GSAP flash animation
         gsap.to(lightRef.current, {
           opacity: 1,
@@ -193,12 +190,9 @@ export default function Events() {
             });
           }
         });
-
-        setTimeout(() => setFlash(false), 150);
       };
 
       window.addEventListener("scroll", handleScroll);
-      
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
@@ -212,7 +206,7 @@ export default function Events() {
     <div
     id="events" 
       ref={sectionRef}
-      className="bg-black relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 md:px-12 py-16 overflow-hidden"
+      className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 md:px-12 py-16 overflow-hidden"
     >
       <Image
         src="/events_flower.png"

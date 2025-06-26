@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 import SectionHeading from './SectionHeading';
+import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -210,23 +211,14 @@ const ProjectShowcase = () => {
   }, [projects.length, isMobile]); // Removed currentProject from dependencies
 
   return (
-    <div id='projects' ref={containerRef} className="min-h-screen bg-black text-white overflow-hidden flex justify-center relative z-20">
-      {/* FIXED STARFIELD BACKGROUND */}
-      <div className="fixed inset-0 z-0">
-        {[...Array(150)].map((_, i) => (
-          <div
-            key={`star-${i}`}
-            className="star absolute bg-white rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              opacity: Math.random() * 0.5 + 0.3,
-            }}
-          />
-        ))}
-      </div>
+
+    <div id='projects' ref={containerRef} className="min-h-screen text-white overflow-hidden flex justify-center relative z-20">
+      <AnimatedStarsBackground 
+        variant="simple" 
+        starCount={300}
+        zIndex={0}
+      />
+
 
       {/* CENTERED CONTENT CONTAINER */}
       <div className="w-full max-w-7xl flex flex-col items-center z-30 px-4 relative">
