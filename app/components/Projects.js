@@ -208,7 +208,7 @@ const ProjectShowcase = () => {
       ctx.revert();
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, [projects.length, isMobile]); // Removed currentProject from dependencies
+  }, [projects.length, isMobile]);
 
   return (
 
@@ -220,16 +220,16 @@ const ProjectShowcase = () => {
       />
 
 
-      {/* CENTERED CONTENT CONTAINER */}
       <div className="w-full max-w-7xl flex flex-col items-center z-30 px-4 relative">
-        <SectionHeading 
-          title="PROJECTS" 
-          className="text-5xl md:text-7xl"
-        />
-
         {/* Projects Showcase */}
-        <section ref={stickyRef} className="relative z-40 min-h-screen w-full flex items-center justify-center py-16">
+        <section ref={stickyRef} className="relative z-40 min-h-screen w-full flex flex-col items-center justify-center py-16">
           <div className="w-full">
+            <div className="mb-8 sm:mb-12 md:mb-16 flex justify-center">
+              <SectionHeading 
+                title="PROJECTS" 
+                className="text-5xl md:text-7xl"
+              />
+            </div>
 
           {/* Progress Bar */}
           <div className="w-full h-1 bg-purple-900/30 rounded-full mb-6 sm:mb-8 overflow-hidden">
@@ -316,10 +316,10 @@ const ProjectShowcase = () => {
             >
               {String(currentProject + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
             </div>
+            </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
     </div>
   );
 };
