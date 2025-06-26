@@ -4,11 +4,10 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import DomainCard from './DomainCard'; // Adjust the import path as needed
+import DomainCard from './DomainCard';
 import AnimatedStarsBackground from './AnimatedStarsBackground';
 import SectionHeading from './SectionHeading';
 
-// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Domains() {
@@ -29,94 +28,94 @@ export default function Domains() {
   ];
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Set initial states
-      gsap.set(headingRef.current, { opacity: 0, y: 50 });
-      gsap.set(cardsRef.current, { opacity: 0, y: 30, scale: 0.9 });
-      gsap.set(decorativeRef.current, { opacity: 0, rotation: -20, scale: 0.8 });
-      gsap.set(flowerRef.current, { opacity: 0, x: 100, rotation: 10 });
-      gsap.set(overlayRef.current, { opacity: 0, x: -50, y: -20 });
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        // Set initial states
+        gsap.set(headingRef.current, { opacity: 0, y: 50 });
+        gsap.set(cardsRef.current, { opacity: 0, y: 30, scale: 0.9 });
+        gsap.set(decorativeRef.current, { opacity: 0, rotation: -20, scale: 0.8 });
+        gsap.set(flowerRef.current, { opacity: 0, x: 100, rotation: 10 });
+        gsap.set(overlayRef.current, { opacity: 0, x: -50, y: -20 });
 
-      // Create timeline for entrance animations
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      });
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top center",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse",
+            // markers: true,
+          }
+        });
 
-      // Animate heading
-      tl.to(headingRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out"
-      })
-      
-      // Animate decorative elements
-      .to(overlayRef.current, {
-        opacity: 1,
-        x: 0,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.5")
-      
-      .to(decorativeRef.current, {
-        opacity: 1,
-        rotation: 0,
-        scale: 1,
-        duration: 1.2,
-        ease: "power2.out"
-      }, "-=0.6")
+        tl.to(headingRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out"
+        })
+        .to(overlayRef.current, {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out"
+        }, "-=0.5")
+        .to(decorativeRef.current, {
+          opacity: 1,
+          rotation: 0,
+          scale: 1,
+          duration: 1.2,
+          ease: "power2.out"
+        }, "-=0.6")
 
-      // Animate cards with stagger
-      .to(cardsRef.current, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "back.out(1.7)"
-      }, "-=0.3")
+        // Animate cards with stagger
+        .to(cardsRef.current, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "back.out(1.7)"
+        }, "-=0.3")
 
-      // Animate flower last
-      .to(flowerRef.current, {
-        opacity: 1,
-        x: 0,
-        rotation: 0,
-        duration: 1,
-        ease: "power2.out"
-      }, "-=0.4");
+        // Animate flower last
+        .to(flowerRef.current, {
+          opacity: 1,
+          x: 0,
+          rotation: 0,
+          duration: 1,
+          ease: "power2.out"
+        }, "-=0.4");
+        
+        // Floating animations
+        gsap.to(decorativeRef.current, {
+          y: -20,
+          rotation: 5,
+          duration: 4,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
 
-      // Add floating animation to decorative ring
-      gsap.to(decorativeRef.current, {
-        y: -20,
-        rotation: 5,
-        duration: 4,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      });
+        // Subtle flower float
+        gsap.to(flowerRef.current, {
+          y: -15,
+          rotation: -5,
+          duration: 5,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut"
+        });
 
-      // Add subtle floating to flower
-      gsap.to(flowerRef.current, {
-        y: -15,
-        rotation: -5,
-        duration: 5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-      });
+      }, containerRef);
 
-    }, containerRef);
+      return () => ctx.revert();
+    }, 100);
 
-    return () => ctx.revert(); // Cleanup
+    return () => clearTimeout(timer);
+
   }, []);
 
-  // Helper function to add refs to cards
   const addToRefs = (el) => {
     if (el && !cardsRef.current.includes(el)) {
       cardsRef.current.push(el);
@@ -129,14 +128,11 @@ export default function Domains() {
       id="domains" 
       className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 overflow-hidden"
     >
-      {/* Animated stars background */}
       <AnimatedStarsBackground 
         variant="simple" 
         starCount={80}
         zIndex={1}
       />
-      
-      {/* Decorative elements */}
       <div 
         ref={decorativeRef}
         className="absolute -top-[20rem] left-[5rem] md:top-[-50rem] md:right-[-50rem] md:left-auto
@@ -154,7 +150,6 @@ export default function Domains() {
           className="w-full h-full object-contain"
         />
       </div>
-
       <Image
         ref={overlayRef}
         src="/3D_object1_About_us.png"
@@ -163,15 +158,12 @@ export default function Domains() {
         height={200}
         className="absolute top-16 -left-2 z-[5] pointer-events-none w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto"
       />
-
       <div className="max-w-7xl mx-auto text-center z-20 w-full relative">
         <div ref={headingRef}>
           <SectionHeading 
             title="DOMAINS"
           />
         </div>
-        
-        {/* Cards container with higher z-index */}
         <div
           className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mb-20 relative z-30"
           style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
@@ -186,9 +178,6 @@ export default function Domains() {
           ))}
         </div>
       </div>
-
-      {/* Bottom decorative element */}
-      
     </div>
   );
 }

@@ -3,107 +3,66 @@
 import React, { useEffect, useRef } from 'react';
 import Image from "next/image";
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger, TextPlugin } from 'gsap/all';
 import AnimatedStarsBackground from './AnimatedStarsBackground';
 import SectionHeading from './SectionHeading';
 
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 export default function AboutUs() {
   const containerRef = useRef(null);
   const terminalRef = useRef(null);
-  const terminalHeaderRef = useRef(null);
-  const terminalContentRef = useRef(null);
-  const commandRef = useRef(null);
   const textContentRef = useRef(null);
   const robotImageRef = useRef(null);
+  const commandTextRef = useRef(null);
 
   useEffect(() => {
-    // Check if it's mobile device
-    const isMobile = window.innerWidth <= 768;
-    
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: isMobile ? "top 90%" : "top 80%", // Earlier trigger on mobile
-        end: isMobile ? "bottom 10%" : "bottom 20%", // Different end point for mobile
-        toggleActions: "play none none reverse", // play on enter, reverse on leave
-        // markers: true, // Uncomment to see trigger points during development
-      }
-    });
-
-    // Set initial states
-    gsap.set(terminalRef.current, { scale: 0, opacity: 0 });
-    gsap.set(terminalHeaderRef.current, { opacity: 0 });
-    gsap.set(terminalContentRef.current, { opacity: 0 });
-    gsap.set(commandRef.current, { opacity: 0 });
-    gsap.set(textContentRef.current, { opacity: 0 });
-    gsap.set(robotImageRef.current, { opacity: 0, y: 50 });
-
-    // Animation sequence
-    tl
-      // Terminal window pops open like Windows
-      .to(terminalRef.current, {
-        scale: 1,
-        opacity: 1,
-        duration: 0.8,
-        ease: "back.out(1.4)"
-      })
-      
-      // Terminal header appears
-      .to(terminalHeaderRef.current, {
-        opacity: 1,
-        duration: 0.3
-      })
-      
-      // Terminal content background appears
-      .to(terminalContentRef.current, {
-        opacity: 1,
-        duration: 0.3
-      })
-      
-      // Command prompt appears
-      .to(commandRef.current, {
-        opacity: 1,
-        duration: 0.2
-      })
-      
-      // Typewriter animation for the command
-      .to({}, {
-        duration: 1.5,
-        onUpdate: function() {
-          const progress = this.progress();
-          const commandText = "ls -a about_us";
-          const currentLength = Math.floor(progress * commandText.length);
-          const commandSpan = commandRef.current?.querySelector('.command-text');
-          if (commandSpan) {
-            commandSpan.textContent = commandText.substring(0, currentLength);
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top center",
+            toggleActions: "play none none reverse",
           }
-        },
-        ease: "none"
-      })
-      
-      // Show main text content
-      .to(textContentRef.current, {
-        opacity: 1,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "+=0.3")
-      
-      // Finally show robot image
-      .to(robotImageRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out"
-      }, "-=0.4");
+        });
 
-    // Cleanup function
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+        gsap.set(terminalRef.current, { scale: 0.8, opacity: 0 });
+        gsap.set(textContentRef.current, { opacity: 0, y: 20 });
+        gsap.set(robotImageRef.current, { opacity: 0, y: 50 });
+        gsap.set(commandTextRef.current, { text: "" });
 
+        tl
+          .to(terminalRef.current, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: "back.out(1.4)"
+          })
+          .to(commandTextRef.current, {
+            duration: 1.5,
+            text: "ls -a about_us",
+            ease: "none",
+          }, "+=0.5")
+          .to(textContentRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out"
+          }, "+=0.3")
+          .to(robotImageRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out"
+          }, "-=0.5");
+
+      }, containerRef);
+
+      return () => ctx.revert();
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -112,7 +71,6 @@ export default function AboutUs() {
       ref={containerRef}
       className="pt-10 flex flex-col items-center justify-center min-h-screen w-full relative p-0 m-0 overflow-visible"
     >
-      {/* Animated stars background */}
       <AnimatedStarsBackground 
         variant="simple" 
         starCount={100}
@@ -157,7 +115,6 @@ export default function AboutUs() {
           <div className="absolute inset-0 bg-gradient-to-br from-purple-900/15 via-black/40 to-purple-900/15 rounded-3xl" />
           {/* Terminal header */}
           <div 
-            ref={terminalHeaderRef}
             className="relative flex items-center justify-center px-6 py-3 border-b border-white/30 rounded-t-3xl z-20" 
             style={{ 
               background: 'rgba(28, 31, 48, 0.52)',
@@ -185,7 +142,6 @@ export default function AboutUs() {
 
           {/* Terminal content */}
           <div 
-            ref={terminalContentRef}
             className="relative flex flex-col md:flex-row items-start gap-0 md:gap-3 p-9 md:p-15 z-20" 
           >
             {/* Content backdrop blur */}
@@ -193,7 +149,6 @@ export default function AboutUs() {
             {/* Left side - Text content */}
             <div className="flex-1 text-left relative z-10">
               <div
-                ref={commandRef}
                 className="mb-9 font-semibold text-[1.2rem] md:text-[1.8rem] relative z-10"
                 style={{
                   fontFamily: 'JetBrains Mono, monospace',
@@ -201,7 +156,7 @@ export default function AboutUs() {
                 }}
               >
                 <span>&gt; </span>
-                <span className="text-white text-lg md:text-2xl command-text"></span>
+                <span ref={commandTextRef} className="text-white text-lg md:text-2xl"></span>
                 <span className="animate-pulse">|</span>
               </div>
               
