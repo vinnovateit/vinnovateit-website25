@@ -182,7 +182,6 @@ const CardGrid = () => {
                           backdropFilter: 'blur(10px)',
                           border: '1px solid rgba(128, 90, 213, 0.3)'
                         }}
-                        }}
                       >
                         Learn More
                       </button>
