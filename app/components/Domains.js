@@ -2,8 +2,9 @@
 
 import React from 'react';
 import Image from 'next/image';
-import DomainCard from './DomainCard'; // Adjust the import path as needed
+import DomainCard from './DomainCard';
 import AnimatedStarsBackground from './AnimatedStarsBackground';
+import ShootingStars from './ShootingStars';
 
 export default function Domains() {
   const domains = [
@@ -17,6 +18,8 @@ export default function Domains() {
 
   return (
     <div id="domains" className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 bg-black">
+  <ShootingStars count={8} />
+
       {/* Animated stars background */}
       <AnimatedStarsBackground 
         variant="simple" 
