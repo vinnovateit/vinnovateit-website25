@@ -108,16 +108,14 @@ export const AnimatedTestimonials = ({
           >
             {/* Event Name */}
             <h3 
-              className="text-4xl md:text-5xl font-bold text-purple-400 mb-4 tracking-wider drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]"
-              style={{ fontFamily: "Orbitron, monospace" }}
+              className="text-4xl md:text-5xl font-bold text-purple-400 mb-4 tracking-wider drop-shadow-[0_0_20px_rgba(168,85,247,0.5)] font-orbitron"
             >
               {events[active].name}
             </h3>
             
             {/* Event Description */}
             <motion.p 
-              className="mt-8 text-lg md:text-xl text-white/90 leading-relaxed"
-              style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+              className="mt-8 text-lg md:text-xl text-white/90 leading-relaxed font-jakarta"
             >
               {events[active].description.split(" ").map((word, index) => (
                 <motion.span

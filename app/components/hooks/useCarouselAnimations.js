@@ -64,7 +64,7 @@ export const useCarouselAnimation = (containerRef, carouselRef, screenSize, boar
         end: () => `+=${scrollDistance * 2}`, // Increased multiplier for more control
         invalidateOnRefresh: true,
         anticipatePin: 1,
-        refreshPriority: 1,
+        preventOverlaps: true,
         onUpdate: (self) => {
           const containerCenter = containerWidth / 2;
           

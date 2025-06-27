@@ -67,14 +67,12 @@ const MemberCard = ({ member, screenSize }) => {
 
         <div className={styles.info}>
           <h3 
-            className={styles.name}
-            style={{ fontFamily: "Orbitron, monospace" }}
+            className={`${styles.name} font-orbitron`}
           >
             {member.name}
           </h3>
           <p 
-            className={styles.post}
-            style={{ fontFamily: "Orbitron, monospace" }}
+            className={`${styles.post} font-orbitron`}
           >
             {member.post}
           </p>

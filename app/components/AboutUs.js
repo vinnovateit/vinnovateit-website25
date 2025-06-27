@@ -3,136 +3,85 @@
 import React, { useEffect, useRef } from 'react';
 import Image from "next/image";
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger, TextPlugin } from 'gsap/all';
 import AnimatedStarsBackground from './AnimatedStarsBackground';
+import SectionHeading from './SectionHeading';
 
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 export default function AboutUs() {
   const containerRef = useRef(null);
   const terminalRef = useRef(null);
-  const terminalHeaderRef = useRef(null);
-  const terminalContentRef = useRef(null);
-  const commandRef = useRef(null);
   const textContentRef = useRef(null);
   const robotImageRef = useRef(null);
+  const commandTextRef = useRef(null);
 
   useEffect(() => {
-    // Check if it's mobile device
-    const isMobile = window.innerWidth <= 768;
-    
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: isMobile ? "top 90%" : "top 80%", // Earlier trigger on mobile
-        end: isMobile ? "bottom 10%" : "bottom 20%", // Different end point for mobile
-        toggleActions: "play none none reverse", // play on enter, reverse on leave
-        // markers: true, // Uncomment to see trigger points during development
-      }
-    });
-
-    // Set initial states
-    gsap.set(terminalRef.current, { scale: 0, opacity: 0 });
-    gsap.set(terminalHeaderRef.current, { opacity: 0 });
-    gsap.set(terminalContentRef.current, { opacity: 0 });
-    gsap.set(commandRef.current, { opacity: 0 });
-    gsap.set(textContentRef.current, { opacity: 0 });
-    gsap.set(robotImageRef.current, { opacity: 0, y: 50 });
-
-    // Animation sequence
-    tl
-      // Terminal window pops open like Windows
-      .to(terminalRef.current, {
-        scale: 1,
-        opacity: 1,
-        duration: 0.8,
-        ease: "back.out(1.4)"
-      })
-      
-      // Terminal header appears
-      .to(terminalHeaderRef.current, {
-        opacity: 1,
-        duration: 0.3
-      })
-      
-      // Terminal content background appears
-      .to(terminalContentRef.current, {
-        opacity: 1,
-        duration: 0.3
-      })
-      
-      // Command prompt appears
-      .to(commandRef.current, {
-        opacity: 1,
-        duration: 0.2
-      })
-      
-      // Typewriter animation for the command
-      .to({}, {
-        duration: 1.5,
-        onUpdate: function() {
-          const progress = this.progress();
-          const commandText = "ls -a about_us";
-          const currentLength = Math.floor(progress * commandText.length);
-          const commandSpan = commandRef.current?.querySelector('.command-text');
-          if (commandSpan) {
-            commandSpan.textContent = commandText.substring(0, currentLength);
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top center",
+            toggleActions: "play none none reverse",
           }
-        },
-        ease: "none"
-      })
-      
-      // Show main text content
-      .to(textContentRef.current, {
-        opacity: 1,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "+=0.3")
-      
-      // Finally show robot image
-      .to(robotImageRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out"
-      }, "-=0.4");
+        });
 
-    // Cleanup function
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+        gsap.set(terminalRef.current, { scale: 0.8, opacity: 0 });
+        gsap.set(textContentRef.current, { opacity: 0, y: 20 });
+        gsap.set(robotImageRef.current, { opacity: 0, y: 50 });
+        gsap.set(commandTextRef.current, { text: "" });
 
+        tl
+          .to(terminalRef.current, {
+            scale: 1,
+            opacity: 1,
+            duration: 0.8,
+            ease: "back.out(1.4)"
+          })
+          .to(commandTextRef.current, {
+            duration: 1.5,
+            text: "ls -a about_us",
+            ease: "none",
+          }, "+=0.5")
+          .to(textContentRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power2.out"
+          }, "+=0.3")
+          .to(robotImageRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out"
+          }, "-=0.5");
+
+      }, containerRef);
+
+      return () => ctx.revert();
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div 
       id="aboutus"
       ref={containerRef}
-      className="bg-black pt-10 flex flex-col items-center justify-center min-h-screen w-full relative p-0 m-0 overflow-visible"
+      className="pt-10 flex flex-col items-center justify-center min-h-screen w-full relative p-0 m-0 overflow-visible"
     >
-      {/* Animated stars background */}
       <AnimatedStarsBackground 
         variant="simple" 
         starCount={100}
         zIndex={0}
       />
       
-      <h1
-        className="text-5xl md:text-7xl font-bold mb-12 tracking-wider transform transition-transform duration-500"
-        style={{
-          fontFamily: 'Orbitron, monospace',
-          background: 'radial-gradient(circle at 50% 50%, #fff 0%, #e6e6e6 60%, #bfc0c2 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          color: 'transparent',
-        }}
-      >
-        ABOUT US
-      </h1>
-      
-      <div className="px-10 w-full max-w-6xl mx-auto relative z-10">
+      <SectionHeading 
+        title="ABOUT US"
+      />
+
+      <div className="px-10 w-full max-w-6xl mx-auto relative z-10 -mt-20">
         {/* Terminal window */}
         <div 
           ref={terminalRef}
@@ -166,7 +115,6 @@ export default function AboutUs() {
           <div className="absolute inset-0 bg-gradient-to-br from-purple-900/15 via-black/40 to-purple-900/15 rounded-3xl" />
           {/* Terminal header */}
           <div 
-            ref={terminalHeaderRef}
             className="relative flex items-center justify-center px-6 py-3 border-b border-white/30 rounded-t-3xl z-20" 
             style={{ 
               background: 'rgba(28, 31, 48, 0.52)',
@@ -182,9 +130,8 @@ export default function AboutUs() {
               <div className="w-2 h-2 md:w-4 md:h-4 bg-green-500 rounded-full"></div>
             </div>
             <div
-              className="text-white font-bold text-center flex-1 relative z-10 text-[1rem] md:text-[1.5rem]" 
+              className="text-white font-bold text-center flex-1 relative z-10 text-[1rem] md:text-[1.5rem] font-jetbrains" 
               style={{
-                fontFamily: 'JetBrains Mono, monospace',
                 textShadow: '0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4)',
               }}
             >
@@ -194,7 +141,6 @@ export default function AboutUs() {
 
           {/* Terminal content */}
           <div 
-            ref={terminalContentRef}
             className="relative flex flex-col md:flex-row items-start gap-0 md:gap-3 p-9 md:p-15 z-20" 
           >
             {/* Content backdrop blur */}
@@ -202,23 +148,20 @@ export default function AboutUs() {
             {/* Left side - Text content */}
             <div className="flex-1 text-left relative z-10">
               <div
-                ref={commandRef}
-                className="mb-9 font-semibold text-[1.2rem] md:text-[1.8rem] relative z-10"
+                className="mb-9 font-semibold text-[1.2rem] md:text-[1.8rem] relative z-10 font-jetbrains"
                 style={{
-                  fontFamily: 'JetBrains Mono, monospace',
                   color: '#33C265',
                 }}
               >
                 <span>&gt; </span>
-                <span className="text-white text-lg md:text-2xl command-text"></span>
+                <span ref={commandTextRef} className="text-white text-lg md:text-2xl"></span>
                 <span className="animate-pulse">|</span>
               </div>
               
               <div
                 ref={textContentRef}
-                className="text-slate-200 pb-2 text-md md:text-xl whitespace-pre-line font-thin leading-relaxed relative z-10"
+                className="text-slate-200 pb-2 text-md md:text-xl whitespace-pre-line font-thin leading-relaxed relative z-10 font-jakarta"
                 style={{
-                  fontFamily: "'Plus Jakarta Sans', sans-serif",
                   lineHeight: 1.3,
                   fontWeight: 100,
                   color: '#e2e6f3',

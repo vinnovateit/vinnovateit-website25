@@ -1,14 +1,4 @@
-import Stars from "./components/Stars";
 import "./globals.css";
-import { Orbitron, Plus_Jakarta_Sans, DM_Sans } from "next/font/google";
-
-const orbitron = Orbitron({ subsets: ["latin"], variable: "--font-orbitron" });
-const plusJakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-jakarta" });
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  variable: '--font-dm-sans',
-});
 
 export const metadata = {
   title: "Create Next App",
@@ -17,11 +7,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${orbitron.variable} ${plusJakarta.variable} ${dmSans.variable}`}>
-      
-        <body className="bg-black text-white">{children}</body>
-      
-      
+    <html lang="en">
+      <body className="bg-black text-white">{children}</body>
     </html>
   );
 }
