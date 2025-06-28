@@ -123,16 +123,7 @@ export default function Domains() {
   };
 
   return (
-    <div 
-      ref={containerRef}
-      id="domains" 
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 overflow-hidden"
-    >
-      <AnimatedStarsBackground 
-        variant="simple" 
-        starCount={80}
-        zIndex={1}
-      />
+    <div id="domains" className='relative'>
       <div 
         ref={decorativeRef}
         className="absolute -top-[20rem] left-[5rem] md:top-[-50rem] md:right-[-50rem] md:left-auto
@@ -150,13 +141,25 @@ export default function Domains() {
           className="w-full h-full object-contain"
         />
       </div>
+      <div 
+      ref={containerRef}
+       
+      className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 overflow-hidden"
+    >
+      {/* <ShootingStars count={8} /> */}
+      <AnimatedStarsBackground 
+        variant="simple" 
+        starCount={80}
+        zIndex={1}
+      />
+      
       <Image
         ref={overlayRef}
         src="/3D_object1_About_us.png"
         alt="Overlay"
         width={250}
         height={200}
-        className="absolute top-16 -left-2 z-[5] pointer-events-none w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto"
+        className="absolute -top-10 -left-2 z-[5] pointer-events-none w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto"
       />
       <div className="max-w-7xl mx-auto text-center z-20 w-full relative">
         <div ref={headingRef}>
@@ -178,5 +181,7 @@ export default function Domains() {
         </div>
       </div>
     </div>
+    </div>
+    
   );
 }

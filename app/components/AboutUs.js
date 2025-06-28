@@ -130,7 +130,7 @@ export default function AboutUs() {
               <div className="w-2 h-2 md:w-4 md:h-4 bg-green-500 rounded-full"></div>
             </div>
             <div
-              className="text-white font-bold text-center flex-1 relative z-10 text-[1rem] md:text-[1.5rem] font-jetbrains" 
+              className="text-white font-bold text-center flex-1 relative z-10 text-[1rem] md:text-[1.2rem] font-jetbrains" 
               style={{
                 textShadow: '0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.4)',
               }}
@@ -141,14 +141,14 @@ export default function AboutUs() {
 
           {/* Terminal content */}
           <div 
-            className="relative flex flex-col md:flex-row items-start gap-0 md:gap-3 p-9 md:p-15 z-20" 
+            className="relative flex flex-col md:flex-row items-start gap-0 md:gap-3 px-9 md:px-15 pt-9 z-20" 
           >
             {/* Content backdrop blur */}
             <div className="absolute inset-0 backdrop-blur-sm bg-gradient-to-br from-purple-900/10 via-black/20 to-purple-900/10" />
             {/* Left side - Text content */}
             <div className="flex-1 text-left relative z-10">
               <div
-                className="mb-9 font-semibold text-[1.2rem] md:text-[1.8rem] relative z-10 font-jetbrains"
+                className="mb-9 font-semibold text-[1.2rem] md:text-[1.5rem] relative z-10 font-jetbrains"
                 style={{
                   color: '#33C265',
                 }}
@@ -181,7 +181,7 @@ export default function AboutUs() {
             </div>
             
             {/* Right side - Robot image */}
-            <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center items-center md:mt-0 relative z-10">
+            <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center items-center top-0 relative z-10">
               <Image
                 ref={robotImageRef}
                 src="/robot.png"

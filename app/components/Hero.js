@@ -190,35 +190,36 @@ export default function Hero() {
 
       {/* Background circle - comes from left */}
       <div 
-        ref={ringRef}
-        className="absolute -top-8 -left-8 md:-top-12 md:-left-12 lg:-top-16 lg:-left-16 w-32 md:w-40 lg:w-[20rem] h-auto opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10"
-      >
-        <Image
-          src="/hero_3d1.png"
-          alt="Flower"
-          width={320}
-          height={320}
-          className="w-full h-auto"
-          priority={true}
-          fetchPriority="high"
-        />
-      </div>
+  ref={ringRef}
+  className="absolute -top-8 -left-8 md:-top-12 md:-left-12 lg:-top-12 lg:-left-12 xl:-top-16 xl:-left-16 
+             w-24 md:w-32 lg:w-64 h-auto opacity-70 md:opacity-80 xl:opacity-90 pointer-events-none z-10"
+>
+  <Image
+    src="/hero_3d1.png"
+    alt="Flower"
+    width={320}
+    height={320}
+    className="w-full h-auto"
+    priority={true}
+    fetchPriority="high"
+  />
+</div>
 
       {/* 3D About Us Object - comes from right */}
       <div 
-        ref={aboutObjectRef}
-        className="absolute bottom-0 -right-40 w-64 sm:w-80 md:w-96 lg:w-[30rem] h-auto pointer-events-none select-none z-10"
-      >
-        <Image
-          src="/3D_object_About_us.png"
-          alt="Overlay"
-          width={400}
-          height={350}
-          className="w-[250px] md:w-[300px] lg:w-[400px] h-auto"
-          priority={true}
-          fetchPriority="high"
-        />
-      </div>
+  ref={aboutObjectRef}
+  className="absolute bottom-0 -right-40 w-40 sm:w-56 md:w-72 lg:w-90 h-auto pointer-events-none select-none z-10"
+>
+  <Image
+    src="/3D_object_About_us.png"
+    alt="Overlay"
+    width={400}
+    height={350}
+    className="w-[160px] md:w-[250px] lg:w-[280px] xl:w-[400px] h-auto"
+    priority={true}
+    fetchPriority="high"
+  />
+</div>
 
       <div 
         ref={glowRef}
@@ -226,8 +227,8 @@ export default function Hero() {
                    w-[120vw] h-[120vh] 
                    sm:w-[140vw] sm:h-[140vh] 
                    md:w-[160vw] md:h-[160vh] 
-                   lg:w-[180vw] lg:h-[180vh] 
-                   xl:w-[200vw] xl:h-[200vh]
+                   lg:w-[100vw] lg:h-[100vh] 
+                   
                    max-w-[2000px] max-h-[2000px]"
         style={{
           background: `radial-gradient(ellipse at center, 

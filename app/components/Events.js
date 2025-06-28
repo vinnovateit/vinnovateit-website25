@@ -257,7 +257,7 @@ export default function Events() {
 
         {/* Events Testimonials */}
         <div ref={testimonialsRef} 
-        className="mt-25 mb-25"
+        className="mt-10 mb-25"
          style={{ opacity: 0, transform: 'translateY(50px)' }}>
           <AnimatedTestimonials events={events} />
         </div>

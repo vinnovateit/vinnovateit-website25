@@ -80,7 +80,7 @@ export default function Board() {
 
         {/* Carousel Container */}
         <div className="z-10 relative w-full perspective-1000 py-2 md:py-3 lg:py-4">
-          <div className="w-full overflow-hidden min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center">
+          <div className="w-full overflow-hidden flex items-center">
             <div
               ref={carouselRef}
               className="flex items-center md:space-x-5 lg:space-x-10"
