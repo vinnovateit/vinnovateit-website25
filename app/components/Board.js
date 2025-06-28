@@ -43,7 +43,7 @@ export default function Board() {
           src="/flower3.png"
           alt="Flower"
           fill
-          className="object-contain"
+          className="object-cover"
         />
       </div>
       
@@ -52,7 +52,7 @@ export default function Board() {
           src="/flower4.png"
           alt="Flower Bottom Right"
           fill
-          className="object-contain"
+          className="object-cover"
         />
       </div>
       
@@ -70,7 +70,7 @@ export default function Board() {
       </div>
 
       {/* Main Content */}
-      <div className="relative flex flex-col items-center justify-center w-full px-4 mb-10 pt-16 md:pt-0">
+      <div className="relative flex flex-col items-center justify-center w-full mb-10 pt-16 md:pt-0">
         <SectionHeading 
           title="BOARD MEMBERS"
           className="text-center"

@@ -168,12 +168,12 @@ const ProjectShowcase = () => {
   }, [projects.length, isMobile]);
 
   return (
-    <div id='projects' ref={containerRef} className="min-h-screen text-white overflow-hidden flex justify-center relative z-20">
-      <AnimatedStarsBackground 
-        variant="simple" 
-        starCount={300}
-        zIndex={0}
-      />
+    <div 
+  id='projects' 
+  ref={containerRef} 
+  className="min-h-screen text-white overflow-hidden flex justify-center relative z-20 bg-cover bg-center bg-fixed" 
+  style={{ backgroundImage: "url('/star_bg.svg')" }}
+>
 
       <div className="w-full max-w-7xl flex flex-col items-center z-30 px-4 relative">
         {/* Projects Showcase */}
