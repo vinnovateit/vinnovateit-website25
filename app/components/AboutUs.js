@@ -167,15 +167,11 @@ export default function AboutUs() {
                   color: '#e2e6f3',
                 }}
               >
-                VinnovateIT is the one stop destination for
-                all you curious cats and satisfy your hunger
-                in the diverse world of computer science.
+                VinnovateIT is the one-stop destination for all you curious cats to satisfy your hunger in the diverse world of computer science
 
                 <br /><br />
 
-                To put it simply... we are the answer to the
-                question &quot;What if Elon Musk and Albert
-                Einstein had a brain child?&quot;
+                In other words… think of it as the place where genius meets curiosity — and the result is pure magic.
 
                 <br /><br />
 

@@ -256,7 +256,7 @@ export default function Hero() {
           ref={subtitleRef}
           className="text-gray-200 text-base sm:text-lg md:text-xl lg:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto font-dm-sans"
         >
-          Think, Create, Innovate...
+          Think. Create. Innovate.
         </p>
 
         <button

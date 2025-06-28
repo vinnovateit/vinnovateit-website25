@@ -17,33 +17,28 @@ const events = [
   {
     name: "VINHACK",
     description:
-      "A premier hackathon where innovative minds come together to build groundbreaking solutions and push the boundaries of technology.",
-    image: "/globe.png",
+      "Our flagship hackathon where participants come together and find creative solutions for the problem statements based on the current social obstacles. The contestants jostle through 24 hours to find a viable and user friendly way to tackle these scenarios. Top teams have the opportunity to win huge rewards.",
+    image: "/vinhack.png",
   },
   {
     name: "VINCODE",
     description:
-      "An intensive coding competition that challenges participants to solve complex problems and showcase their programming prowess.",
-    image: "/pen.png",
+      "The competition which not only tests your logical thinking but also your speed to find the least time consuming program for the problem statement. With the leaderboard constantly changing places, it puts your mental strength to the test as well.",
+    image: "/vincode.png",
   },
   {
     name: "VINPREP",
     description:
-      "A comprehensive preparation program designed to equip students with essential skills for technical interviews and career advancement.",
-    image: "/robot.png",
+      "This 3-day event focuses on delivering a full fledged campus placement mock to the participants, right from the coding and aptitude round to the HR interview. Accompanied with mentorship from our industry experts, the participants get the chance to win some amazing cash prizes and goodies.",
+    image: "/vinprep.png",
   },
   {
-    name: "VINTALKS",
+    name: "CODE ALONG",
     description:
       "Inspiring talks by industry leaders and experts sharing insights on the latest trends in technology and innovation.",
-    image: "/mobile.png",
+    image: "/robot.png",
   },
-  {
-    name: "VINFEST",
-    description:
-      "A vibrant festival celebrating technology, creativity, and community with workshops, exhibitions, and networking opportunities.",
-    image: "/terminal.png",
-  },
+  
 ];
 
 export default function Events() {

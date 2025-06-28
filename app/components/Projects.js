@@ -22,79 +22,36 @@ const ProjectShowcase = () => {
   const projects = [
     {
       id: 1,
-      name: "NEURAL NEXUS",
-      description: "An advanced AI-powered platform that revolutionizes data processing and machine learning workflows with cutting-edge neural network architectures.",
+      name: "MESSIT",
+      description: "Check what's cooking before you commit. MESSIT shows the full mess menu so you know when it's worth the trip — and when to make other 'arrangements'.",
       image: "/api/placeholder/600/400",
-      technologies: ["React", "Python", "TensorFlow", "Node.js"],
-      viewLink: "#",
-      sourceLink: "#"
+      viewLink: "https://messit.vinnovateit.com/",
     },
     {
       id: 2,
-      name: "QUANTUM SYNC",
-      description: "A real-time collaboration platform utilizing quantum encryption protocols to ensure secure data transmission across distributed teams.",
+      name: "STUDYHUB",
+      description: "Your saviour during exams and assignment panic! Find notes, study material — basically everything you need to survive (and maybe ace) your courses.",
       image: "/api/placeholder/600/400",
-      technologies: ["Vue.js", "Express", "WebRTC", "MongoDB"],
-      viewLink: "#",
-      sourceLink: "#"
+      viewLink: "https://studyhub.vinnovateit.com/",
+      sourceLink: "https://github.com/vinnovateit/StudyHub2"
     },
     {
       id: 3,
-      name: "CYBER FORGE",
-      description: "A comprehensive cybersecurity toolkit featuring automated threat detection, vulnerability assessment, and real-time monitoring capabilities.",
+      name: "BUNKBUDDIES",
+      description: "No one likes rooming with a random stranger. Find your perfect hostel roommate *before* counselling — because good company makes hostel life way better!",
       image: "/api/placeholder/600/400",
-      technologies: ["Angular", "Django", "PostgreSQL", "Docker"],
-      viewLink: "#",
-      sourceLink: "#"
+      viewLink: "https://bunkbuddies.vinnovateit.com/",
     },
     {
       id: 4,
-      name: "VOID RUNNER",
-      description: "An immersive 3D gaming experience built with advanced graphics rendering and physics simulation for next-generation entertainment.",
+      name: "SWAPIT",
+      description: "A hassle-free platform to manage course add and drop after allocation. Connect with peers looking to swap courses and optimize your timetable smoothly.",
       image: "/api/placeholder/600/400",
-      technologies: ["Unity", "C#", "WebGL", "Blender"],
-      viewLink: "#",
-      sourceLink: "#"
-    },
-    {
-      id: 5,
-      name: "DATA STREAM",
-      description: "A powerful analytics dashboard that processes massive datasets in real-time, providing actionable insights through interactive visualizations.",
-      image: "/api/placeholder/600/400",
-      technologies: ["D3.js", "FastAPI", "Redis", "Kubernetes"],
-      viewLink: "#",
-      sourceLink: "#"
-    },
-    {
-      id: 6,
-      name: "CLOUD MATRIX",
-      description: "A distributed cloud infrastructure management system offering automated scaling, monitoring, and optimization for enterprise applications.",
-      image: "/api/placeholder/600/400",
-      technologies: ["AWS", "Terraform", "Go", "Prometheus"],
-      viewLink: "#",
-      sourceLink: "#"
-    },
-    {
-      id: 7,
-      name: "PIXEL FORGE",
-      description: "An innovative image processing and manipulation platform featuring AI-enhanced editing tools and automated content generation.",
-      image: "/api/placeholder/600/400",
-      technologies: ["React", "OpenCV", "Flask", "PyTorch"],
-      viewLink: "#",
-      sourceLink: "#"
-    },
-    {
-      id: 8,
-      name: "CODE NEXUS",
-      description: "A collaborative development environment with integrated version control, code review, and automated deployment pipelines.",
-      image: "/api/placeholder/600/400",
-      technologies: ["TypeScript", "Git", "CI/CD", "Docker"],
-      viewLink: "#",
-      sourceLink: "#"
+      viewLink: "https://swapit.vinnovateit.com/",
     }
   ];
 
- // Update ref when state changes
+  // Update ref when state changes
   useEffect(() => {
     currentProjectRef.current = currentProject;
   }, [currentProject]);
@@ -211,14 +168,12 @@ const ProjectShowcase = () => {
   }, [projects.length, isMobile]);
 
   return (
-
     <div id='projects' ref={containerRef} className="min-h-screen text-white overflow-hidden flex justify-center relative z-20">
       <AnimatedStarsBackground 
         variant="simple" 
         starCount={300}
         zIndex={0}
       />
-
 
       <div className="w-full max-w-7xl flex flex-col items-center z-30 px-4 relative">
         {/* Projects Showcase */}
@@ -230,88 +185,84 @@ const ProjectShowcase = () => {
                 containerClassName="relative inline-block mb-0 md:mb-3 lg:mb-4 mt-2 sm:mt-6 md:mt-8 lg:mt-12"
               />
             </div>
-          {/* Project card view */}
-          <div>
-          {/* Progress Bar */}
-          <div className="w-full h-1 bg-purple-900/30 rounded-full mb-3 sm:mb-6 md:mb-8 overflow-hidden">
-            <div className="progress-fill h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full transition-all duration-500 ease-out" style={{ width: '12.5%' }}></div>
-          </div>
-
-          {/* Project Content */}
-          <div className="project-content flex flex-col-reverse md:grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center">
-            {/* Project Info */}
-            <div className="space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <span 
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-purple-400 font-orbitron"
-                >
-                  {String(projects[currentProject].id).padStart(2, '0')}
-                </span>
-                <div className="h-px flex-1 bg-gradient-to-r from-purple-400 to-transparent"></div>
+            {/* Project card view */}
+            <div>
+              {/* Progress Bar */}
+              <div className="w-full h-1 bg-purple-900/30 rounded-full mb-3 sm:mb-6 md:mb-8 overflow-hidden">
+                <div className="progress-fill h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full transition-all duration-500 ease-out" style={{ width: '12.5%' }}></div>
               </div>
 
-              <h2 
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wider mt-1 sm:mt-2 font-orbitron"
-              >
-                {projects[currentProject].name}
-              </h2>
+              {/* Project Content */}
+              <div className="project-content flex flex-col-reverse md:grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center">
+                {/* Project Info */}
+                <div className="space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <span 
+                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-purple-400 font-orbitron"
+                    >
+                      {String(projects[currentProject].id).padStart(2, '0')}
+                    </span>
+                    <div className="h-px flex-1 bg-gradient-to-r from-purple-400 to-transparent"></div>
+                  </div>
 
-              <p 
-                className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed font-jakarta"
-              >
-                {projects[currentProject].description}
-              </p>
-
-              {/* Technologies */}
-              <div className="flex flex-wrap gap-1.5 sm:gap-2 md:gap-3">
-                {projects[currentProject].technologies.map((tech, index) => (
-                  <span 
-                    key={index}
-                    className="px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 bg-purple-900/30 border border-purple-600/30 rounded-full text-xs sm:text-sm font-medium text-purple-300 backdrop-blur-sm font-jakarta"
+                  <h2 
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wider mt-1 sm:mt-2 font-orbitron"
                   >
-                    {tech}
-                  </span>
-                ))}
+                    {projects[currentProject].name}
+                  </h2>
+
+                  <p 
+                    className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed font-jakarta"
+                  >
+                    {projects[currentProject].description}
+                  </p>
+
+                  {/* Conditional Buttons */}
+                  {(projects[currentProject].viewLink || projects[currentProject].sourceLink) && (
+                    <div ref={el => buttonsRef.current[currentProject] = el} className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-2 sm:pt-3 md:pt-4">
+                      {projects[currentProject].viewLink && (
+                        <button 
+                          className="px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 border-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm sm:text-base font-jakarta"
+                          onClick={() => window.open(projects[currentProject].viewLink, '_blank')}
+                        >
+                          VIEW PROJECT
+                        </button>
+                      )}
+                      {projects[currentProject].sourceLink && (
+                        <button 
+                          className="px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 border-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm sm:text-base font-jakarta"
+                          onClick={() => window.open(projects[currentProject].sourceLink, '_blank')}
+                        >
+                          SOURCE CODE
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Project Image */}
+                <div className="relative group w-full">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg sm:rounded-xl md:rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+                  <div className="relative bg-gray-900/50 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border border-purple-600/20 backdrop-blur-sm">
+                    <img 
+                      src={projects[currentProject].image}
+                      alt={projects[currentProject].name}
+                      className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                  </div>
+                </div>
               </div>
 
-              {/* Buttons */}
-              <div ref={el => buttonsRef.current[currentProject] = el} className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-2 sm:pt-3 md:pt-4">
-                <button 
-                  className="px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 border-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm sm:text-base font-jakarta"
+              {/* Project Counter */}
+              <div className="flex justify-center mt-4 sm:mt-6 md:mt-8 lg:mt-12">
+                <div 
+                  className="text-xs sm:text-sm text-purple-400 tracking-widest font-orbitron"
                 >
-                  VIEW PROJECT
-                </button>
-                <button 
-                  className="px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 border-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm sm:text-base font-jakarta"
-                >
-                  SOURCE CODE
-                </button>
+                  {String(currentProject + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
+                </div>
               </div>
             </div>
-
-            {/* Project Image */}
-            <div className="relative group w-full">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg sm:rounded-xl md:rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-              <div className="relative bg-gray-900/50 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border border-purple-600/20 backdrop-blur-sm">
-                <img 
-                  src={projects[currentProject].image}
-                  alt={projects[currentProject].name}
-                  className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-              </div>
-            </div>
-          </div>
-
-          {/* Project Counter */}
-          <div className="flex justify-center mt-4 sm:mt-6 md:mt-8 lg:mt-12">
-            <div 
-              className="text-xs sm:text-sm text-purple-400 tracking-widest font-orbitron"
-            >
-              {String(currentProject + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
-            </div>
-            </div>
-          </div>
           </div>
         </section>
       </div>

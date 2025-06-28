@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Facebook, Instagram, Mail, Linkedin } from "lucide-react";
+import { Github, Instagram, Mail, Linkedin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import Image from "next/image";
@@ -151,23 +151,23 @@ const MainNavbar = () => {
 
   const socialLinks = [
     {
-      icon: <Facebook size={20} />,
-      href: "https://github.com/AyushK0808",
+      icon: <Github size={20} />,
+      href: "https://github.com/VinnovateIT/",
       hoverColor: "hover:text-purple-400",
     },
     {
       icon: <Instagram size={20} />,
-      href: "https://www.instagram.com/_ayush.0808",
+      href: "https://www.instagram.com/vinnovateit/?hl=en",
       hoverColor: "hover:text-fuchsia-500",
     },
     {
       icon: <Linkedin size={20} />,
-      href: "https://www.linkedin.com/in/ayush-kumar-061a58251/",
+      href: "https://www.linkedin.com/company/v-innovate-it/?originalSubdomain=in",
       hoverColor: "hover:text-purple-400",
     },
     {
       icon: <Mail size={20} />,
-      href: "mailto:theofficialayush.kumar@gmail.com",
+      href: "mailto:vinnovateit@gmail.com",
       hoverColor: "hover:text-fuchsia-500",
     },
   ];

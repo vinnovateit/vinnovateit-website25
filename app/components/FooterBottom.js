@@ -11,12 +11,12 @@ import {
 import Image from 'next/image'
 
 const socials = [
-  { name: 'Instagram', icon: Instagram, href: '#' },
-  { name: 'Twitter', icon: Twitter, href: '#' },
-  { name: 'GitHub', icon: Github, href: '#' },
-  { name: 'LinkedIn', icon: Linkedin, href: '#' },
-  { name: 'YouTube', icon: Youtube, href: '#' },
-  { name: 'Facebook', icon: Facebook, href: '#' },
+  { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/vinnovateit/?hl=en' },
+  { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/v_innovate_it?lang=en' },
+  { name: 'GitHub', icon: Github, href: 'https://github.com/VinnovateIT/' },
+  { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/company/v-innovate-it/?originalSubdomain=in' },
+  { name: 'YouTube', icon: Youtube, href: 'https://www.youtube.com/channel/UClqr0ir3N1_sG4ubZjEDe3g' },
+  { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/VinnovateIT/' },
 ]
 
 export default function FooterBottom() {
@@ -42,7 +42,9 @@ export default function FooterBottom() {
 
   {/* Description */}
   <p className="text-gray-300 leading-relaxed mb-4 font-jakarta">
-    Lorem ipsum dolor sit amet consectetur. In ipsum dolor eget turpis. Egestas in aliquet sodales nisi.
+    VIT, Vellore Campus<br/>
+    Vellore – 632 014<br/>
+Tamilnadu, India
   </p>
 
   {/* Copyright */}
@@ -72,11 +74,13 @@ export default function FooterBottom() {
           </div>
 
           {/* Connect Button */}
-          <button
-            className="mt-5 bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2.5 px-6 md:py-3 md:px-8 rounded-full shadow-lg hover:scale-105 hover:shadow-[0_0_25px_rgba(160,97,255,0.7)] transition-all duration-300 font-medium font-orbitron"
-          >
-            Let&apos;s connect
-          </button>
+         <a href="mailto:vinnovateit@gmail.com">
+  <button
+    className="mt-5 bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2.5 px-6 md:py-3 md:px-8 rounded-full shadow-lg hover:scale-105 hover:shadow-[0_0_25px_rgba(160,97,255,0.7)] transition-all duration-300 font-medium font-orbitron"
+  >
+    Let&apos;s connect
+  </button>
+</a>
         </div>
       </div>
     </div>
