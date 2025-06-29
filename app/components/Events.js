@@ -2,14 +2,11 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { AnimatedTestimonials } from "./animated-testimonials";
 import SectionHeading from './SectionHeading';
 import AnimatedStarsBackground from './AnimatedStarsBackground';
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Register ScrollTrigger plugin
-gsap.registerPlugin(ScrollTrigger);
 
 const events = [
   {
@@ -40,62 +37,35 @@ const events = [
 
 export default function Events() {
   const containerRef = useRef(null);
-  const flowerRef = useRef(null);
   const lightRef = useRef(null);
   const glowRef = useRef(null);
-  const headingRef = useRef(null);
-  const testimonialsRef = useRef(null);
+  
+  // Framer Motion scroll hooks
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+  
+  // Transform values for parallax effects
+  const flowerY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const flowerRotation = useTransform(scrollYProgress, [0, 1], [0, 20]);
+  const lightY = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const lightRotation = useTransform(scrollYProgress, [0, 1], [0, 10]);
+  
+  // In-view detection for animations
+  const headingInView = useInView(containerRef, { 
+    once: true, 
+    margin: "-20% 0px -20% 0px" 
+  });
+  
+  const testimonialsInView = useInView(containerRef, { 
+    once: true, 
+    margin: "-30% 0px -30% 0px" 
+  });
 
   useEffect(() => {
+    // Only GSAP animations for light effects
     const ctx = gsap.context(() => {
-      // Initial states
-      gsap.set([flowerRef.current, glowRef.current], {
-        opacity: 1,
-        scale: 1,
-      });
-      
-      gsap.set(lightRef.current, {
-        opacity: 0.8,
-        scale: 1,
-      });
-      
-      gsap.set(headingRef.current, {
-        opacity: 0,
-        y: 50,
-      });
-      
-      gsap.set(testimonialsRef.current, {
-        opacity: 0,
-        y: 30,
-      });
-
-      // Create main timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse",
-        }
-      });
-
-      // Animate heading
-      tl.to(headingRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power3.out",
-      })
-      
-      // Animate testimonials
-      .to(testimonialsRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out",
-      }, "-=0.5");
-
-      // Continuous animations
       // Pulsing light effect
       gsap.to(lightRef.current, {
         opacity: 0.6,
@@ -115,30 +85,6 @@ export default function Events() {
         yoyo: true,
         repeat: -1,
       });
-
-      // Parallax effect on scroll
-      gsap.to(flowerRef.current, {
-        y: -100,
-        rotation: "+=20",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        }
-      });
-
-      gsap.to(lightRef.current, {
-        y: -50,
-        rotation: "+=10",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        }
-      });
-
     }, containerRef);
 
     return () => ctx.revert();
@@ -150,15 +96,25 @@ export default function Events() {
       id="events" 
       className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 md:px-12 py-16 overflow-hidden"
     >
-      <Image
-        ref={flowerRef}
-        src="/events_flower.png"
-        alt="Flower"
-        width={550}
-        height={550}
-        className="absolute top-0 right-0 w-64 sm:w-80 md:w-96 lg:w-[20rem] h-auto pointer-events-none select-none z-10"
-        style={{ transform: 'translateY(-35%)' }}
-      />
+      {/* Flower with Framer Motion parallax */}
+      <motion.div
+        style={{ 
+          y: flowerY,
+          rotate: flowerRotation,
+        }}
+        className="absolute -top-8 -right-8 sm:-top-12 sm:-right-12 md:-top-40 md:-right-16 w-48 sm:w-64 md:w-80 lg:w-96 xl:w-[20rem] h-auto pointer-events-none select-none z-10"
+        initial={{ opacity: 1, scale: 1 }}
+      >
+        <Image
+          src="/events_flower.png"
+          alt="Flower"
+          width={550}
+          height={550}
+          className="w-full h-auto object-contain"
+          priority={false}
+          loading="lazy"
+        />
+      </motion.div>
 
       <AnimatedStarsBackground 
         variant="simple" 
@@ -166,7 +122,7 @@ export default function Events() {
         zIndex={1}
       />
 
-      {/* Glow Effect */}
+      {/* Glow Effect with GSAP animation */}
       <div
         ref={glowRef}
         className="hidden md:block absolute top-0 right-0 w-[1500px] md:w-[2000px] h-[1500px] md:h-[2500px] pointer-events-none z-0 opacity-40"
@@ -178,37 +134,68 @@ export default function Events() {
         }}
       />
 
-      {/* Main Light Beam */}
-      <div
+      {/* Main Light Beam with GSAP + Framer Motion parallax */}
+      <motion.div
         ref={lightRef}
-        className="hidden md:block absolute -top-20 -right-25 w-[1500px] md:w-[2500px] h-[1500px] md:h-[2500px] pointer-events-none z-0 opacity-80 rotate-[2deg]"
-        style={{
-          filter: 'drop-shadow(0 0 50px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 100px rgba(255, 255, 255, 0.1))',
-          transform: 'rotate(6deg)',
+        style={{ 
+          y: lightY,
+          rotate: lightRotation,
         }}
+        className="hidden md:block absolute -top-20 -right-25 w-[1500px] md:w-[2500px] h-[1500px] md:h-[2500px] pointer-events-none z-0 opacity-80"
+        initial={{ opacity: 0.8, scale: 1 }}
       >
-        <Image
-          src="/light.png"
-          alt="Spotlight"
-          width={2400}
-          height={2200}  
-          className="object-contain"
-        />
-      </div>
-
-      {/* Content Wrapper */}
-      <div className="mt-10 max-w-7xl w-full text-center z-10">
-        <div ref={headingRef}>
-          <SectionHeading 
-            title="EVENTS" 
-            className="text-5xl md:text-7xl"
+        <div
+          style={{
+            filter: 'drop-shadow(0 0 50px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 100px rgba(255, 255, 255, 0.1))',
+            transform: 'rotate(6deg)',
+          }}
+        >
+          <Image
+            src="/light.png"
+            alt="Spotlight"
+            width={2400}
+            height={2200}  
+            className="object-contain"
           />
         </div>
+      </motion.div>
 
-        {/* Events Testimonials */}
-        <div ref={testimonialsRef} className="mt-10 mb-25">
+      {/* Content Wrapper */}
+      <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 max-w-7xl w-full text-center z-10">
+        {/* Heading with Framer Motion animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ 
+            opacity: headingInView ? 1 : 0, 
+            y: headingInView ? 0 : 50 
+          }}
+          transition={{ 
+            duration: 1, 
+            ease: [0.25, 0.1, 0.25, 1] // power3.out equivalent
+          }}
+        >
+          <SectionHeading 
+            title="EVENTS" 
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
+          />
+        </motion.div>
+
+        {/* Events Testimonials with Framer Motion animation */}
+        <motion.div 
+          className="mt-10 mb-25"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ 
+            opacity: testimonialsInView ? 1 : 0, 
+            y: testimonialsInView ? 0 : 30 
+          }}
+          transition={{ 
+            duration: 0.8, 
+            delay: 0.5,
+            ease: [0.25, 0.46, 0.45, 0.94] // power2.out equivalent
+          }}
+        >
           <AnimatedTestimonials events={events} />
-        </div>
+        </motion.div>
       </div>
     </div>
   );

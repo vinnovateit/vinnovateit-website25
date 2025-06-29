@@ -182,7 +182,7 @@ const ProjectShowcase = () => {
             <div className="mb-4 sm:mb-8 md:mb-12 lg:mb-16 flex justify-center">
               <SectionHeading 
                 title="PROJECTS" 
-                containerClassName="relative inline-block mb-0 md:mb-3 lg:mb-4 mt-2 sm:mt-6 md:mt-8 lg:mt-12"
+                containerClassName="relative inline-block mt-0 sm:mt-2 md:mt-6 lg:mt-8"
               />
             </div>
             {/* Project card view */}
