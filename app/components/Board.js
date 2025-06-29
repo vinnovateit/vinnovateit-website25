@@ -43,7 +43,7 @@ export default function Board() {
           src="/flower3.png"
           alt="Flower"
           fill
-          className="object-contain"
+          className="object-cover"
         />
       </div>
       
@@ -52,7 +52,7 @@ export default function Board() {
           src="/flower4.png"
           alt="Flower Bottom Right"
           fill
-          className="object-contain"
+          className="object-cover"
         />
       </div>
       
@@ -70,17 +70,17 @@ export default function Board() {
       </div>
 
       {/* Main Content */}
-      <div className="relative flex flex-col items-center justify-center w-full px-4 mb-10 pt-16 md:pt-0">
+      <div className="relative flex flex-col items-center justify-center w-full mb-10 pt-16 md:pt-0">
         <SectionHeading 
           title="BOARD MEMBERS"
           className="text-center"
-          containerClassName="relative inline-block mb-2 md:mb-3 lg:mb-4 mt-10 md:mt-32 lg:mt-36"
+          containerClassName="relative inline-block mb-0 md:mb-3 lg:mb-4 mt-5 md:mt-32 lg:mt-36"
           isMultiline={true}
         />
 
         {/* Carousel Container */}
         <div className="z-10 relative w-full perspective-1000 py-2 md:py-3 lg:py-4">
-          <div className="w-full overflow-hidden min-h-[400px] md:min-h-[500px] lg:min-h-[600px] flex items-center">
+          <div className="w-full overflow-hidden flex items-center">
             <div
               ref={carouselRef}
               className="flex items-center md:space-x-5 lg:space-x-10"
