@@ -161,16 +161,12 @@ export default function Domains() {
         height={200}
         className="absolute -top-10 -left-2 z-[5] pointer-events-none w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto"
       />
-      <div className="max-w-7xl mx-auto text-center z-20 w-full relative">
-        <div ref={headingRef}className="mt-[10px] sm:mt-[90px] md:mt-[80px] mb-0">
-          <SectionHeading 
-            title="DOMAINS"
-           containerClassName="relative inline-block mb-0 domain-heading"
-           className="mt-0 "
-          />
-        </div>
+     <div className="max-w-7xl mx-auto text-center z-20 w-full relative mt-4 sm:mt-12 md:mt-20 mb-0">
+  <div ref={headingRef}>
+    <SectionHeading title="DOMAINS" />
+  </div>
         <div
-           className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mt-0 mb-20 relative z-30 font-jakarta">
+           className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mt-[-80] mb-20 relative z-30 font-jakarta">
 
 
         
