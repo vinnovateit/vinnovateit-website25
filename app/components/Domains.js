@@ -165,8 +165,8 @@ export default function Domains() {
         <div ref={headingRef}className="mt-[10px] sm:mt-[90px] md:mt-[80px] mb-0">
           <SectionHeading 
             title="DOMAINS"
-            containerClassName="relative inline-block mb-0"
-            className="mt-18 sm:mt-16 md:mt-20 mb-0"
+           containerClassName="relative inline-block mb-0 domain-heading"
+           className="mt-0 "
           />
         </div>
         <div
