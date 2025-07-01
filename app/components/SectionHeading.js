@@ -10,8 +10,8 @@ const SectionHeading = ({
   return (
     <div className={containerClassName}>
       {/* Top-left corner */}
-      <span className="absolute top-[-18] left-[-26] w-10 h-2 bg-purple-300"></span>
-      <span className="absolute top-[-18] left-[-26] w-2 h-10 bg-purple-300"></span>
+      <span className="absolute top-[50] left-[-26] w-10 h-2 bg-purple-300"></span>
+      <span className="absolute top-[50] left-[-26] w-2 h-10 bg-purple-300"></span>
 
       {/* Bottom-right corner */}
       <span className="absolute bottom-15 right-[-20] w-10 h-2 bg-purple-300"></span>
