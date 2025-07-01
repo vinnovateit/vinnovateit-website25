@@ -18,41 +18,42 @@ export default function Domains() {
 
   return (
     <div id="domains" className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 bg-black">
-  <ShootingStars count={8} />
+      <ShootingStars count={8} />
 
-      {/* Animated stars background */}
       <AnimatedStarsBackground 
         variant="simple" 
         starCount={80}
         zIndex={1}
       />
       
-      {/* Decorative elements */}
-      <div className="absolute -top-[20rem] left-[5rem] md:top-[-50rem] md:right-[-50rem] md:left-auto
-                w-[45rem] h-[45rem] 
-                md:w-[90rem] md:h-[90rem] 
-                pointer-events-none mix-blend-screen 
-                opacity-60 md:opacity-70 lg:opacity-80 
-                z-10">
-  <Image
-    src="/big_ring.png"
-    alt="Ring"
-    width={720}
-    height={720}
-    className="w-full h-full object-contain"
-  />
-</div>
+      {/* Decorative Ring */}
+      <div className="absolute -top-[10rem] left-[2rem] md:top-[-30rem] md:right-[-30rem] md:left-auto
+                  w-48 h-48 
+                  sm:w-64 sm:h-64 
+                  md:w-[60rem] md:h-[60rem] 
+                  pointer-events-none mix-blend-screen 
+                  opacity-60 md:opacity-70 lg:opacity-80 
+                  z-10">
+        <Image
+          src="/big_ring.png"
+          alt="Ring"
+          width={720}
+          height={720}
+          className="w-full h-full object-contain"
+        />
+      </div>
 
+      {/* Top-left Blob */}
       <Image
         src="/3D_object1_About_us.png"
         alt="Overlay"
         width={250}
         height={200}
-        className="absolute top-16 -left-2 z-0 pointer-events-none w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto"
+        className="absolute top-[-80px] -left-2 z-0 pointer-events-none 
+                  w-24 sm:w-32 md:w-40 lg:w-48 xl:w-64 h-auto"
       />
 
       <div className="max-w-7xl mx-auto text-center z-10 w-full">
-        {/* Main heading */}
         <h1 
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-12 sm:mb-16 md:mb-20 lg:mb-24 tracking-wider mt-32 sm:mt-0"
           style={{ fontFamily: 'Orbitron, monospace' }}
@@ -60,7 +61,6 @@ export default function Domains() {
           Domains
         </h1>
         
-        {/* Simple flexbox layout */}
         <div
           className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mb-20"
           style={{ fontFamily: 'Plus Jakarta Sans, sans-serif' }}
@@ -75,13 +75,15 @@ export default function Domains() {
         </div>
       </div>
 
-      {/* Bottom decorative element */}
+      {/* Bottom-right Flower Blob */}
       <Image
         src="/flowertwo.png"
         alt="Flower"
         width={550}
         height={550}
-        className="absolute bottom-0 right-0 w-64 sm:w-80 md:w-96 lg:w-[30rem] h-auto pointer-events-none select-none z-10"
+        className="absolute bottom-40 right-0 
+                  w-40 sm:w-52 md:w-64 lg:w-80 xl:w-[30rem] 
+                  h-auto pointer-events-none select-none z-10"
         style={{ transform: 'translateY(55%)' }}
       />
     </div>
