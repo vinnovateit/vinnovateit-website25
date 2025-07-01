@@ -34,11 +34,11 @@ export const AnimatedTestimonials = ({
   };
 
   return (
-    <div className="mx-auto max-w-sm px-4 font-sans antialiased md:max-w-6xl md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-5 md:gap-20 md:grid-cols-2">
+    <div className="mx-auto px-4 font-sans antialiased md:px-8 lg:px-12">
+      <div className="relative grid grid-cols-1 gap-8 md:gap-16 lg:gap-64 lg:grid-cols-2">
         {/* Image Section - Made Larger */}
-        <div className="-mt-8">
-          <div className="relative h-64 w-full md:h-[500px]">
+        <div className="-mt-8 md:mt-0">
+          <div className="relative h-64 w-full md:h-[500px] lg:h-[550px]">
             <AnimatePresence>
   {events.map((event, index) => (
     <motion.div
@@ -86,7 +86,7 @@ export const AnimatedTestimonials = ({
         </div>
 
         {/* Text Section */}
-        <div className="flex flex-col justify-between py-4">
+        <div className="flex flex-col justify-between py-4 md:py-8 lg:py-12">
           <motion.div
             key={active}
             initial={{
@@ -108,16 +108,14 @@ export const AnimatedTestimonials = ({
           >
             {/* Event Name */}
             <h3 
-              className="text-4xl md:text-5xl font-bold text-purple-400 mb-4 tracking-wider drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]"
-              style={{ fontFamily: "Orbitron, monospace" }}
+              className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-purple-400 mb-4 md:mb-6 tracking-wider drop-shadow-[0_0_20px_rgba(168,85,247,0.5)] font-orbitron"
             >
               {events[active].name}
             </h3>
             
             {/* Event Description */}
             <motion.p 
-              className="mt-8 text-lg md:text-xl text-white/90 leading-relaxed"
-              style={{ fontFamily: "Plus Jakarta Sans, sans-serif" }}
+              className="mt-6 md:mt-8 text-base sm:text-lg md:text-xl text-white/90 leading-relaxed font-jakarta"
             >
               {events[active].description.split(" ").map((word, index) => (
                 <motion.span
@@ -146,7 +144,7 @@ export const AnimatedTestimonials = ({
           </motion.div>
 
           {/* Navigation Buttons */}
-          <div className="flex gap-4 pt-12 md:pt-0 justify-center">
+          <div className="flex gap-4 pt-8 md:pt-12 lg:pt-16 justify-center">
             <button
               onClick={handlePrev}
               className="group/button flex h-10 w-10 items-center justify-center rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition-all duration-300"
@@ -162,7 +160,7 @@ export const AnimatedTestimonials = ({
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center gap-2 mt-6">
+          <div className="flex justify-center gap-2 mt-4 md:mt-6">
             {events.map((_, index) => (
               <button
                 key={index}
