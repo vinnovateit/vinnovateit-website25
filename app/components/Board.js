@@ -74,7 +74,7 @@ export default function Board() {
         <SectionHeading 
           title="BOARD MEMBERS"
           className="text-center"
-          containerClassName="relative inline-block mb-0 md:mb-3 lg:mb-4 mt-5 md:mt-32 lg:mt-36"
+          containerClassName="relative inline-block mb-0 md:mb-3 lg:mb-4 mt-30 md:mt-32 lg:mt-36"
           isMultiline={true}
         />
 
