@@ -1,6 +1,13 @@
 'use client'
 
-import { Instagram, Twitter, Github, Linkedin, Youtube, Facebook } from 'lucide-react'
+import {
+  Instagram,
+  Twitter,
+  Github,
+  Linkedin,
+  Youtube,
+  Facebook
+} from 'lucide-react'
 import Image from 'next/image'
 
 const socials = [
