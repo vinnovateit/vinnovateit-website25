@@ -182,18 +182,6 @@ export default function Domains() {
         </div>
       </div>
     </div>
-
-      {/* Bottom-right Flower Blob */}
-      <Image
-        src="/flowertwo.png"
-        alt="Flower"
-        width={550}
-        height={550}
-        className="absolute bottom-40 right-0 
-                  w-40 sm:w-52 md:w-64 lg:w-80 xl:w-[30rem] 
-                  h-auto pointer-events-none select-none z-10"
-        style={{ transform: 'translateY(55%)' }}
-      />
     </div>
     
   );
