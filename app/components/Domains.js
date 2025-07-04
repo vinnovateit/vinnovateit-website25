@@ -144,7 +144,7 @@ export default function Domains() {
       <div 
       ref={containerRef}
        
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 overflow-hidden"
+      className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 overflow-visible"
     >
       {/* <ShootingStars count={8} /> */}
       <AnimatedStarsBackground 
@@ -162,15 +162,15 @@ export default function Domains() {
         className="absolute top-[-80px] -left-2 z-0 pointer-events-none 
                   w-24 sm:w-32 md:w-40 lg:w-48 xl:w-64 h-auto"
       />
-      <div className="max-w-7xl mx-auto text-center z-20 w-full relative">
-        <div ref={headingRef}>
-          <SectionHeading 
-            title="DOMAINS"
-          />
-        </div>
+     <div className="max-w-7xl mx-auto text-center z-20 w-full relative mt-4 sm:mt-12 md:mt-20 mb-0">
+  <div ref={headingRef}>
+    <SectionHeading title="DOMAINS" />
+  </div>
         <div
-          className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mb-20 relative z-30 font-jakarta"
-        >
+           className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mt-[-80] mb-20 relative z-30 font-jakarta">
+
+
+        
           {domains.map((item, index) => (
             <div key={index} ref={addToRefs} className="relative z-30">
               <DomainCard 
