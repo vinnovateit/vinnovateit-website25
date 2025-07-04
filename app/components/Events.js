@@ -13,13 +13,13 @@ const events = [
     name: "VINHACK",
     description:
       "Our flagship hackathon where participants come together and find creative solutions for the problem statements based on the current social obstacles. The contestants jostle through 24 hours to find a viable and user friendly way to tackle these scenarios. Top teams have the opportunity to win huge rewards.",
-    image: "/vinhack.png",
+    image: "/events1.png",
   },
   {
     name: "VINCODE",
     description:
       "The competition which not only tests your logical thinking but also your speed to find the least time consuming program for the problem statement. With the leaderboard constantly changing places, it puts your mental strength to the test as well.",
-    image: "/vincode.png",
+    image: "/events2.png",
   },
   {
     name: "VINPREP",
@@ -31,7 +31,7 @@ const events = [
     name: "CODE ALONG",
     description:
       "Inspiring talks by industry leaders and experts sharing insights on the latest trends in technology and innovation.",
-    image: "/robot.png",
+    image: "/codealong.png",
   },
 ];
 
