@@ -1,24 +1,24 @@
 "use client";
 import React, { useRef, useEffect, useState, useLayoutEffect } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 import SectionHeading from './SectionHeading';
 import AnimatedStarsBackground from './AnimatedStarsBackground';
 
-// Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectShowcase = () => {
   const containerRef = useRef(null);
   const stickyRef = useRef(null);
+  const flowerRef = useRef(null); // 🔹 NEW
   const projectsRef = useRef([]);
   const buttonsRef = useRef([]);
   const [currentProject, setCurrentProject] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const currentProjectRef = useRef(currentProject); // Ref to track current project without re-renders
+  const currentProjectRef = useRef(currentProject);
 
-  // Sample project data - replace with your actual projects
   const projects = [
     {
       id: 1,
@@ -51,17 +51,14 @@ const ProjectShowcase = () => {
     }
   ];
 
-  // Update ref when state changes
   useEffect(() => {
     currentProjectRef.current = currentProject;
   }, [currentProject]);
 
-  // Check mobile on mount and resize
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -69,7 +66,6 @@ const ProjectShowcase = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // FIXED STARS: Remove animation, keep static positions
       const stars = gsap.utils.toArray(".star");
       stars.forEach(star => {
         gsap.set(star, {
@@ -80,10 +76,8 @@ const ProjectShowcase = () => {
         });
       });
 
-      // FIXED SCROLLING: Calculate proper scroll distance
       const scrollDistance = window.innerHeight * (projects.length - 0.5);
 
-      // Main ScrollTrigger for project showcase
       const trigger = ScrollTrigger.create({
         trigger: stickyRef.current,
         start: "top top",
@@ -101,10 +95,8 @@ const ProjectShowcase = () => {
 
           if (newProjectIndex !== currentProjectRef.current) {
             setCurrentProject(newProjectIndex);
-
-            // Animation for project change
             const duration = isMobile ? 0.2 : 0.3;
-            
+
             gsap.to(".project-content", {
               opacity: 0,
               y: isMobile ? 10 : 20,
@@ -129,7 +121,6 @@ const ProjectShowcase = () => {
               if (buttonContainer) {
                 const buttons = buttonContainer.querySelectorAll('button');
                 const isEven = newProjectIndex % 2 === 0;
-
                 buttons.forEach(button => {
                   if (isEven) {
                     button.className = button.className.replace(/bg-black|text-purple-400|border-purple-400/g, '');
@@ -145,7 +136,15 @@ const ProjectShowcase = () => {
         }
       });
 
-      // Animate heading on load
+      // 🔹 NEW FLOWER PINNING
+      ScrollTrigger.create({
+        trigger: stickyRef.current,
+        start: "top top",
+        end: "bottom top",
+        pin: flowerRef.current,
+        pinSpacing: false,
+      });
+
       const headingText = new SplitType('.main-heading', { types: 'chars' });
       gsap.from(headingText.chars, {
         opacity: 0,
@@ -168,60 +167,61 @@ const ProjectShowcase = () => {
   }, [projects.length, isMobile]);
 
   return (
-    <div 
-  id='projects' 
-  ref={containerRef} 
-  className="min-h-screen text-white overflow-hidden flex justify-center relative z-20 bg-cover bg-center bg-fixed" 
-  style={{ backgroundImage: "url('/star_bg.svg')" }}
->
+    <div
+      id='projects'
+      ref={containerRef}
+      className="min-h-screen text-white overflow-hidden flex justify-center relative z-20 bg-cover bg-center bg-fixed"
+      style={{ backgroundImage: "url('/star_bg.svg')" }}
+    >
+      {/* 🔹 UPDATED FLOWER */}
+      <div
+        ref={flowerRef}
+        className="absolute top-0 left-0 w-30 h-30 sm:w-24 sm:h-24 md:w-39 md:h-39 lg:w-63 lg:h-63 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-40"
+      >
+        <Image
+          src="/flower3.png"
+          alt="Flower"
+          fill
+          className="object-cover"
+        />
+      </div>
 
       <div className="w-full max-w-7xl flex flex-col items-center z-30 px-4 relative">
-        {/* Projects Showcase */}
         <section ref={stickyRef} className="relative z-40 min-h-screen w-full flex flex-col items-center justify-center py-4 sm:py-8 md:py-16">
           <div className="w-full">
             <div className="mb-4 sm:mb-8 md:mb-12 lg:mb-16 flex justify-center">
-              <SectionHeading 
-                title="PROJECTS" 
+              <SectionHeading
+                title="PROJECTS"
                 containerClassName="relative inline-block mt-0 sm:mt-2 md:mt-6 lg:mt-8"
               />
             </div>
-            {/* Project card view */}
+
             <div>
-              {/* Progress Bar */}
               <div className="w-full h-1 bg-purple-900/30 rounded-full mb-3 sm:mb-6 md:mb-8 overflow-hidden">
                 <div className="progress-fill h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full transition-all duration-500 ease-out" style={{ width: '12.5%' }}></div>
               </div>
 
-              {/* Project Content */}
               <div className="project-content flex flex-col-reverse md:grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center">
-                {/* Project Info */}
                 <div className="space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6">
                   <div className="flex items-center gap-3 sm:gap-4">
-                    <span 
-                      className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-purple-400 font-orbitron"
-                    >
+                    <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-purple-400 font-orbitron">
                       {String(projects[currentProject].id).padStart(2, '0')}
                     </span>
                     <div className="h-px flex-1 bg-gradient-to-r from-purple-400 to-transparent"></div>
                   </div>
 
-                  <h2 
-                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wider mt-1 sm:mt-2 font-orbitron"
-                  >
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wider mt-1 sm:mt-2 font-orbitron">
                     {projects[currentProject].name}
                   </h2>
 
-                  <p 
-                    className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed font-jakarta"
-                  >
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed font-jakarta">
                     {projects[currentProject].description}
                   </p>
 
-                  {/* Conditional Buttons */}
                   {(projects[currentProject].viewLink || projects[currentProject].sourceLink) && (
                     <div ref={el => buttonsRef.current[currentProject] = el} className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-2 sm:pt-3 md:pt-4">
                       {projects[currentProject].viewLink && (
-                        <button 
+                        <button
                           className="px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 border-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm sm:text-base font-jakarta"
                           onClick={() => window.open(projects[currentProject].viewLink, '_blank')}
                         >
@@ -229,7 +229,7 @@ const ProjectShowcase = () => {
                         </button>
                       )}
                       {projects[currentProject].sourceLink && (
-                        <button 
+                        <button
                           className="px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 border-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm sm:text-base font-jakarta"
                           onClick={() => window.open(projects[currentProject].sourceLink, '_blank')}
                         >
@@ -240,11 +240,10 @@ const ProjectShowcase = () => {
                   )}
                 </div>
 
-                {/* Project Image */}
                 <div className="relative group w-full">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg sm:rounded-xl md:rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
                   <div className="relative bg-gray-900/50 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border border-purple-600/20 backdrop-blur-sm">
-                    <img 
+                    <img
                       src={projects[currentProject].image}
                       alt={projects[currentProject].name}
                       className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
@@ -254,11 +253,8 @@ const ProjectShowcase = () => {
                 </div>
               </div>
 
-              {/* Project Counter */}
               <div className="flex justify-center mt-4 sm:mt-6 md:mt-8 lg:mt-12">
-                <div 
-                  className="text-xs sm:text-sm text-purple-400 tracking-widest font-orbitron"
-                >
+                <div className="text-xs sm:text-sm text-purple-400 tracking-widest font-orbitron">
                   {String(currentProject + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
                 </div>
               </div>

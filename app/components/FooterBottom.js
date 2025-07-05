@@ -29,7 +29,6 @@ export default function FooterBottom() {
     >
       <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-8">
       {/* Left with Logo */}
-    {/* Left with Logo */}
 <div className="text-sm max-w-md text-white flex flex-col items-center md:items-start text-center md:text-left">
   {/* Logo */}
   <Image
