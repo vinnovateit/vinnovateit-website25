@@ -47,27 +47,34 @@ export default function Board() {
         />
       </div>
       
-      <div className="absolute bottom-0 right-0 w-55 h-55 sm:w-48 sm:h-48 md:w-100 md:h-100 lg:w-96 lg:h-96 xl:w-[28rem] xl:h-[28rem] opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-5">
-        <Image
-          src="/flower4.png"
-          alt="Flower Bottom Right"
-          fill
-          className="object-cover"
-        />
-      </div>
+    <div className="absolute bottom-0 right-0 z-[5] pointer-events-none">
+    <Image
+      src="/flower4.png"
+      alt="Flower Bottom Right"
+      width={400}
+      height={400}
+      className="object-cover opacity-80 sm:opacity-80 md:opacity-90
+                 w-[16rem] h-[16rem] sm:w-[18rem] sm:h-[18rem] md:w-[24rem] md:h-[24rem] lg:w-[28rem] lg:h-[28rem]"
+    />
+    </div>
       
       {/* Centered Big Ring */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                      w-[45rem] h-[45rem] 
-                      md:w-[90rem] md:h-[90rem]
-                      pointer-events-none mix-blend-screen opacity-60 md:opacity-70 lg:opacity-80 z-5">
-        <Image
-          src="/big_ring.png"
-          alt="Ring"
-          fill
-          className="object-contain"
-        />
-      </div>
+      <div
+    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 
+             -translate-y-110 sm:-translate-y-170 md:-translate-y-190 lg:-translate-y-210 
+             w-[70rem] h-[70rem] 
+             sm:w-[100rem] sm:h-[100rem] 
+             md:w-[100rem] md:h-[100rem] 
+             lg:w-[120rem] lg:h-[120rem]
+             pointer-events-none mix-blend-screen opacity-60 md:opacity-70 lg:opacity-80 z-[5]"
+      >
+    <Image
+      src="/big_ring.png"
+      alt="Ring"
+      fill
+      className="object-contain"
+    />
+    </div>
 
       {/* Main Content */}
       <div className="relative flex flex-col items-center justify-center w-full mb-10 pt-16 md:pt-0">

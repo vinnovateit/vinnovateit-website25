@@ -175,16 +175,22 @@ const ProjectShowcase = () => {
     >
       {/* 🔹 UPDATED FLOWER */}
       <div
-        ref={flowerRef}
-        className="absolute top-0 left-0 w-30 h-30 sm:w-24 sm:h-24 md:w-39 md:h-39 lg:w-63 lg:h-63 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-40"
+    ref={flowerRef}
+    className="absolute bottom-[80%] left-[1%]
+               w-26 h-26 
+               sm:w-34 sm:h-34 
+               md:w-54 md:h-54
+               lg:w-66 lg:h-66 
+              opacity-70 md:opacity-80 lg:opacity-90 
+              pointer-events-none z-40"
       >
-        <Image
-          src="/flower3.png"
-          alt="Flower"
-          fill
-          className="object-cover"
-        />
-      </div>
+    <Image
+      src="/3d_Projects.png"
+      alt="Flower"
+      fill
+      className="object-cover"
+    />
+    </div>
 
       <div className="w-full max-w-7xl flex flex-col items-center z-30 px-4 relative">
         <section ref={stickyRef} className="relative z-40 min-h-screen w-full flex flex-col items-center justify-center py-4 sm:py-8 md:py-16">
