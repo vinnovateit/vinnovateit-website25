@@ -12,8 +12,6 @@ gsap.registerPlugin(ScrollTrigger);
 const ProjectShowcase = () => {
   const containerRef = useRef(null);
   const stickyRef = useRef(null);
-  const flowerRef = useRef(null); // 🔹 NEW
-  const projectsRef = useRef([]);
   const buttonsRef = useRef([]);
   const [currentProject, setCurrentProject] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -66,19 +64,9 @@ const ProjectShowcase = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const stars = gsap.utils.toArray(".star");
-      stars.forEach(star => {
-        gsap.set(star, {
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
-          opacity: Math.random() * 0.5 + 0.3,
-          scale: Math.random() * 0.7 + 0.3
-        });
-      });
-
       const scrollDistance = window.innerHeight * (projects.length - 0.5);
 
-      const trigger = ScrollTrigger.create({
+      ScrollTrigger.create({
         trigger: stickyRef.current,
         start: "top top",
         end: `+=${scrollDistance}`,
@@ -116,33 +104,8 @@ const ProjectShowcase = () => {
               duration: 0.5,
               ease: "power2.out"
             });
-
-            buttonsRef.current.forEach((buttonContainer, index) => {
-              if (buttonContainer) {
-                const buttons = buttonContainer.querySelectorAll('button');
-                const isEven = newProjectIndex % 2 === 0;
-                buttons.forEach(button => {
-                  if (isEven) {
-                    button.className = button.className.replace(/bg-black|text-purple-400|border-purple-400/g, '');
-                    button.className += ' bg-purple-600 text-black border-purple-600 hover:bg-purple-500 hover:border-purple-500';
-                  } else {
-                    button.className = button.className.replace(/bg-purple-600|text-black|border-purple-600|hover:bg-purple-500|hover:border-purple-500/g, '');
-                    button.className += ' bg-black text-purple-400 border-purple-400 hover:bg-gray-900 hover:border-purple-300';
-                  }
-                });
-              }
-            });
           }
         }
-      });
-
-      // 🔹 NEW FLOWER PINNING
-      ScrollTrigger.create({
-        trigger: stickyRef.current,
-        start: "top top",
-        end: "bottom top",
-        pin: flowerRef.current,
-        pinSpacing: false,
       });
 
       const headingText = new SplitType('.main-heading', { types: 'chars' });
@@ -154,10 +117,6 @@ const ProjectShowcase = () => {
         ease: "power2.out",
         delay: 0.5
       });
-
-      return () => {
-        trigger.kill();
-      };
     }, containerRef);
 
     return () => {
@@ -167,28 +126,23 @@ const ProjectShowcase = () => {
   }, [projects.length, isMobile]);
 
   return (
-    <div
-      id='projects'
-      ref={containerRef}
-      className="min-h-screen text-white overflow-hidden flex justify-center relative z-20 bg-cover bg-center bg-fixed"
-      style={{ backgroundImage: "url('/star_bg.svg')" }}
-    >
-      {/* 🔹 UPDATED FLOWER */}
-      <div
-        ref={flowerRef}
-        className="absolute top-0 left-0 w-30 h-30 sm:w-24 sm:h-24 md:w-39 md:h-39 lg:w-63 lg:h-63 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-40"
-      >
-        <Image
-          src="/flower3.png"
-          alt="Flower"
-          fill
-          className="object-cover"
-        />
-      </div>
+    <div id="projects" ref={containerRef} className="relative min-h-screen text-white overflow-hidden z-20 w-screen">
+  <div className="w-screen flex flex-col items-center z-30 relative">
+    <section ref={stickyRef} className="relative z-40 min-h-screen w-screen flex flex-col items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 z-0">
+    <AnimatedStarsBackground
+      variant="structured" 
+      starCount={80}
+      zIndex={1}
+    />
+  </div>
 
-      <div className="w-full max-w-7xl flex flex-col items-center z-30 px-4 relative">
-        <section ref={stickyRef} className="relative z-40 min-h-screen w-full flex flex-col items-center justify-center py-4 sm:py-8 md:py-16">
-          <div className="w-full">
+          <div className="absolute top-0 left-0 w-30 h-30 sm:w-24 sm:h-24 md:w-39 md:h-39 lg:w-63 lg:h-63 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10">
+            <Image src="/flower3.png" alt="Flower" fill className="object-cover" />
+          </div>
+
+          {/* Main Content */}
+          <div className="w-full z-20">
             <div className="mb-4 sm:mb-8 md:mb-12 lg:mb-16 flex justify-center">
               <SectionHeading
                 title="PROJECTS"
@@ -197,11 +151,13 @@ const ProjectShowcase = () => {
             </div>
 
             <div>
-              <div className="w-full h-1 bg-purple-900/30 rounded-full mb-3 sm:mb-6 md:mb-8 overflow-hidden">
-                <div className="progress-fill h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full transition-all duration-500 ease-out" style={{ width: '12.5%' }}></div>
-              </div>
+              <div className="w-full flex justify-center">
+  <div className="w-full max-w-6xl h-1 bg-purple-900/30 rounded-full mb-3 sm:mb-6 md:mb-8 overflow-hidden">
+    <div className="progress-fill h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full transition-all duration-500 ease-out" style={{ width: '12.5%' }}></div>
+  </div>
+</div>
 
-              <div className="project-content flex flex-col-reverse md:grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center">
+              <div className="project-content flex flex-col-reverse md:grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center max-w-6xl mx-auto px-4">
                 <div className="space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6">
                   <div className="flex items-center gap-3 sm:gap-4">
                     <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-purple-400 font-orbitron">
