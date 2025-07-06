@@ -224,7 +224,7 @@ export default function Hero() {
       <div 
         ref={glowRef}
         className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none
-                   w-[120vw] h-[120vh] 
+                   w-[120vw] h-[70vh] 
                    sm:w-[140vw] sm:h-[140vh] 
                    md:w-[160vw] md:h-[160vh] 
                    lg:w-[100vw] lg:h-[100vh] 

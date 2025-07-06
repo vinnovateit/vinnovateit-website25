@@ -46,7 +46,7 @@ const ProjectShowcase = () => {
       id: 4,
       name: "SWAPIT",
       description: "A hassle-free platform to manage course add and drop after allocation. Connect with peers looking to swap courses and optimize your timetable smoothly.",
-      image: "swapit.png",
+      image: "swapitt.png",
       viewLink: "https://swapit.vinnovateit.com/",
     }
   ];
@@ -247,7 +247,7 @@ const ProjectShowcase = () => {
                     <img 
                       src={projects[currentProject].image}
                       alt={projects[currentProject].name}
-                      className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-fill transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   </div>
