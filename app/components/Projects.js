@@ -66,8 +66,6 @@ const ProjectShowcase = () => {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const scrollDistance = window.innerHeight * (projects.length - 0.5);
-
-      // Pin the sticky container
       ScrollTrigger.create({
         trigger: stickyRef.current,
         start: "top top",
@@ -119,7 +117,6 @@ const ProjectShowcase = () => {
         pinSpacing: false,
         anticipatePin: 1,
       });
-
       const headingText = new SplitType('.main-heading', { types: 'chars' });
       gsap.from(headingText.chars, {
         opacity: 0,

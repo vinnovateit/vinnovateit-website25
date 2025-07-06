@@ -38,15 +38,15 @@ export default function Board() {
       />
 
       {/* Background Decorations */}
-      <div className="absolute top-0 left-0 w-40 h-40 sm:w-32 sm:h-32 md:w-55 md:h-55 lg:w-84 lg:h-84 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-5">
+      <div className="absolute top-[-10] left-[-170] w-70 h-70 md:top-[-150] md:left-[-240] md:w-[30rem] md:h-[30rem] lg:top-[-80] lg:left-[-190] lg:w-[30rem] lg:h-[30rem] opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-5">
         <Image
-          src="/flower3.png"
+          src="/fullobj.png"
           alt="Flower"
           fill
-          className="object-cover"
+          className="object-contain"
         />
       </div>
-      
+
     <div className="absolute bottom-0 right-0 z-[5] pointer-events-none">
     <Image
       src="/flower4.png"
