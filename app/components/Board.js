@@ -61,7 +61,7 @@ export default function Board() {
       {/* Centered Big Ring */}
       <div
     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 
-             -translate-y-110 sm:-translate-y-170 md:-translate-y-190 lg:-translate-y-210 
+             -translate-y-110 sm:-translate-y-170 md:-translate-y-180 lg:-translate-y-210 
              w-[70rem] h-[70rem] 
              sm:w-[100rem] sm:h-[100rem] 
              md:w-[100rem] md:h-[100rem] 
