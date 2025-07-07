@@ -4,46 +4,46 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 
 /**
  * 
- * @param {string} variant - 'simple' for basic circular stars (AboutUs style) or 'complex' for multiple star types (Hero style)
- * @param {number} starCount - Total number of stars for simple variant (default: 100)
+ * @param {string} variant - 'simple', 'complex', or 'structured' for grid layout (Projects style)
+ * @param {number} starCount - Total number of stars for simple/structured variant (default: 100)
  * @param {string} className - Additional CSS classes to apply
  * @param {number} zIndex - Z-index for positioning (default: 0)
  * 
  */
 export default function AnimatedStarsBackground({ 
-  variant = 'simple', // 'simple' for AboutUs style, 'complex' for Hero style
+  variant = 'simple', 
   starCount = 100,
   className = '',
   zIndex = 0
 }) {
   const starsRef = useRef([]);
   
-  // Calculate star counts and configurations based on screen size and variant
   const getStarConfig = useCallback(() => {
     if (typeof window === 'undefined') {
-      // Default values for server-side rendering
-      return variant === 'simple' 
-        ? { total: starCount }
-        : { circular: 60, plus: 20, diamond: 15, sparkle: 10 };
+      return variant === 'complex' 
+        ? { circular: 60, plus: 20, diamond: 15, sparkle: 10 }
+        : { total: starCount };
     }
     
     const width = window.innerWidth;
-    
-    if (variant === 'simple') {
-      // Simple variant for AboutUs - just return total count
-      if (width < 640) return { total: Math.floor(starCount * 0.5) }; // mobile
-      if (width < 1024) return { total: Math.floor(starCount * 0.75) }; // tablet
-      return { total: starCount }; // desktop
-    } else {
-      // Complex variant for Hero - multiple star types
-      if (width < 640) {
-        return { circular: 30, plus: 10, diamond: 8, sparkle: 5 };
-      } else if (width < 1024) {
-        return { circular: 45, plus: 15, diamond: 12, sparkle: 8 };
-      } else {
-        return { circular: 60, plus: 20, diamond: 15, sparkle: 10 };
-      }
+
+    if (variant === 'complex') {
+      if (width < 640) return { circular: 30, plus: 10, diamond: 8, sparkle: 5 };
+      if (width < 1024) return { circular: 45, plus: 15, diamond: 12, sparkle: 8 };
+      return { circular: 60, plus: 20, diamond: 15, sparkle: 10 };
     }
+
+    if (variant === 'structured') {
+      // Grid star count reduces on smaller screens for structured layout
+      if (width < 640) return { total: Math.floor(starCount * 0.5) };
+      if (width < 1024) return { total: Math.floor(starCount * 0.75) };
+      return { total: starCount };
+    }
+
+    // Default simple variant
+    if (width < 640) return { total: Math.floor(starCount * 0.5) };
+    if (width < 1024) return { total: Math.floor(starCount * 0.75) };
+    return { total: starCount };
   }, [variant, starCount]);
 
   const [config, setConfig] = useState(getStarConfig());
@@ -54,7 +54,6 @@ export default function AnimatedStarsBackground({
     return () => window.removeEventListener('resize', handleResize);
   }, [variant, starCount, getStarConfig]);
 
-  // Simple star component for AboutUs style
   const renderSimpleStars = () => {
     return [...Array(config.total)].map((_, i) => (
       <div
@@ -72,12 +71,55 @@ export default function AnimatedStarsBackground({
     ));
   };
 
-  // Complex star components for Hero style
+ const renderStructuredStars = () => {
+  const stars = [];
+  const gridSize = Math.ceil(Math.sqrt(config.total));
+  const cellWidth = 100 / gridSize;
+  const cellHeight = 100 / gridSize;
+  let placed = 0;
+  let seed = 42; // You can customize this to any constant
+
+  const seededRandom = () => {
+    const x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+  };
+
+  for (let row = 0; row < gridSize; row++) {
+    for (let col = 0; col < gridSize; col++) {
+      if (placed >= config.total) break;
+
+      const randomX = seededRandom() * cellWidth;
+      const randomY = seededRandom() * cellHeight;
+      const size = seededRandom() * 1.5 + 0.7;
+      const delay = seededRandom() * 2;
+      const duration = seededRandom() * 2 + 2;
+
+      stars.push(
+        <div
+          key={`star-structured-${placed}`}
+          className="absolute bg-white rounded-full animate-pulse"
+          style={{
+            left: `${col * cellWidth + randomX}%`,
+            top: `${row * cellHeight + randomY}%`,
+            width: `${size}px`,
+            height: `${size}px`,
+            animationDelay: `${delay}s`,
+            animationDuration: `${duration}s`
+          }}
+        />
+      );
+
+      placed++;
+    }
+  }
+  return stars;
+};
+
+
   const renderComplexStars = () => {
     const stars = [];
     let refIndex = 0;
 
-    // Regular circular stars
     for (let i = 0; i < config.circular; i++) {
       stars.push(
         <div
@@ -97,7 +139,6 @@ export default function AnimatedStarsBackground({
       );
     }
 
-    // Plus-shaped stars
     for (let i = 0; i < config.plus; i++) {
       stars.push(
         <div
@@ -119,7 +160,6 @@ export default function AnimatedStarsBackground({
       );
     }
 
-    // Diamond-shaped stars
     for (let i = 0; i < config.diamond; i++) {
       stars.push(
         <div
@@ -141,7 +181,6 @@ export default function AnimatedStarsBackground({
       );
     }
 
-    // Sparkle stars (multi-point)
     for (let i = 0; i < config.sparkle; i++) {
       stars.push(
         <div
@@ -171,7 +210,11 @@ export default function AnimatedStarsBackground({
       className={`absolute inset-0 ${className}`}
       style={{ zIndex }}
     >
-      {variant === 'simple' ? renderSimpleStars() : renderComplexStars()}
+      {variant === 'structured' 
+        ? renderStructuredStars()
+        : variant === 'complex'
+        ? renderComplexStars()
+        : renderSimpleStars()}
     </div>
   );
 }
