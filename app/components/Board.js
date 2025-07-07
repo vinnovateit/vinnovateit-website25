@@ -21,8 +21,8 @@ export default function Board() {
   useCarouselAnimation(containerRef, carouselRef, screenSize, boardMembers);
 
   const getCardWidth = () => {
-    return screenSize === 'mobile' ? 360 : screenSize === 'tablet' ? 320 : 340;
-  };
+  return screenSize === 'mobile' ? 240 : screenSize === 'tablet' ? 220 : 240;
+};
 
   return (
     <div 
@@ -47,16 +47,21 @@ export default function Board() {
         />
       </div>
       
-    <div className="absolute bottom-0 right-0 z-[5] pointer-events-none">
-    <Image
-      src="/flower4.png"
-      alt="Flower Bottom Right"
-      width={400}
-      height={400}
-      className="object-cover opacity-80 sm:opacity-80 md:opacity-90
-                 w-[16rem] h-[16rem] sm:w-[18rem] sm:h-[18rem] md:w-[24rem] md:h-[24rem] lg:w-[28rem] lg:h-[28rem]"
-    />
-    </div>
+    <div className="absolute bottom-0 right-0 sm:right-0 md:right-0 lg:right-0 
+                   h-auto pointer-events-none select-none z-10">
+  <Image
+    src="/3D_object1_About_us.png"
+    alt="Flower Bottom Right"
+    width={200}
+    height={200}
+    className="object-cover rotate-180 
+      w-[12rem] h-[12rem] 
+      sm:w-[14rem] sm:h-[14rem] 
+      md:w-[20rem] md:h-[20rem] 
+      lg:w-[20rem] lg:h-[20rem]"
+  />
+</div>
+
       
       {/* Centered Big Ring */}
       <div
@@ -65,7 +70,7 @@ export default function Board() {
              w-[70rem] h-[70rem] 
              sm:w-[100rem] sm:h-[100rem] 
              md:w-[100rem] md:h-[100rem] 
-             lg:w-[120rem] lg:h-[120rem]
+             lg:w-[110rem] lg:h-[110rem]
              pointer-events-none mix-blend-screen opacity-60 md:opacity-70 lg:opacity-80 z-[5]"
       >
     <Image
@@ -81,7 +86,7 @@ export default function Board() {
         <SectionHeading 
           title="BOARD MEMBERS"
           className="text-center"
-          containerClassName="relative inline-block mb-0 md:mb-3 lg:mb-4 mt-30 md:mt-32 lg:mt-36"
+          containerClassName="relative inline-block mb-0 md:mb-3 lg:mb-4 mt-20 md:mt-22 lg:mt-24"
           isMultiline={true}
         />
 

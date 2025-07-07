@@ -147,10 +147,10 @@ const ProjectShowcase = () => {
       {/* Flower (now pinned only during scroll) */}
       <div
         ref={flowerRef}
-        className="absolute top-0 left-0 w-32 h-32 sm:w-32 sm:h-32 md:w-50 md:h-50 lg:w-66 lg:h-66 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-50"
+        className="absolute top-0 left-0 w-32 h-32 sm:w-32 sm:h-32 md:w-50 md:h-50 lg:w-68 lg:h-68 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-50"
       >
         <Image
-          src="/3d_Projects.png"
+          src="/3D_Projects.png"
           alt="Flower"
           fill
           className="object-cover"
