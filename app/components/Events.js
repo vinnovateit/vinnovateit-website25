@@ -125,15 +125,17 @@ export default function Events() {
       {/* Light Beam */}
       <motion.div
         ref={lightRef}
-        style={{ y: lightY, rotate: lightRotation }}
-        className="hidden sm:block absolute -top-0 -right-60 w-[1000px] md:w-[2500px] h-[1000px] md:h-[2500px] pointer-events-none z-0 opacity-80"
+        style={{ 
+          y: lightY,
+          rotate: lightRotation,
+        }}
+        className="hidden md:block absolute -top-10 -right-150 w-[1500px] md:w-[2500px] h-[1500px] md:h-[2500px] pointer-events-none z-0 opacity-80"
         initial={{ opacity: 0.8, scale: 1 }}
       >
         <div
           style={{
-            filter:
-              "drop-shadow(0 0 50px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 100px rgba(255, 255, 255, 0.1))",
-            transform: "rotate(8deg)",
+            filter: 'drop-shadow(0 0 50px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 100px rgba(255, 255, 255, 0.1))',
+            transform: 'rotate(-5deg)',
           }}
         >
           <Image
