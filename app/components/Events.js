@@ -1,12 +1,11 @@
-"use client";
-
-import React, { useEffect, useRef } from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { AnimatedTestimonials } from "./animated-testimonials";
-import SectionHeading from "./SectionHeading";
-import AnimatedStarsBackground from "./AnimatedStarsBackground";
-import { gsap } from "gsap";
+"use client"
+import { useEffect, useRef } from "react"
+import Image from "next/image"
+import { motion, useScroll, useTransform, useInView } from "framer-motion"
+import { AnimatedTestimonials } from "./animated-testimonials"
+import SectionHeading from "./SectionHeading"
+import AnimatedStarsBackground from "./AnimatedStarsBackground"
+import { gsap } from "gsap"
 
 const events = [
   {
@@ -33,32 +32,32 @@ const events = [
       "Inspiring talks by industry leaders and experts sharing insights on the latest trends in technology and innovation.",
     image: "/codealong.png",
   },
-];
+]
 
 export default function Events() {
-  const containerRef = useRef(null);
-  const lightRef = useRef(null);
-  const glowRef = useRef(null);
+  const containerRef = useRef(null)
+  const lightRef = useRef(null)
+  const glowRef = useRef(null)
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
-  });
+  })
 
-  const flowerY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const flowerRotation = useTransform(scrollYProgress, [0, 1], [0, 20]);
-  const lightY = useTransform(scrollYProgress, [0, 1], [0, -30]);
-  const lightRotation = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const flowerY = useTransform(scrollYProgress, [0, 1], [0, -100])
+  const flowerRotation = useTransform(scrollYProgress, [0, 1], [0, 20])
+  const lightY = useTransform(scrollYProgress, [0, 1], [0, -30])
+  const lightRotation = useTransform(scrollYProgress, [0, 1], [0, 1])
 
   const headingInView = useInView(containerRef, {
     once: true,
     margin: "-20% 0px -20% 0px",
-  });
+  })
 
   const testimonialsInView = useInView(containerRef, {
     once: true,
     margin: "-30% 0px -30% 0px",
-  });
+  })
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -69,7 +68,7 @@ export default function Events() {
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1,
-      });
+      })
 
       gsap.to(glowRef.current, {
         opacity: 0.2,
@@ -78,11 +77,11 @@ export default function Events() {
         ease: "power1.inOut",
         yoyo: true,
         repeat: -1,
-      });
-    }, containerRef);
+      })
+    }, containerRef)
 
-    return () => ctx.revert();
-  }, []);
+    return () => ctx.revert()
+  }, [])
 
   return (
     <div
@@ -92,19 +91,19 @@ export default function Events() {
     >
       {/* Flower Parallax Image */}
       <motion.div
-  style={{ y: flowerY, rotate: flowerRotation }}
-  className="absolute -top-8 -right-8 sm:-top-12 sm:-right-12 md:-top-30 md:-right-16 w-24 sm:w-40 md:w-60 lg:w-72 xl:w-80 h-auto pointer-events-none select-none z-10"
->
-  <Image
-    src="/events_flower.png"
-    alt="Flower"
-    width={550}
-    height={550}
-    className="w-full h-auto object-contain"
-    priority={false}
-    loading="lazy"
-  />
-</motion.div>
+        style={{ y: flowerY, rotate: flowerRotation }}
+        className="absolute -top-8 -right-8 sm:-top-12 sm:-right-12 md:-top-30 md:-right-16 w-24 sm:w-40 md:w-60 lg:w-72 xl:w-80 h-auto pointer-events-none select-none z-10"
+      >
+        <Image
+          src="/events_flower.png"
+          alt="Flower"
+          width={550}
+          height={550}
+          className="w-full h-auto object-contain"
+          priority={false}
+          loading="lazy"
+        />
+      </motion.div>
 
       {/* Star Background */}
       <AnimatedStarsBackground variant="simple" starCount={80} zIndex={1} />
@@ -125,7 +124,7 @@ export default function Events() {
       {/* Light Beam */}
       <motion.div
         ref={lightRef}
-        style={{ 
+        style={{
           y: lightY,
           rotate: lightRotation,
         }}
@@ -134,22 +133,16 @@ export default function Events() {
       >
         <div
           style={{
-            filter: 'drop-shadow(0 0 50px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 100px rgba(255, 255, 255, 0.1))',
-            transform: 'rotate(-5deg)',
+            filter: "drop-shadow(0 0 50px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 100px rgba(255, 255, 255, 0.1))",
+            transform: "rotate(-5deg)",
           }}
         >
-          <Image
-            src="/light.png"
-            alt="Spotlight"
-            width={2400}
-            height={2200}
-            className="object-contain"
-          />
+          <Image src="/light.png" alt="Spotlight" width={2400} height={2200} className="object-contain" />
         </div>
       </motion.div>
 
       {/* Content Section */}
-      <div className="mt-12 sm:mt-16 md:mt-24 lg:mt-32 max-w-screen-xl w-full text-center z-10 px-4">
+      <div className="mt-12 sm:mt-16 md:mt-24 lg:mt-32 max-w-screen-xl lg:max-w-none w-full text-center z-10 px-4">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -159,15 +152,12 @@ export default function Events() {
           }}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <SectionHeading
-            title="EVENTS"
-            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
-          />
+          <SectionHeading title="EVENTS" className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl" />
         </motion.div>
 
-        {/* Testimonials Section */}
+        {/* Testimonials Section - Increased width on desktop */}
         <motion.div
-          className="mt-10 mb-24"
+          className="mt-10 mb-24 w-full max-w-none lg:max-w-[140rem] xl:max-w-[160rem] 2xl:max-w-[180rem] mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{
             opacity: testimonialsInView ? 1 : 0,
@@ -183,5 +173,5 @@ export default function Events() {
         </motion.div>
       </div>
     </div>
-  );
+  )
 }
