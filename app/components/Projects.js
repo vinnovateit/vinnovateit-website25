@@ -45,7 +45,7 @@ const ProjectShowcase = () => {
       id: 4,
       name: "SWAPIT",
       description: "A hassle-free platform to manage course add and drop after allocation. Connect with peers looking to swap courses and optimize your timetable smoothly.",
-      image: "swapitt.png",
+      image: "swapit.png",
       viewLink: "https://swapit.vinnovateit.com/",
     }
   ];
@@ -192,7 +192,7 @@ const ProjectShowcase = () => {
                   </span>
                   <div className="h-px flex-1 bg-gradient-to-r from-purple-400 to-transparent"></div>
                 </div>
-                
+
                 <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wider mt-1 sm:mt-2 font-orbitron">
                   {projects[currentProject].name}
                 </h2>
@@ -221,6 +221,7 @@ const ProjectShowcase = () => {
                       >
                         SOURCE CODE
                       </button>
+                    )}
                   </div>
                 )}
               </div>
