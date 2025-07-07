@@ -38,7 +38,7 @@ export default function Board() {
       />
 
       {/* Background Decorations */}
-      <div className="absolute top-[-10] left-[-170] w-70 h-70 md:top-[-150] md:left-[-240] md:w-[30rem] md:h-[30rem] lg:top-[-80] lg:left-[-190] lg:w-[30rem] lg:h-[30rem] opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-5">
+      <div className="block md:hidden lg:block absolute -top-15 md:top-0 -left-40 md:-left-40 w-70 h-70  md:w-[30rem] md:h-[30rem] lg:top-[-80] lg:w-[30rem] lg:h-[30rem] pointer-events-none z-5">
         <Image
           src="/fullobj.png"
           alt="Flower"
@@ -47,7 +47,7 @@ export default function Board() {
         />
       </div>
       
-      <div className="absolute bottom-20 right-[-20] w-55 h-55 md:bottom-[-10] md:right-[-28] md:w-[22rem] md:h-[22rem] lg:bottom-[-12] lg:right-[-32] lg:w-[28rem] lg:h-[28rem] opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-5">
+      <div className="absolute -bottom-2 md:bottom-0 -right-5 md:-right-5 w-55 h-55 md:w-[22rem] md:h-[22rem] lg:w-[28rem] lg:h-[28rem] opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-5">
         <Image
           src="/obj2.png"
           alt="Flower Bottom Right"
@@ -57,9 +57,9 @@ export default function Board() {
       </div>
       
       {/* Centered Big Ring */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                      w-[45rem] h-[45rem] 
-                      md:w-[90rem] md:h-[90rem]
+      <div className="absolute top-[60%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 
+                      w-[70rem] h-[70rem] 
+                      md:w-[95rem] md:h-[95rem]
                       pointer-events-none mix-blend-screen opacity-60 md:opacity-70 lg:opacity-80 z-5">
         <Image
           src="/big_ring.png"
@@ -74,12 +74,12 @@ export default function Board() {
         <SectionHeading 
           title="BOARD MEMBERS"
           className="text-center"
-          containerClassName="relative inline-block mb-0 md:mb-3 lg:mb-4 mt-30 md:mt-32 lg:mt-36"
+          containerClassName="relative inline-block mb-0 mt-30"
           isMultiline={true}
         />
 
         {/* Carousel Container */}
-        <div className="z-10 relative w-full perspective-1000 py-2 md:py-3 lg:py-4">
+        <div className="z-10 relative w-full perspective-1000">
           <div className="w-full overflow-hidden flex items-center">
             <div
               ref={carouselRef}

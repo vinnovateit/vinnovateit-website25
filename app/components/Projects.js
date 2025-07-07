@@ -137,8 +137,8 @@ const ProjectShowcase = () => {
     />
   </div>
 
-          <div className="absolute top-0 left-0 w-30 h-30 sm:w-24 sm:h-24 md:w-39 md:h-39 lg:w-63 lg:h-63 opacity-70 md:opacity-80 lg:opacity-90 pointer-events-none z-10">
-            <Image src="/flower3.png" alt="Flower" fill className="object-cover" />
+          <div className="hidden md:block absolute top-0 lg:-top-15 -left-10 w-35 h-35 md:w-64 md:h-64 lg:w-80 lg:h-80 pointer-events-none z-150 transform rotate-5">
+            <Image src="/3d_Projects.png" alt="Flower" fill/>
           </div>
 
           {/* Main Content */}
@@ -151,13 +151,13 @@ const ProjectShowcase = () => {
             </div>
 
             <div>
-              <div className="w-full flex justify-center">
+              <div className="w-full flex justify-center px-5">
   <div className="w-full max-w-6xl h-1 bg-purple-900/30 rounded-full mb-3 sm:mb-6 md:mb-8 overflow-hidden">
     <div className="progress-fill h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full transition-all duration-500 ease-out" style={{ width: '12.5%' }}></div>
   </div>
 </div>
 
-              <div className="project-content flex flex-col-reverse md:grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center max-w-6xl mx-auto px-4">
+              <div className="project-content flex flex-col-reverse md:grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center max-w-6xl mx-auto px-10">
                 <div className="space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6">
                   <div className="flex items-center gap-3 sm:gap-4">
                     <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-purple-400 font-orbitron">
