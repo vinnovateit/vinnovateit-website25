@@ -159,7 +159,8 @@ export default function Domains() {
         alt="Overlay"
         width={250}
         height={200}
-        className="absolute -top-10 -left-2 z-[5] pointer-events-none w-32 sm:w-40 md:w-48 lg:w-56 xl:w-64 h-auto"
+        className="absolute top-[-80px] -left-2 z-0 pointer-events-none 
+                  w-24 sm:w-32 md:w-40 lg:w-48 xl:w-64 h-auto"
       />
      <div className="max-w-7xl mx-auto text-center z-20 w-full relative mt-4 sm:mt-12 md:mt-20 mb-0">
   <div ref={headingRef}>

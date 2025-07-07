@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import Hero from "./components/Hero";
 import AboutUs from "./components/AboutUs";
 import Domains from "./components/Domains";
@@ -14,7 +14,7 @@ import Loading from "./components/Loading";
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setIsMounted(true);
   }, []);
 
