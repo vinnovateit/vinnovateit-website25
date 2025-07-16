@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Loading from "./components/Loading";
+import CustomCursor from "./components/CustomCursor";
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,6 +23,7 @@ export default function Home() {
 
   return (
     <div className="overflow-hidden">
+      <CustomCursor/>
       <Navbar />
       <Hero />
       <AboutUs />
