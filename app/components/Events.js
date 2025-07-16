@@ -11,19 +11,19 @@ const events = [
   {
     name: "VINHACK",
     description:
-      "Our flagship hackathon where participants come together and find creative solutions for the problem statements based on the current social obstacles. The contestants jostle through 24 hours to find a viable and user friendly way to tackle these scenarios. Top teams have the opportunity to win huge rewards.",
+      "Our flagship hackathon challenges participants to develop creative, user-friendly solutions to real-world social issues...with top teams winning exciting rewards.",
     image: "/events1.png",
   },
   {
     name: "VINCODE",
     description:
-      "The competition which not only tests your logical thinking but also your speed to find the least time consuming program for the problem statement. With the leaderboard constantly changing places, it puts your mental strength to the test as well.",
+      "The competition which not only tests your logical thinking but also your speed to find the least time consuming program for the problem statement. With the leaderboard constantly changing places, to keep the pressure high.",
     image: "/events2.png",
   },
   {
     name: "VINPREP",
     description:
-      "This 3-day event focuses on delivering a full fledged campus placement mock to the participants, right from the coding and aptitude round to the HR interview. Accompanied with mentorship from our industry experts, the participants get the chance to win some amazing cash prizes and goodies.",
+      "This 3-day event focuses on delivering a full fledged campus placement mock to the participants, right from the coding and aptitude round to the HR interview.",
     image: "/vinprep.png",
   },
   {
@@ -36,8 +36,6 @@ const events = [
 
 export default function Events() {
   const containerRef = useRef(null)
-  const lightRef = useRef(null)
-  const glowRef = useRef(null)
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -46,8 +44,6 @@ export default function Events() {
 
   const flowerY = useTransform(scrollYProgress, [0, 1], [0, -100])
   const flowerRotation = useTransform(scrollYProgress, [0, 1], [0, 20])
-  const lightY = useTransform(scrollYProgress, [0, 1], [0, -30])
-  const lightRotation = useTransform(scrollYProgress, [0, 1], [0, 1])
 
   const headingInView = useInView(containerRef, {
     once: true,
@@ -61,23 +57,6 @@ export default function Events() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.to(lightRef.current, {
-        opacity: 0.6,
-        scale: 1.05,
-        duration: 4,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1,
-      })
-
-      gsap.to(glowRef.current, {
-        opacity: 0.2,
-        scale: 1.2,
-        duration: 5,
-        ease: "power1.inOut",
-        yoyo: true,
-        repeat: -1,
-      })
     }, containerRef)
 
     return () => ctx.revert()
@@ -87,7 +66,7 @@ export default function Events() {
     <div
       ref={containerRef}
       id="events"
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 md:px-12 py-12 sm:py-16 md:py-20 overflow-hidden"
+      className="relative flex flex-col items-center justify-center min-h-screen px-4 md:px-12 py-16 md:py-20 overflow-hidden"
     >
       {/* Flower Parallax Image */}
       <motion.div
@@ -109,40 +88,10 @@ export default function Events() {
       <AnimatedStarsBackground variant="simple" starCount={80} zIndex={1} />
 
       {/* Glow Background */}
-      <div
-        ref={glowRef}
-        className="hidden sm:block absolute top-0 right-0 w-[1000px] md:w-[2000px] h-[1000px] md:h-[2500px] pointer-events-none z-0 opacity-40"
-        style={{
-          background:
-            "radial-gradient(ellipse 800px 1200px at 70% 20%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 30%, transparent 70%)",
-          filter: "blur(20px)",
-          transform: "rotate(6deg)",
-          transformOrigin: "top right",
-        }}
-      />
-
-      {/* Light Beam */}
-      <motion.div
-        ref={lightRef}
-        style={{
-          y: lightY,
-          rotate: lightRotation,
-        }}
-        className="hidden md:block absolute -top-10 -right-150 w-[1500px] md:w-[2500px] h-[1500px] md:h-[2500px] pointer-events-none z-0 opacity-80"
-        initial={{ opacity: 0.8, scale: 1 }}
-      >
-        <div
-          style={{
-            filter: "drop-shadow(0 0 50px rgba(255, 255, 255, 0.3)) drop-shadow(0 0 100px rgba(255, 255, 255, 0.1))",
-            transform: "rotate(-5deg)",
-          }}
-        >
-          <Image src="/light.png" alt="Spotlight" width={2400} height={2200} className="object-contain" />
-        </div>
-      </motion.div>
+      
 
       {/* Content Section */}
-      <div className="mt-12 sm:mt-16 md:mt-24 lg:mt-32 max-w-screen-xl lg:max-w-none w-full text-center z-10 px-4">
+      <div className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 max-w-screen-xl lg:max-w-none w-full text-center z-10 px-4 pb-20 sm:pb-24 md:pb-32">
         {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
