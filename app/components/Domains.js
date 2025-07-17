@@ -17,6 +17,7 @@ export default function Domains() {
   const decorativeRef = useRef(null);
   const flowerRef = useRef(null);
   const overlayRef = useRef(null);
+  const orbsRef = useRef([]);
 
   const domains = [
     { title: "Web Dev", icon: "/globe.png" },
@@ -36,6 +37,7 @@ export default function Domains() {
         gsap.set(decorativeRef.current, { opacity: 0, rotation: -20, scale: 0.8 });
         gsap.set(flowerRef.current, { opacity: 0, x: 100, rotation: 10 });
         gsap.set(overlayRef.current, { opacity: 0, x: -50, y: -20 });
+        gsap.set(orbsRef.current, { opacity: 0, scale: 0 });
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -47,12 +49,20 @@ export default function Domains() {
           }
         });
 
-        tl.to(headingRef.current, {
+        // Animate orbs first
+        tl.to(orbsRef.current, {
+          opacity: 1,
+          scale: 1,
+          duration: 1.2,
+          stagger: { amount: 0.8, from: 'random' },
+          ease: 'back.out(1.7)',
+        })
+        .to(headingRef.current, {
           opacity: 1,
           y: 0,
           duration: 1,
           ease: "power3.out"
-        })
+        }, "-=0.8")
         .to(overlayRef.current, {
           opacity: 1,
           x: 0,
@@ -107,6 +117,29 @@ export default function Domains() {
           ease: "sine.inOut"
         });
 
+        // Orb floating animations
+        orbsRef.current.forEach((orb, index) => {
+          if (orb) {
+            gsap.to(orb, {
+              y: '+=25',
+              duration: 2.5 + index * 0.3,
+              repeat: -1,
+              yoyo: true,
+              ease: 'power1.inOut',
+              delay: index * 0.15,
+            });
+
+            gsap.to(orb, {
+              x: '+=18',
+              duration: 3.5 + index * 0.4,
+              repeat: -1,
+              yoyo: true,
+              ease: 'power1.inOut',
+              delay: index * 0.25,
+            });
+          }
+        });
+
       }, containerRef);
 
       return () => ctx.revert();
@@ -146,6 +179,48 @@ export default function Domains() {
        
       className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 py-8 sm:py-12 overflow-visible"
     >
+      {/* Floating Orbs */}
+      <div className="absolute inset-0 z-2">
+        {[...Array(8)].map((_, i) => {
+          const positions = [
+            { left: '12%', top: '15%', size: 0.7, color: 'rgba(147, 51, 234, 0.6)' },
+            { left: '88%', top: '25%', size: 0.5, color: 'rgba(163, 120, 255, 0.7)' },
+            { left: '8%', top: '65%', size: 0.6, color: 'rgba(196, 164, 255, 0.5)' },
+            { left: '92%', top: '75%', size: 0.7, color: 'rgba(139, 92, 246, 0.6)' },
+            { left: '20%', top: '40%', size: 0.4, color: 'rgba(124, 58, 237, 0.5)' },
+            { left: '80%', top: '50%', size: 0.6, color: 'rgba(168, 85, 247, 0.6)' },
+            { left: '35%', top: '25%', size: 0.5, color: 'rgba(147, 51, 234, 0.4)' },
+            { left: '65%', top: '80%', size: 0.6, color: 'rgba(163, 120, 255, 0.5)' },
+          ];
+
+          const pos = positions[i] || positions[0];
+
+          return (
+            <div
+              key={`orb-${i}`}
+              ref={(el) => (orbsRef.current[i] = el)}
+              className="absolute pointer-events-none"
+              style={{
+                left: pos.left,
+                top: pos.top,
+                transform: 'translate(-50%, -50%)',
+                width: `${70 * pos.size}px`,
+                height: `${70 * pos.size}px`,
+              }}
+            >
+              <div
+                className="w-full h-full rounded-full"
+                style={{
+                  background: `radial-gradient(circle, ${pos.color} 0%, transparent 70%)`,
+                  filter: 'blur(6px)',
+                  boxShadow: `0 0 ${25 * pos.size}px ${pos.color}`,
+                }}
+              />
+            </div>
+          );
+        })}
+      </div>
+
       {/* <ShootingStars count={8} /> */}
       <AnimatedStarsBackground 
         variant="simple" 
@@ -154,14 +229,16 @@ export default function Domains() {
       />
       
       <Image
-        ref={overlayRef}
-        src="/3D_object1_About_us.png"
-        alt="Overlay"
-        width={250}
-        height={200}
-        className="absolute top-[-80px] -left-2 z-0 pointer-events-none 
-                  w-24 sm:w-32 md:w-40 lg:w-48 xl:w-64 h-auto"
-      />
+  ref={overlayRef}
+  src="/flower_domains.png"
+  alt="Overlay"
+  width={500}
+  height={400}
+  className="absolute top-[-80px] -left-20 z-0 pointer-events-none 
+             w-48 sm:w-64 md:w-80 lg:w-96 h-auto 
+             -scale-x-100"
+/>
+
      <div className="max-w-7xl mx-auto text-center z-20 w-full relative mt-4 sm:mt-12 md:mt-20 mb-0">
   <div ref={headingRef}>
     <SectionHeading title="DOMAINS" />

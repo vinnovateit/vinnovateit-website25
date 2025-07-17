@@ -137,9 +137,9 @@ const ProjectShowcase = () => {
     />
   </div>
 
-          <div className="hidden md:block absolute top-0 lg:-top-15 -left-10 w-35 h-35 md:w-64 md:h-64 lg:w-80 lg:h-80 pointer-events-none z-150 transform rotate-5">
+          {/* <div className="hidden md:block absolute top-0 lg:-top-15 -left-10 w-35 h-35 md:w-64 md:h-64 lg:w-80 lg:h-80 pointer-events-none z-150 transform rotate-5">
             <Image src="/3d_Projects.png" alt="Flower" fill/>
-          </div>
+          </div> */}
 
           {/* Main Content */}
           <div className="w-full z-20">
