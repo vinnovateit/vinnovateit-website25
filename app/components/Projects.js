@@ -22,14 +22,14 @@ const ProjectShowcase = () => {
       id: 1,
       name: "MESSIT",
       description: "Check what's cooking before you commit. MESSIT shows the full mess menu so you know when it's worth the trip — and when to make other 'arrangements'.",
-      image: "messit.png",
+      image: "/messit2.png",
       viewLink: "https://messit.vinnovateit.com/",
     },
     {
       id: 2,
       name: "STUDYHUB",
       description: "Your saviour during exams and assignment panic! Find notes, study material — basically everything you need to survive (and maybe ace) your courses.",
-      image: "studyhub2.png",
+      image: "/proj_studyhub.png",
       viewLink: "https://studyhub.vinnovateit.com/",
       sourceLink: "https://github.com/vinnovateit/StudyHub2"
     },
@@ -37,14 +37,14 @@ const ProjectShowcase = () => {
       id: 3,
       name: "BUNKBUDDIES",
       description: "No one likes rooming with a random stranger. Find your perfect hostel roommate *before* counselling — because good company makes hostel life way better!",
-      image: "bunkbuddies.png",
+      image: "/bb2.png",
       viewLink: "https://bunkbuddies.vinnovateit.com/",
     },
     {
       id: 4,
       name: "SWAPIT",
       description: "A hassle-free platform to manage course add and drop after allocation. Connect with peers looking to swap courses and optimize your timetable smoothly.",
-      image: "swapitt.png",
+      image: "/swapitt.png",
       viewLink: "https://swapit.vinnovateit.com/",
     }
   ];
@@ -199,11 +199,22 @@ const ProjectShowcase = () => {
                 <div className="relative group w-full">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg sm:rounded-xl md:rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
                   <div className="relative bg-gray-900/50 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border border-purple-600/20 backdrop-blur-sm">
-                    <img
-                      src={projects[currentProject].image}
-                      alt={projects[currentProject].name}
-                      className="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-fill transition-transform duration-700 group-hover:scale-105"
-                    />
+                   <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-96">
+  <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-96">
+  <Image
+    src={projects[currentProject].image}
+    alt={projects[currentProject].name}
+    fill
+    quality={100}
+    className="object-cover transition-transform duration-700 group-hover:scale-105"
+    sizes="(max-width: 640px) 100vw,
+           (max-width: 768px) 100vw,
+           (max-width: 1024px) 100vw,
+           100vw"
+/>
+</div>
+</div>
+
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   </div>
                 </div>
