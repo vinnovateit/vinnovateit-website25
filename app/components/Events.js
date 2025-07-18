@@ -36,6 +36,7 @@ const events = [
 
 export default function Events() {
   const containerRef = useRef(null)
+  const flowerRef = useRef(null)
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -55,6 +56,12 @@ export default function Events() {
     margin: "-30% 0px -30% 0px",
   })
 
+  // Flower appear on scroll effect
+  const flowerInView = useInView(flowerRef, {
+    once: true,
+    margin: "-10% 0px -10% 0px",
+  })
+
   useEffect(() => {
     const ctx = gsap.context(() => {
     }, containerRef)
@@ -68,10 +75,22 @@ export default function Events() {
       id="events"
       className="relative flex flex-col items-center justify-center min-h-screen px-4 md:px-12 py-16 md:py-20 overflow-hidden"
     >
-      {/* Flower Parallax Image */}
+      {/* Flower Parallax Image with Scroll Animation */}
       <motion.div
+        ref={flowerRef}
         style={{ y: flowerY, rotate: flowerRotation }}
         className="absolute -top-8 -right-8 sm:-top-12 sm:-right-12 md:-top-30 md:-right-16 w-24 sm:w-40 md:w-60 lg:w-72 xl:w-80 h-auto pointer-events-none select-none z-10"
+        initial={{ opacity: 0, scale: 0.8, x: 50 }}
+        animate={{
+          opacity: flowerInView ? 1 : 0,
+          scale: flowerInView ? 1 : 0.8,
+          x: flowerInView ? 0 : 50,
+        }}
+        transition={{
+          duration: 1.2,
+          ease: [0.25, 0.46, 0.45, 0.94],
+          delay: 0.3,
+        }}
       >
         <Image
           src="/events_flower.png"
