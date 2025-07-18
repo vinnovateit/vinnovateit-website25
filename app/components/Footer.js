@@ -228,7 +228,7 @@ export default function Footer() {
 
       {/* Footer Block - Adjusted vertical position for smaller screens, stays on right */}
       <div
-        className="absolute pointer-events-none z-5 w-full max-w-[850px]
+        className="absolute pointer-events-none z-5 w-full
   top-[20rem] right-0 
   xs:top-[22rem]
   sm:top-[22rem] 

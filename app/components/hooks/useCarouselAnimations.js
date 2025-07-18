@@ -162,5 +162,5 @@ export const useCarouselAnimation = (containerRef, carouselRef, screenSize, boar
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, [screenSize, boardMembers.length]);
+  }, [screenSize, boardMembers.length]); // Only include stable dependencies
 };
