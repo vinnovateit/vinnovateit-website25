@@ -239,7 +239,7 @@ export default function Domains() {
              -scale-x-100"
 />
 
-     <div className="max-w-7xl mx-auto text-center z-20 w-full relative mt-4 sm:mt-12 md:mt-20 mb-0">
+     <div className="max-w-7xl mx-auto text-center z-20 w-full relative mt-4 md:mt-12 mb-0">
   <div ref={headingRef}>
     <SectionHeading title="DOMAINS" />
   </div>

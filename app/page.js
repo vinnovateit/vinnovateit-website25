@@ -15,11 +15,11 @@ import CustomCursor from "./components/CustomCursor";
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
 
-  useLayoutEffect(() => {
-    setIsMounted(true);
-  }, []);
+  // useLayoutEffect(() => {
+  //   setIsMounted(true);
+  // }, []);
 
-  if (!isMounted) return <Loading />;
+  // if (!isMounted) return <Loading />;
 
   return (
     <div className="overflow-hidden">
