@@ -13,35 +13,6 @@ const CustomCursor = () => {
   ];
 
   useEffect(() => {
-    // Add CSS styles for hover effects
-    const style = document.createElement('style');
-    style.textContent = `
-      .cursor-hover-element {
-        transition: all 0.3s ease !important;
-      }
-      .cursor-hover-element:hover {
-        box-shadow: 0 0 20px rgba(200, 168, 255, 0.6), 0 0 40px rgba(200, 168, 255, 0.3) !important;
-        transform: translateY(-2px) !important;
-      }
-      button:hover, .cursor-hover-element:hover {
-        box-shadow: 0 0 20px rgba(200, 168, 255, 0.6), 0 0 40px rgba(200, 168, 255, 0.3) !important;
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Add hover class to interactive elements
-    const addHoverEffects = () => {
-      const interactiveElements = document.querySelectorAll('button, a, input, textarea, select, [role="button"], [tabindex], .btn, .button, div[onclick]');
-      interactiveElements.forEach(el => {
-        if (!el.classList.contains('cursor-hover-element')) {
-          el.classList.add('cursor-hover-element');
-        }
-      });
-    };
-
-    // Initial setup and periodic updates for dynamically added elements
-    addHoverEffects();
-    const interval = setInterval(addHoverEffects, 1000);
 
     // Initialize circle positions
     circlesRef.current.forEach((circle) => {
@@ -92,8 +63,6 @@ const CustomCursor = () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
-      clearInterval(interval);
-      document.head.removeChild(style);
     };
   }, []);
 

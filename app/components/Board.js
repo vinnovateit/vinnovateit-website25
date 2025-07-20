@@ -53,15 +53,14 @@ export default function Board() {
   };
 
   const ringVariants = {
-    hidden: { opacity: 0, scale: 0.9, rotate: 0 },
+    hidden: { opacity: 0, scale: 0 },
     visible: {
       opacity: 1,
       scale: 1,
-      rotate: 360,
       transition: {
-        duration: 2,
+        duration: 0.8,
         ease: "easeOut",
-        delay: 0.5
+        delay: 0.2
       }
     }
   };
