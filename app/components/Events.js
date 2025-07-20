@@ -125,7 +125,7 @@ export default function Events() {
 
         {/* Testimonials Section - Increased width on desktop */}
         <motion.div
-          className="mt-10 mb-24 w-full max-w-none lg:max-w-[140rem] xl:max-w-[160rem] 2xl:max-w-[180rem] mx-auto"
+          className="-mt-4 mb-24 w-full max-w-none lg:max-w-[140rem] xl:max-w-[160rem] 2xl:max-w-[180rem] mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{
             opacity: testimonialsInView ? 1 : 0,
