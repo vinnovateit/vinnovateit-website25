@@ -84,7 +84,7 @@ const CustomCursor = () => {
   if (isMobileDevice) return null;
 
   return (
-    <>
+    <div className='hidden md:block'>
       {Array.from({ length: 20 }, (_, index) => (
         <div
           key={index}
@@ -97,7 +97,7 @@ const CustomCursor = () => {
           }}
         />
       ))}
-    </>
+    </div>
   );
 };
 

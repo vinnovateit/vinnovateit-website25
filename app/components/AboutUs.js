@@ -17,6 +17,7 @@ export default function AboutUs() {
   const commandTextRef = useRef(null);
 
   useEffect(() => {
+    // Reduced initial delay from 100ms to 50ms
     const timer = setTimeout(() => {
       const ctx = gsap.context(() => {
         const tl = gsap.timeline({
@@ -33,34 +34,38 @@ export default function AboutUs() {
         gsap.set(commandTextRef.current, { text: "" });
 
         tl
+          // Reduced terminal animation from 0.8s to 0.5s
           .to(terminalRef.current, {
             scale: 1,
             opacity: 1,
-            duration: 0.8,
+            duration: 0.5,
             ease: "back.out(1.4)"
           })
+          // Reduced typing animation from 1.5s to 0.8s and delay from 0.5s to 0.2s
           .to(commandTextRef.current, {
-            duration: 1.5,
+            duration: 0.8,
             text: "ls -a about_us",
             ease: "none",
-          }, "+=0.5")
+          }, "+=0.2")
+          // Reduced text content animation from 0.8s to 0.5s and delay from 0.3s to 0.1s
           .to(textContentRef.current, {
             opacity: 1,
             y: 0,
-            duration: 0.8,
+            duration: 0.5,
             ease: "power2.out"
-          }, "+=0.3")
+          }, "+=0.1")
+          // Reduced robot animation from 1s to 0.6s and overlap from -0.5s to -0.3s
           .to(robotImageRef.current, {
             opacity: 1,
             y: 0,
-            duration: 1,
+            duration: 0.6,
             ease: "power3.out"
-          }, "-=0.5");
+          }, "-=0.3");
 
       }, containerRef);
 
       return () => ctx.revert();
-    }, 100);
+    }, 50);
 
     return () => clearTimeout(timer);
   }, []);

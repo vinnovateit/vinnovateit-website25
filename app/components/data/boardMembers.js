@@ -58,7 +58,7 @@ export const boardMembers = [
   {
     name: "Mihir Joshi",
     post: "Creative Head",
-    photo: "/board/mihir2.png",
+    photo: "/board/mihirr.png",
     linkedin: "mihir-shekhar-joshi",
     instagram: "mihxr.7",
     github: "J-Mihir"
