@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const CustomCursor = () => {
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
   const coordsRef = useRef({ x: 0, y: 0 });
   const circlesRef = useRef([]);
   const animationRef = useRef();
@@ -13,6 +14,19 @@ const CustomCursor = () => {
   ];
 
   useEffect(() => {
+    // Detect if device is mobile/touch-enabled
+    const checkIfMobileDevice = () => {
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isMobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      return isTouchDevice || isMobileUserAgent;
+    };
+
+    setIsMobileDevice(checkIfMobileDevice());
+  }, []);
+
+  useEffect(() => {
+    // Don't initialize cursor on mobile devices
+    if (isMobileDevice) return;
 
     // Initialize circle positions
     circlesRef.current.forEach((circle) => {
@@ -64,7 +78,10 @@ const CustomCursor = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, []);
+  }, [isMobileDevice]);
+
+  // Don't render cursor on mobile devices
+  if (isMobileDevice) return null;
 
   return (
     <>
