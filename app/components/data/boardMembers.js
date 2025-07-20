@@ -40,6 +40,14 @@ export const boardMembers = [
     github: "AyushK0808"
   },
   {
+    name: "Ayush Kumar",
+    post: "Projects Lead",
+    photo: "/board/ayush2.jpg",
+    linkedin: "ayush-kumar-cs",
+    instagram: "silentdodo",
+    github: "thecoder-001"
+  },
+  {
     name: "Janvi Chandra",
     post: "Design Head",
     photo: "/board/janvi.jpg",
@@ -48,12 +56,12 @@ export const boardMembers = [
     github: "Janvi-Chandra"
   },
   {
-    name: "Giriraj Rajpurohit",
-    post: "Management Head",
-    photo: "/board/giri.png",
-    linkedin: "giriraj-rajpurohit-787768251",
-    instagram: "giriraj_purohit9",
-    github: "Giriraj-Rajpurohit"
+    name: "Mihir Joshi",
+    post: "Creative Head",
+    photo: "/board/mihir2.png",
+    linkedin: "mihir-shekhar-joshi",
+    instagram: "mihxr.7",
+    github: "J-Mihir"
   },
   {
     name: "Raunak Mehta",
@@ -63,21 +71,12 @@ export const boardMembers = [
     instagram: "raunakmehta09",
     github: "Raunakmehta9"
   },
-  
   {
-    name: "Mihir Joshi",
-    post: "Creative Head",
-    photo: "/board/mihir2.jpg",
-    linkedin: "mihir-shekhar-joshi",
-    instagram: "mihxr.7",
-    github: "J-Mihir"
+    name: "Giriraj Rajpurohit",
+    post: "Management Head",
+    photo: "/board/giri.png",
+    linkedin: "giriraj-rajpurohit-787768251",
+    instagram: "giriraj_purohit9",
+    github: "Giriraj-Rajpurohit"
   },
-  {
-    name: "Ayush Kumar",
-    post: "Projects Lead",
-    photo: "/board/ayush2.jpg",
-    linkedin: "ayush-kumar-cs",
-    instagram: "silentdodo",
-    github: "thecoder-001"
-  }
 ];
