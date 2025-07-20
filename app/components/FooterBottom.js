@@ -40,8 +40,8 @@ export default function FooterBottom() {
           <div className="flex flex-row flex-wrap justify-center md:justify-end gap-2 md:gap-6">
             {socials.map(({ name, icon: Icon, href }) => (
               <a key={name} href={href} target="_blank" rel="noopener noreferrer" aria-label={name}>
-                <button className="bg-gradient-to-br from-purple-800 to-black p-2 md:p-2.5 rounded-full shadow-lg hover:scale-110 hover:shadow-[0_0_20px_rgba(160,97,255,0.6)] transition-all duration-300 border border-purple-500/30">
-                  <Icon size={18} className="text-white md:size-6" />
+                <button className="backdrop-blur-sm bg-gradient-to-br from-purple-500/30 via-purple-600/20 to-purple-800/25 border border-purple-400/50 p-2 md:p-2.5 rounded-full shadow-xl hover:from-purple-400/40 hover:via-purple-500/30 hover:to-purple-700/35 hover:border-purple-300/60 hover:scale-110 hover:shadow-[0_0_25px_rgba(147,51,234,0.6)] transition-all duration-300 group">
+                  <Icon size={18} className="text-white drop-shadow-lg group-hover:text-purple-100 md:size-6 transition-colors duration-300" />
                 </button>
               </a>
             ))}
