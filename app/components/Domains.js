@@ -29,6 +29,7 @@ export default function Domains() {
   ];
 
   useEffect(() => {
+    // Reduced initial delay from 100ms to 50ms
     const timer = setTimeout(() => {
       const ctx = gsap.context(() => {
         // Set initial states
@@ -49,53 +50,56 @@ export default function Domains() {
           }
         });
 
-        // Animate orbs first
+        // Animate orbs first - reduced duration from 1.2s to 0.7s and stagger from 0.8 to 0.4
         tl.to(orbsRef.current, {
           opacity: 1,
           scale: 1,
-          duration: 1.2,
-          stagger: { amount: 0.8, from: 'random' },
+          duration: 0.7,
+          stagger: { amount: 0.4, from: 'random' },
           ease: 'back.out(1.7)',
         })
+        // Reduced heading duration from 1s to 0.6s and overlap from -0.8 to -0.5
         .to(headingRef.current, {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 0.6,
           ease: "power3.out"
-        }, "-=0.8")
+        }, "-=0.5")
+        // Reduced overlay duration from 0.8s to 0.5s and overlap from -0.5 to -0.3
         .to(overlayRef.current, {
           opacity: 1,
           x: 0,
           y: 0,
-          duration: 0.8,
+          duration: 0.5,
           ease: "power2.out"
-        }, "-=0.5")
+        }, "-=0.3")
+        // Reduced decorative duration from 1.2s to 0.7s and overlap from -0.6 to -0.4
         .to(decorativeRef.current, {
           opacity: 1,
           rotation: 0,
           scale: 1,
-          duration: 1.2,
+          duration: 0.7,
           ease: "power2.out"
-        }, "-=0.6")
+        }, "-=0.4")
 
-        // Animate cards with stagger
+        // Animate cards with stagger - reduced duration from 0.6s to 0.4s and stagger from 0.1 to 0.06
         .to(cardsRef.current, {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.6,
-          stagger: 0.1,
+          duration: 0.4,
+          stagger: 0.06,
           ease: "back.out(1.7)"
-        }, "-=0.3")
+        }, "-=0.2")
 
-        // Animate flower last
+        // Animate flower last - reduced duration from 1s to 0.6s and overlap from -0.4 to -0.2
         .to(flowerRef.current, {
           opacity: 1,
           x: 0,
           rotation: 0,
-          duration: 1,
+          duration: 0.6,
           ease: "power2.out"
-        }, "-=0.4");
+        }, "-=0.2");
         
         // Floating animations
         gsap.to(decorativeRef.current, {
@@ -143,7 +147,7 @@ export default function Domains() {
       }, containerRef);
 
       return () => ctx.revert();
-    }, 100);
+    }, 50);
 
     return () => clearTimeout(timer);
 
