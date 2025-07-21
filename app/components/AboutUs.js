@@ -189,7 +189,7 @@ export default function AboutUs() {
             <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center items-center top-0 relative z-10">
               <Image
                 ref={robotImageRef}
-                src="/robot.png"
+                src="/robot.webp"
                 alt="Robot Character"
                 width={512}
                 height={448}

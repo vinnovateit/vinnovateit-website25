@@ -66,7 +66,7 @@ export const boardMembers = [
   {
     name: "Raunak Mehta",
     post: "Events Head",
-    photo: "/board/raunak.png",
+    photo: "/board/raunak.webp",
     linkedin: "raunakmehta9",
     instagram: "raunakmehta09",
     github: "Raunakmehta9"
@@ -74,7 +74,7 @@ export const boardMembers = [
   {
     name: "Giriraj Rajpurohit",
     post: "Management Head",
-    photo: "/board/giri.png",
+    photo: "/board/giri.webp",
     linkedin: "giriraj-rajpurohit-787768251",
     instagram: "giriraj_purohit9",
     github: "Giriraj-Rajpurohit"

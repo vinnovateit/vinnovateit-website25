@@ -6,11 +6,11 @@ import Image from 'next/image';
 
 const LetsWork = () => {
   const images = [
-    '/letswork_3.png',
-    '/letswork_1.png',
-    '/letswork.png',
-    '/letswork4.png',
-    '/letswork_2.png'
+    '/letswork_3.webp',
+    '/letswork_1.webp',
+    '/letswork.webp',
+    '/letswork4.webp',
+    '/letswork_2.webp'
   ];
 
   const AnimatedImage = ({ src, index, alt }) => {

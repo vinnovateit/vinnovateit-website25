@@ -19,7 +19,7 @@ export default function FooterBottom() {
         {/* Left with Logo */}
         <div className="text-sm max-w-md text-white flex flex-col items-center md:items-start text-center md:text-left">
           {/* Logo */}
-          <Image src="/assets/logo.png" alt="VinnovateIT Logo" width={180} height={80} className="mb-2" />
+          <Image src="/assets/logo.webp" alt="VinnovateIT Logo" width={180} height={80} className="mb-2" />
 
           {/* Description */}
           <p className="text-gray-300 leading-relaxed mb-4 font-jakarta">

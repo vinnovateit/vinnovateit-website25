@@ -37,14 +37,14 @@ const Projects= () => {
       id: 1,
       name: "MESSIT",
       description: "Check what's cooking before you commit. MESSIT shows the full mess menu so you know when it's worth the trip — and when to make other 'arrangements'.",
-      image: "/messit2.png",
+      image: "/messit2.webp",
       viewLink: "https://messit.vinnovateit.com/",
     },
     {
       id: 2,
       name: "STUDYHUB",
       description: "Your saviour during exams and assignment panic! Find notes, study material — basically everything you need to survive (and maybe ace) your courses.",
-      image: "/proj_studyhub.png",
+      image: "/proj_studyhub.webp",
       viewLink: "https://studyhub.vinnovateit.com/",
       sourceLink: "https://github.com/vinnovateit/StudyHub2"
     },
@@ -52,14 +52,14 @@ const Projects= () => {
       id: 3,
       name: "BUNKBUDDIES",
       description: "No one likes rooming with a random stranger. Find your perfect hostel roommate *before* counselling — because good company makes hostel life way better!",
-      image: "/bb2.png",
+      image: "/bb2.webp",
       viewLink: "https://bunkbuddies.vinnovateit.com/",
     },
     {
       id: 4,
       name: "SWAPIT",
       description: "A hassle-free platform to manage course add and drop after allocation. Connect with peers looking to swap courses and optimize your timetable smoothly.",
-      image: "/swapitt.png",
+      image: "/swapitt.webp",
       viewLink: "https://swapit.vinnovateit.com/",
     }
   ];

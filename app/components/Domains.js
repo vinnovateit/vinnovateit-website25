@@ -20,12 +20,12 @@ export default function Domains() {
   const orbsRef = useRef([]);
 
   const domains = [
-    { title: "Web Dev", icon: "/globe.png" },
-    { title: "Machine Learning", icon: "/laptop_.png" },
-    { title: "App Dev", icon: "/mobile.png" },
-    { title: "UI/UX Design", icon: "/pen.png" },
-    { title: "Competitive Coding", icon: "/terminal.png" },
-    { title: "Management", icon: "/mgmt.png" }
+    { title: "Web Dev", icon: "/globe.webp" },
+    { title: "Machine Learning", icon: "/laptop_.webp" },
+    { title: "App Dev", icon: "/mobile.webp" },
+    { title: "UI/UX Design", icon: "/pen.webp" },
+    { title: "Competitive Coding", icon: "/terminal.webp" },
+    { title: "Management", icon: "/mgmt.webp" }
   ];
 
   useEffect(() => {
@@ -171,7 +171,7 @@ export default function Domains() {
                   z-[5]"
       >
         <Image
-          src="/big_ring.png"
+          src="/big_ring.webp"
           alt="Ring"
           width={720}
           height={720}
@@ -234,7 +234,7 @@ export default function Domains() {
       
       <Image
   ref={overlayRef}
-  src="/flower_domains.png"
+  src="/flower_domains.webp"
   alt="Overlay"
   width={500}
   height={400}

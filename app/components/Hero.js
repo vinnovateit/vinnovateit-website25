@@ -190,7 +190,7 @@ export default function Hero() {
                    w-16 md:w-24 lg:w-40 h-auto opacity-70 md:opacity-80 xl:opacity-90 pointer-events-none z-10"
       >
         <Image
-          src="/hero_3d1.png"
+          src="/hero_3d1.webp"
           alt="Flower"
           width={320}
           height={320}
@@ -208,7 +208,7 @@ export default function Hero() {
                    h-auto pointer-events-none select-none z-10"
       >
         <Image
-          src="/3D_object_About_us.png"
+          src="/3D_object_About_us.webp"
           alt="Overlay"
           width={400}
           height={350}

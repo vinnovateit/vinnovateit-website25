@@ -12,25 +12,25 @@ const events = [
     name: "VINHACK",
     description:
       "Our flagship hackathon challenges participants to develop creative, user-friendly solutions to real-world social issues...with top teams winning exciting rewards.",
-    image: "/events1.png",
+    image: "/events1.webp",
   },
   {
     name: "VINCODE",
     description:
       "The competition which not only tests your logical thinking but also your speed to find the least time consuming program for the problem statement. With the leaderboard constantly changing places, to keep the pressure high.",
-    image: "/events2.png",
+    image: "/events2.webp",
   },
   {
     name: "VINPREP",
     description:
       "This 3-day event focuses on delivering a full fledged campus placement mock to the participants, right from the coding and aptitude round to the HR interview.",
-    image: "/vinprep.png",
+    image: "/vinprep.webp",
   },
   {
     name: "CODE ALONG",
     description:
       "Inspiring talks by industry leaders and experts sharing insights on the latest trends in technology and innovation.",
-    image: "/codealong.png",
+    image: "/codealong.webp",
   },
 ]
 
@@ -93,7 +93,7 @@ export default function Events() {
         }}
       >
         <Image
-          src="/events_flower.png"
+          src="/events_flower.webp"
           alt="Flower"
           width={550}
           height={550}
