@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Linkedin, Instagram, Github } from "lucide-react";
 
 const MemberCard = ({ member, screenSize }) => {
@@ -6,10 +7,11 @@ const MemberCard = ({ member, screenSize }) => {
     switch (screenSize) {
       case 'mobile':
         return {
-          container: "w-90 h-[30rem] flex-shrink-0 flex flex-col items-center justify-center px-4",
-          card: "relative w-72 h-[22rem] bg-purple-900/20 rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-300 hover:shadow-purple-500/25",
+container: "w-90 h-[30rem] flex-shrink-0 flex flex-col items-center justify-center px-4",
+card: "relative w-72 h-[23rem] bg-purple-900/20 rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-300 hover:shadow-purple-500/25",
           imageContainer: "p-5",
-          image: "w-full h-52 object-cover rounded-2xl border border-purple-400/50 transition-all duration-300",
+          imageWrapper: "relative w-full h-52", // ← updated for next/image
+          image: "rounded-2xl border border-purple-400/50 object-cover object-center transition-all duration-300",
           info: "px-5 pb-5 text-center",
           name: "font-bold text-purple-300 mb-3 text-lg leading-tight",
           post: "text-purple-400 mb-4 text-base opacity-90",
@@ -18,23 +20,25 @@ const MemberCard = ({ member, screenSize }) => {
         };
       case 'tablet':
         return {
-          container: "w-80 h-[24rem] flex-shrink-0 flex flex-col items-center justify-center px-6",
-          card: "relative w-60 h-[21rem] bg-purple-900/20 rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-300 hover:shadow-purple-500/25",
+          container: "w-80 h-[30rem] flex-shrink-0 flex flex-col items-center justify-center px-6",
+          card: "relative w-60 h-[20rem] bg-purple-900/20 rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-300 hover:shadow-purple-500/25",
           imageContainer: "p-4",
-          image: "w-full h-44 object-cover rounded-2xl border border-purple-400/50 transition-all duration-300",
+          imageWrapper: "relative w-full h-44",
+          image: "rounded-2xl border border-purple-400/50 object-cover object-center transition-all duration-300",
           info: "px-4 pb-4 text-center",
           name: "font-bold text-purple-300 mb-2 text-base leading-tight",
           post: "text-purple-400 mb-3 text-sm opacity-90",
           socialSpacing: "space-x-4",
           iconSize: "w-5 h-5"
         };
-      default: // desktop
+      default:
         return {
           container: "w-85 h-[30rem] flex-shrink-0 flex flex-col items-center justify-center px-6",
-          card: "relative w-64 h-[22rem] bg-purple-900/20 rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-500 hover:shadow-purple-500/25",
+          card: "relative w-64 h-[20rem] bg-purple-900/20 rounded-3xl shadow-2xl border border-purple-400/30 overflow-hidden transform transition-all duration-500 hover:shadow-purple-500/25",
           imageContainer: "p-5",
-          image: "w-full h-48 object-cover rounded-2xl border border-purple-400/50 transition-all duration-300",
-          info: "px-5 pb-5 text-center",
+          imageWrapper: "relative w-full h-40",
+          image: "rounded-2xl border border-purple-400/50 object-cover object-center transition-all duration-300",
+          info: "px-5 pb-2 text-center",
           name: "font-bold text-purple-300 mb-3 text-lg leading-tight",
           post: "text-purple-400 mb-4 text-base opacity-90",
           socialSpacing: "space-x-4",
@@ -49,23 +53,26 @@ const MemberCard = ({ member, screenSize }) => {
     <div className={styles.container}>
       <div className={styles.card}>
         <div className={styles.imageContainer}>
-          <img
-            src={member.photo}
-            alt={member.name}
-            className={styles.image}
-          />
+          <div className={styles.imageWrapper}>
+            <Image
+              src={member.photo}
+              alt={member.name}
+              fill
+              className={styles.image}
+              sizes="(max-width: 768px) 100vw, 300px"
+              priority
+            />
+          </div>
         </div>
-        
+
         <div className={styles.info}>
           <h3 
-            className={styles.name}
-            style={{ fontFamily: "Orbitron, monospace" }}
+            className={`${styles.name} font-orbitron`}
           >
             {member.name}
           </h3>
           <p 
-            className={styles.post}
-            style={{ fontFamily: "Orbitron, monospace" }}
+            className={`${styles.post} font-orbitron`}
           >
             {member.post}
           </p>
