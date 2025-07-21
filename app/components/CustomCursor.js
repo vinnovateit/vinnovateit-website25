@@ -14,11 +14,17 @@ const CustomCursor = () => {
   ];
 
   useEffect(() => {
-    // Detect if device is mobile/touch-enabled
     const checkIfMobileDevice = () => {
-      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
       const isMobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      return isTouchDevice || isMobileUserAgent;
+      
+      const isSmallScreen = window.innerWidth <= 768;
+      
+      // Check if it's a touch-only
+      const isTouchOnly = ('ontouchstart' in window || navigator.maxTouchPoints > 0) && 
+                          !window.matchMedia('(any-hover: hover)').matches;
+      
+      // True only when mobile user agent OR (small screen AND touch-only)
+      return isMobileUserAgent || (isSmallScreen && isTouchOnly);
     };
 
     setIsMobileDevice(checkIfMobileDevice());
