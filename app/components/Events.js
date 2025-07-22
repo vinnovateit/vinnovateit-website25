@@ -98,8 +98,8 @@ export default function Events() {
           width={550}
           height={550}
           className="w-full h-auto object-contain"
-          priority={false}
-          loading="lazy"
+          priority={true}
+          // loading="lazy"
         />
       </motion.div>
 
