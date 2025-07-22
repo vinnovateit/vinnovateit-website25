@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
 import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 export default function Hero() {
+  const [isStarfieldLoading, setIsStarfieldLoading] = useState(true);
+
   const heroRef = useRef(null);
   const ringRef = useRef(null);
   const glowRef = useRef(null);
@@ -26,15 +28,11 @@ export default function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.set(orbsRef.current, { opacity: 0, scale: 0 });
-      gsap.set(ringRef.current, { opacity: 0, scale: 0.8, rotation: -10 });
-      gsap.set(glowRef.current, { opacity: 0, y: -100 });
-      gsap.set(titleRef.current, { opacity: 0, y: 50, scale: 0.9 });
-      gsap.set(subtitleRef.current, { opacity: 0, y: 30 });
-      gsap.set(buttonRef.current, { opacity: 0, y: 20, scale: 0.9 });
-      gsap.set(aboutObjectRef.current, { opacity: 0, scale: 0.8, rotation: 10, x: 100 });
-
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({
+        onComplete: () => {
+          setIsStarfieldLoading(false);
+        },
+      });
 
       tl.to(orbsRef.current, {
         opacity: 1,
@@ -69,7 +67,7 @@ export default function Hero() {
         .to(
           glowRef.current,
           {
-            opacity: 0.6,
+            opacity: 0.75,
             y: 0,
             duration: 1.5,
             ease: 'power2.out',
@@ -158,11 +156,11 @@ export default function Hero() {
             <div
               key={`orb-${i}`}
               ref={(el) => (orbsRef.current[i] = el)}
-              className="absolute pointer-events-none"
+              className="absolute pointer-events-none opacity-0"
               style={{
                 left: pos.left,
                 top: pos.top,
-                transform: 'translate(-50%, -50%)',
+                transform: 'translate(-50%, -50%) scale(0)',
                 width: `${80 * pos.size}px`,
                 height: `${80 * pos.size}px`,
               }}
@@ -181,13 +179,20 @@ export default function Hero() {
       </div>
 
       {/* Stars Background */}
-      <AnimatedStarsBackground variant="complex" className="z-5" />
+      <AnimatedStarsBackground 
+        variant="complex" 
+        className="z-5" 
+        loading={isStarfieldLoading} 
+      />
 
       {/* Smaller Ring Blob */}
       <div
         ref={ringRef}
         className="absolute -top-8 -left-8 md:-top-12 md:-left-12 lg:-top-12 lg:-left-12 
-                   w-16 md:w-24 lg:w-40 h-auto opacity-70 md:opacity-80 xl:opacity-90 pointer-events-none z-10"
+                   w-16 md:w-24 lg:w-40 h-auto opacity-0 pointer-events-none z-10"
+        style={{
+          transform: 'scale(0.8) rotate(-10deg)'
+        }}
       >
         <Image
           src="/hero_3d1.webp"
@@ -205,7 +210,10 @@ export default function Hero() {
         ref={aboutObjectRef}
         className="absolute bottom-0 right-0 sm:right-0 md:right-0 lg:right-0 
                    w-20 sm:w-28 md:w-36 lg:w-44 xl:w-52 
-                   h-auto pointer-events-none select-none z-10"
+                   h-auto pointer-events-none select-none z-10 opacity-0"
+        style={{
+          transform: 'scale(0.8) rotate(10deg) translateX(100px)'
+        }}
       >
         <Image
           src="/3D_object_About_us.webp"
@@ -221,7 +229,7 @@ export default function Hero() {
       {/* Glow Background */}
       <div
         ref={glowRef}
-        className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none
+        className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none opacity-0
                    w-[120vw] h-[70vh] 
                    sm:w-[140vw] sm:h-[140vh] 
                    md:w-[160vw] md:h-[160vh] 
@@ -237,7 +245,6 @@ export default function Hero() {
             rgba(163, 120, 255, 0.2) 50%, 
             rgba(163, 120, 255, 0.1) 65%, 
             transparent 80%)`,
-          opacity: 0.75,
           borderRadius: '50%',
           filter: 'blur(60px)',
         }}
@@ -247,14 +254,20 @@ export default function Hero() {
       <div className="max-w-5xl mx-auto relative z-10 w-full">
         <h1
           ref={titleRef}
-          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-wide leading-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] font-orbitron"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 tracking-wide leading-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] font-orbitron opacity-0"
+          style={{
+            transform: 'translateY(50px) scale(0.9)'
+          }}
         >
           VinnovateIT
         </h1>
 
         <p
           ref={subtitleRef}
-          className="text-gray-200 text-base sm:text-lg md:text-xl lg:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto font-dm-sans"
+          className="text-gray-200 text-base sm:text-lg md:text-xl lg:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto font-dm-sans opacity-0"
+          style={{
+            transform: 'translateY(30px)'
+          }}
         >
           Think. Create. Innovate.
         </p>
@@ -264,7 +277,10 @@ export default function Hero() {
           onClick={handleExploreClick}
           className="bg-white text-black px-8 py-3 rounded-full border border-purple-400 shadow-lg 
                      hover:shadow-purple-500/40 hover:scale-105 active:scale-95 
-                     transition-all duration-300 font-medium text-base sm:text-lg font-dm-sans"
+                     transition-all duration-300 font-medium text-base sm:text-lg font-dm-sans opacity-0"
+          style={{
+            transform: 'translateY(20px) scale(0.9)'
+          }}
         >
           Explore More
         </button>
