@@ -41,23 +41,21 @@ export default function AnimatedStarsBackground({
   seed = 50,
   loading = false,
 }) {
-  const [isClient, setIsClient] = useState(false);
   const [config, setConfig] = useState(() => getStarConfig(variant, starCount, 1024));
 
   useEffect(() => {
-    setIsClient(true);
     const handleResize = () => {
       setConfig(getStarConfig(variant, starCount, window.innerWidth));
     };
-    handleResize();
+    
+    handleResize(); 
+    
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [variant, starCount]);
 
 
   const starData = useMemo(() => {
-    if (!isClient) return [];
-
     const seededRandom = createSeededRandom(seed);
     const newStars = [];
     const totalStars = config.total || Object.values(config).reduce((a, b) => a + b, 0);
@@ -98,7 +96,7 @@ export default function AnimatedStarsBackground({
     }
 
     return newStars;
-  }, [config, variant, seed, isClient]);
+  }, [config, variant, seed]);
 
   return (
     <>
