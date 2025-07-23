@@ -104,7 +104,7 @@ export default function AnimatedStarsBackground({
     <>
       <style>{`
         @keyframes fly-by {
-          0%   { transform: rotate(var(--angle)) translateX(0) scaleX(0.001); transform-origin: 0% 50%; opacity: 0; }
+          0%   { transform: rotate(var(--angle)) translateX(0) scaleX(0.001); opacity: 0; }
           10%  { opacity: 1; }
           90%  { opacity: 1; }
           100% { transform: rotate(var(--angle)) translateX(var(--distance)) scaleX(1); transform-origin: 0% 50%; opacity: 0; }
@@ -127,7 +127,7 @@ export default function AnimatedStarsBackground({
                 top: '50%', left: '50%',
                 width: `${star.depthProperties.streakLength}px`, height: `${star.depthProperties.thickness}px`,
                 background: `linear-gradient(to left, ${star.color}, rgba(255, 255, 255, 0))`,
-                animation: `fly-by ${star.animationDuration} ${star.animationDelay} infinite linear`,
+                animation: `fly-by ${star.animationDuration} ${star.animationDelay} infinite linear backwards`,
                 transformOrigin: '0% 50%',
             }}/>
           ))}
