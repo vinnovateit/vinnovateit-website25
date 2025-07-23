@@ -28,6 +28,13 @@ export default function Hero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      gsap.set(orbsRef.current, { opacity: 0, scale: 0 });
+      gsap.set(ringRef.current, { opacity: 0, scale: 0.8, rotation: -10 });
+      gsap.set(glowRef.current, { opacity: 0, y: -100 });
+      gsap.set(titleRef.current, { opacity: 0, y: 50, scale: 0.9 });
+      gsap.set(subtitleRef.current, { opacity: 0, y: 30 });
+      gsap.set(buttonRef.current, { opacity: 0, y: 20, scale: 0.9 });
+      gsap.set(aboutObjectRef.current, { opacity: 0, scale: 0.8, rotation: 10, x: 100 });
       const tl = gsap.timeline({
         onComplete: () => {
           setIsStarfieldLoading(false);

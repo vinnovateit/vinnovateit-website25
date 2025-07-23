@@ -187,7 +187,7 @@ const MainNavbar = () => {
       `}</style>
       
       {/* Main Navbar */}
-      <nav ref={navRef} className="z-[100] fixed top-4 left-1/2 transform -translate-x-1/2 w-full lg:w-2/3 max-w-4xl rounded-full px-4 sm:px-6">
+      <nav ref={navRef} className="z-[100] fixed top-4 left-1/2 transform -translate-x-1/2 w-full lg:w-2/3 max-w-4xl rounded-full px-4 sm:px-6 opacity-0 ">
         <div className="relative overflow-hidden rounded-full border border-purple-500/30 shadow-[0_0_30px_rgba(147,51,234,0.3)]">
           {/* Glassmorphism backdrop */}
           <div className="absolute inset-0 backdrop-blur-md bg-black/20 rounded-full" />
@@ -208,20 +208,13 @@ const MainNavbar = () => {
             </defs>
           </svg>
           <div className="relative px-8 py-2 flex justify-between items-center bg-gradient-to-r from-purple-900/10 via-black/30 to-purple-900/10">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="flex items-center"
-            >
-              <Image
-                src="/whiteLogoViit.svg"
-                alt="VIIT Logo"
-                width={isMobile ? 60 : 100}
-                height={isMobile ? 60 : 100}
-                priority
-              />
-            </motion.div>
+            <Image
+              src="/whiteLogoViit.svg"
+              alt="VIIT Logo"
+              width={isMobile ? 60 : 100}
+              height={isMobile ? 60 : 100}
+              priority
+            />
 
             <div className="hidden lg:flex items-center space-x-8">
               {navigationLinks.map((link, index) => {
