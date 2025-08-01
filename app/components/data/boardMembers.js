@@ -2,7 +2,7 @@ export const boardMembers = [
   {
     name: "Soumojit Ganguly",
     post: "Chairperson",
-    photo: "/board/syro2.jpg",
+    photo: "/board/syro2.webp",
     linkedin: "soumojit-ganguly-a36605216",
     instagram: "syro.ig",
     github: "Syro77"
@@ -10,7 +10,7 @@ export const boardMembers = [
   {
     name: "Arjan Sinha",
     post: "Vice Chairperson",
-    photo: "/board/arjan_test_1.jpg",
+    photo: "/board/arjan_test_1.webp",
     linkedin: "arjan-sinha-859947269",
     instagram: "arjan_sinha",
     github: "Arjansinha"
@@ -18,7 +18,7 @@ export const boardMembers = [
   {
     name: "Anirudhh Chowdhury",
     post: "Secretary",
-    photo: "/board/aniruddh2.jpg",
+    photo: "/board/aniruddh2.webp",
     linkedin: "aniruddh-chowdhury",
     instagram: "_aniruddhhh",
     github: "aniruddh-c"
@@ -26,7 +26,7 @@ export const boardMembers = [
   {
     name: "Tanmay Malhotra",
     post: "Co Secretary",
-    photo: "/board/tanmay.jpg",
+    photo: "/board/tanmay.webp",
     linkedin: "tanmay-malhotra",
     instagram: "ay0tanmay",
     github: "Tanmay-Malhotra"
@@ -34,7 +34,7 @@ export const boardMembers = [
   {
     name: "Ayush Kumar",
     post: "Tech Head",
-    photo: "/board/ayush.jpeg",
+    photo: "/board/ayush.webp",
     linkedin: "ayush-kumar-061a58251",
     instagram: "_ayush.0808",
     github: "AyushK0808"
@@ -42,7 +42,7 @@ export const boardMembers = [
   {
     name: "Ayush Kumar",
     post: "Projects Lead",
-    photo: "/board/ayush2.jpg",
+    photo: "/board/ayush2.webp",
     linkedin: "ayush-kumar-cs",
     instagram: "silentdodo",
     github: "thecoder-001"
@@ -50,7 +50,7 @@ export const boardMembers = [
   {
     name: "Janvi Chandra",
     post: "Design Head",
-    photo: "/board/janvi.jpg",
+    photo: "/board/janvi.webp",
     linkedin: "janvi-chandra-32836b277",
     instagram: "_janvi_chandra_",
     github: "Janvi-Chandra"
@@ -58,7 +58,7 @@ export const boardMembers = [
   {
     name: "Mihir Joshi",
     post: "Creative Head",
-    photo: "/board/mihirr.png",
+    photo: "/board/mihirr.webp",
     linkedin: "mihir-shekhar-joshi",
     instagram: "mihxr.7",
     github: "J-Mihir"
@@ -66,7 +66,7 @@ export const boardMembers = [
   {
     name: "Raunak Mehta",
     post: "Events Head",
-    photo: "/board/raunak.png",
+    photo: "/board/raunak.webp",
     linkedin: "raunakmehta9",
     instagram: "raunakmehta09",
     github: "Raunakmehta9"
@@ -74,7 +74,7 @@ export const boardMembers = [
   {
     name: "Giriraj Rajpurohit",
     post: "Management Head",
-    photo: "/board/giri.png",
+    photo: "/board/giri.webp",
     linkedin: "giriraj-rajpurohit-787768251",
     instagram: "giriraj_purohit9",
     github: "Giriraj-Rajpurohit"

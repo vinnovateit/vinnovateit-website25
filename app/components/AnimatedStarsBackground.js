@@ -1,220 +1,151 @@
 'use client';
 
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 /**
- * 
- * @param {string} variant - 'simple', 'complex', or 'structured' for grid layout (Projects style)
- * @param {number} starCount - Total number of stars for simple/structured variant (default: 100)
- * @param {string} className - Additional CSS classes to apply
- * @param {number} zIndex - Z-index for positioning (default: 0)
- * 
+ * @param {string} variant - 'simple', 'complex', or 'structured'
+ * @param {number} starCount - Total number of stars
+ * @param {string} className - Additional CSS classes
+ * @param {number} zIndex - Z-index for positioning
+ * @param {number} seed - Seed for consistent random number generation
+ * @param {boolean} loading - Set to true to activate the hyperdrive effect
  */
-export default function AnimatedStarsBackground({ 
-  variant = 'simple', 
-  starCount = 100,
-  className = '',
-  zIndex = 0
-}) {
-  const starsRef = useRef([]);
-  
-  const getStarConfig = useCallback(() => {
-    if (typeof window === 'undefined') {
-      return variant === 'complex' 
-        ? { circular: 60, plus: 20, diamond: 15, sparkle: 10 }
-        : { total: starCount };
-    }
-    
-    const width = window.innerWidth;
 
-    if (variant === 'complex') {
-      if (width < 640) return { circular: 30, plus: 10, diamond: 8, sparkle: 5 };
-      if (width < 1024) return { circular: 45, plus: 15, diamond: 12, sparkle: 8 };
-      return { circular: 60, plus: 20, diamond: 15, sparkle: 10 };
-    }
+const THEME_COLORS = ['#A378FF', '#C4A4FF', '#8B5CF6', '#A855F7', '#6D28D9'];
 
-    if (variant === 'structured') {
-      // Grid star count reduces on smaller screens for structured layout
-      if (width < 640) return { total: Math.floor(starCount * 0.5) };
-      if (width < 1024) return { total: Math.floor(starCount * 0.75) };
-      return { total: starCount };
-    }
-
-    // Default simple variant
-    if (width < 640) return { total: Math.floor(starCount * 0.5) };
-    if (width < 1024) return { total: Math.floor(starCount * 0.75) };
-    return { total: starCount };
-  }, [variant, starCount]);
-
-  const [config, setConfig] = useState(getStarConfig());
-
-  useEffect(() => {
-    const handleResize = () => setConfig(getStarConfig());
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [variant, starCount, getStarConfig]);
-
-  const renderSimpleStars = () => {
-    return [...Array(config.total)].map((_, i) => (
-      <div
-        key={`star-${i}`}
-        className="absolute bg-white rounded-full animate-pulse"
-        style={{
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          width: `${Math.random() * 2 + 0.5}px`,
-          height: `${Math.random() * 2 + 0.5}px`,
-          animationDelay: `${Math.random() * 3}s`,
-          animationDuration: `${Math.random() * 2 + 2}s`
-        }}
-      />
-    ));
-  };
-
- const renderStructuredStars = () => {
-  const stars = [];
-  const gridSize = Math.ceil(Math.sqrt(config.total));
-  const cellWidth = 100 / gridSize;
-  const cellHeight = 100 / gridSize;
-  let placed = 0;
-  let seed = 42; // You can customize this to any constant
-
-  const seededRandom = () => {
+const createSeededRandom = (initialSeed) => {
+  let seed = initialSeed;
+  return () => {
     const x = Math.sin(seed++) * 10000;
     return x - Math.floor(x);
   };
-
-  for (let row = 0; row < gridSize; row++) {
-    for (let col = 0; col < gridSize; col++) {
-      if (placed >= config.total) break;
-
-      const randomX = seededRandom() * cellWidth;
-      const randomY = seededRandom() * cellHeight;
-      const size = seededRandom() * 1.5 + 0.7;
-      const delay = seededRandom() * 2;
-      const duration = seededRandom() * 2 + 2;
-
-      stars.push(
-        <div
-          key={`star-structured-${placed}`}
-          className="absolute bg-white rounded-full animate-pulse"
-          style={{
-            left: `${col * cellWidth + randomX}%`,
-            top: `${row * cellHeight + randomY}%`,
-            width: `${size}px`,
-            height: `${size}px`,
-            animationDelay: `${delay}s`,
-            animationDuration: `${duration}s`
-          }}
-        />
-      );
-
-      placed++;
-    }
-  }
-  return stars;
 };
 
+const getStarConfig = (variant, starCount, width) => {
+  if (variant === 'complex') {
+    if (width < 640) return { circular: 30, plus: 10, diamond: 8, sparkle: 5 };
+    if (width < 1024) return { circular: 45, plus: 15, diamond: 12, sparkle: 8 };
+    return { circular: 60, plus: 20, diamond: 15, sparkle: 10 };
+  }
+  const baseCount = variant === 'structured' ? starCount : 100;
+  if (width < 640) return { total: Math.floor(baseCount * 0.5) };
+  if (width < 1024) return { total: Math.floor(baseCount * 0.75) };
+  return { total: baseCount };
+};
 
-  const renderComplexStars = () => {
-    const stars = [];
-    let refIndex = 0;
+export default function AnimatedStarsBackground({
+  variant = 'simple',
+  starCount = 100,
+  className = '',
+  zIndex = 0,
+  seed = 50,
+  loading = false,
+}) {
+  const [config, setConfig] = useState(() => getStarConfig(variant, starCount, 1024));
 
-    for (let i = 0; i < config.circular; i++) {
-      stars.push(
-        <div
-          key={`star-circle-${i}`}
-          ref={el => starsRef.current[refIndex++] = el}
-          className="absolute bg-white rounded-full animate-pulse"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            width: `${Math.random() * 2 + 0.5}px`,
-            height: `${Math.random() * 2 + 0.5}px`,
-            animationDelay: `${Math.random() * 3}s`,
-            animationDuration: `${Math.random() * 2 + 2}s`,
-            boxShadow: '0 0 4px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.4)'
-          }}
-        />
-      );
+  useEffect(() => {
+    const handleResize = () => {
+      setConfig(getStarConfig(variant, starCount, window.innerWidth));
+    };
+    
+    handleResize(); 
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [variant, starCount]);
+
+
+  const starData = useMemo(() => {
+    const seededRandom = createSeededRandom(seed);
+    const newStars = [];
+    const totalStars = config.total || Object.values(config).reduce((a, b) => a + b, 0);
+
+    const addStar = (type, styleFn, content = null) => {
+      const finalTop = seededRandom() * 100;
+      const finalLeft = seededRandom() * 100;
+      const angle = Math.atan2(finalTop - 50, finalLeft - 50) * (180 / Math.PI);
+      const color = seededRandom() > 0.8 ? THEME_COLORS[Math.floor(seededRandom() * THEME_COLORS.length)] : 'white';
+      const depth = seededRandom();
+      
+      let depthProperties;
+      if (depth > 0.9) {
+        depthProperties = { distance: 900, speed: 0.7, streakLength: 300, thickness: 2.5 };
+      } else if (depth > 0.6) {
+        depthProperties = { distance: 600, speed: 1.2, streakLength: 150, thickness: 1.5 };
+      } else {
+        depthProperties = { distance: 300, speed: 2, streakLength: 75, thickness: 0.7 };
+      }
+      
+      newStars.push({
+        key: `star-${type}-${newStars.length}`,
+        type, content, top: `${finalTop}%`, left: `${finalLeft}%`, angle, color,
+        animationDelay: `${seededRandom() * depthProperties.speed}s`,
+        animationDuration: `${depthProperties.speed}s`,
+        depthProperties,
+        finalStyle: styleFn(seededRandom, color),
+      });
+    };
+    
+    if (variant === 'complex') {
+        for (let i = 0; i < config.circular; i++) addStar('circular', (rng, color) => ({ backgroundColor: color, width: `${rng() * 2 + 0.5}px`, height: `${rng() * 2 + 0.5}px`, animationDelay: `${rng() * 3}s`, animationDuration: `${rng() * 2 + 2}s`, boxShadow: `0 0 8px ${color}` }));
+        for (let i = 0; i < config.plus; i++) addStar('plus', (rng, color) => ({ color: color, fontSize: `${rng() * 8 + 6}px`, animationDelay: `${rng() * 3}s`, animationDuration: `${rng() * 2 + 2}s`, textShadow: `0 0 6px ${color}` }), '+');
+        for (let i = 0; i < config.diamond; i++) addStar('diamond', (rng, color) => ({ backgroundColor: color, width: `${rng() * 4 + 3}px`, height: `${rng() * 4 + 3}px`, transform: 'rotate(45deg)', animationDelay: `${rng() * 3}s`, animationDuration: `${rng() * 2 + 2}s`, boxShadow: `0 0 10px ${color}` }));
+        for (let i = 0; i < config.sparkle; i++) addStar('sparkle', (rng, color) => ({ color: color, fontSize: `${rng() * 10 + 8}px`, animationDelay: `${rng() * 3}s`, animationDuration: `${rng() * 2 + 2}s`, textShadow: `0 0 8px ${color}` }), '✦');
+    } else {
+        for (let i = 0; i < totalStars; i++) addStar('simple', (rng, color) => ({ backgroundColor: color, width: `${rng() * 2 + 0.5}px`, height: `${rng() * 2 + 0.5}px`, animationDelay: `${rng() * 3}s`, animationDuration: `${rng() * 2 + 2}s` }));
     }
 
-    for (let i = 0; i < config.plus; i++) {
-      stars.push(
-        <div
-          key={`star-plus-${i}`}
-          ref={el => starsRef.current[refIndex++] = el}
-          className="absolute text-white animate-pulse"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            fontSize: `${Math.random() * 8 + 6}px`,
-            animationDelay: `${Math.random() * 3}s`,
-            animationDuration: `${Math.random() * 2 + 2}s`,
-            textShadow: '0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 255, 255, 0.4)',
-            filter: 'drop-shadow(0 0 3px rgba(255, 255, 255, 0.6))'
-          }}
-        >
-          +
-        </div>
-      );
-    }
-
-    for (let i = 0; i < config.diamond; i++) {
-      stars.push(
-        <div
-          key={`star-diamond-${i}`}
-          ref={el => starsRef.current[refIndex++] = el}
-          className="absolute bg-white animate-pulse"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            width: `${Math.random() * 4 + 3}px`,
-            height: `${Math.random() * 4 + 3}px`,
-            transform: 'rotate(45deg)',
-            animationDelay: `${Math.random() * 3}s`,
-            animationDuration: `${Math.random() * 2 + 2}s`,
-            boxShadow: '0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 255, 255, 0.4)',
-            filter: 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.6))'
-          }}
-        />
-      );
-    }
-
-    for (let i = 0; i < config.sparkle; i++) {
-      stars.push(
-        <div
-          key={`star-sparkle-${i}`}
-          ref={el => starsRef.current[refIndex++] = el}
-          className="absolute text-white animate-pulse"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            fontSize: `${Math.random() * 10 + 8}px`,
-            animationDelay: `${Math.random() * 3}s`,
-            animationDuration: `${Math.random() * 2 + 2}s`,
-            textShadow: '0 0 8px rgba(255, 255, 255, 0.9), 0 0 16px rgba(255, 255, 255, 0.5)',
-            filter: 'drop-shadow(0 0 4px rgba(255, 255, 255, 0.7))'
-          }}
-        >
-          ✦
-        </div>
-      );
-    }
-
-    return stars;
-  };
+    return newStars;
+  }, [config, variant, seed]);
 
   return (
-    <div 
-      className={`absolute inset-0 ${className}`}
-      style={{ zIndex }}
-    >
-      {variant === 'structured' 
-        ? renderStructuredStars()
-        : variant === 'complex'
-        ? renderComplexStars()
-        : renderSimpleStars()}
-    </div>
+    <>
+      <style>{`
+        @keyframes fly-by {
+          0%   { transform: rotate(var(--angle)) translateX(0) scaleX(0.001); opacity: 0; }
+          10%  { opacity: 1; }
+          90%  { opacity: 1; }
+          100% { transform: rotate(var(--angle)) translateX(var(--distance)) scaleX(1); transform-origin: 0% 50%; opacity: 0; }
+        }
+        @keyframes pulse {
+          from { opacity: 0.6; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1.05); }
+        }
+      `}</style>
+      
+      <div className={`absolute inset-0 overflow-hidden ${className}`} style={{ zIndex, perspective: '500px' }}>
+        {/* Hyperdrive Effect Container */}
+        <div 
+          className="absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-out"
+          style={{ opacity: loading ? 1 : 0, transformStyle: 'preserve-3d' }}
+        >
+          {starData.map(star => (
+            <div key={star.key} className="absolute" style={{
+                '--angle': `${star.angle}deg`, '--distance': `${star.depthProperties.distance}px`,
+                top: '50%', left: '50%',
+                width: `${star.depthProperties.streakLength}px`, height: `${star.depthProperties.thickness}px`,
+                background: `linear-gradient(to left, ${star.color}, rgba(255, 255, 255, 0))`,
+                animation: `fly-by ${star.animationDuration} ${star.animationDelay} infinite linear backwards`,
+                transformOrigin: '0% 50%',
+            }}/>
+          ))}
+        </div>
+
+        {/* Static Stars Container */}
+        <div 
+          className="absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in"
+          style={{ opacity: loading ? 0 : 1, transformStyle: 'preserve-3d' }}
+        >
+            {starData.map(star => {
+                const finalClasses = { 'circular': "rounded-full", 'plus': "", 'diamond': "", 'sparkle': "", 'simple': "rounded-full" }[star.type];
+                return (
+                    <div key={star.key} className={`absolute animate-pulse ${finalClasses}`} style={{ ...star.finalStyle, top: star.top, left: star.left }}>
+                        {star.content}
+                    </div>
+                );
+            })}
+        </div>
+      </div>
+    </>
   );
 }

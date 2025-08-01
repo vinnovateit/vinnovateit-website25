@@ -151,7 +151,7 @@ export default function Footer() {
     <div ref={footerRef} className="relative text-white overflow-hidden pt-20 flex flex-col">
       <AnimatedStarsBackground variant="simple" starCount={80} zIndex={1} />
 
-      {/* Glass Border PNGs - Responsive positioning */}
+      {/* Glass Border webps - Responsive positioning */}
       {/* Top Left Glass */}
       <div
         ref={(el) => (glassRefs.current[0] = el)}
@@ -160,7 +160,7 @@ export default function Footer() {
                    md:w-[50%] md:max-w-[300px] lg:max-w-[500px]"
       >
         <Image
-          src="/footer-topleft.png"
+          src="/footer-topleft.webp"
           alt="Top Left Glass"
           width={591}
           height={943}
@@ -177,7 +177,7 @@ export default function Footer() {
                    md:w-[50%] md:max-w-[300px] lg:max-w-[500px]"
       >
         <Image
-          src="/footer-topright.png"
+          src="/footer-topright.webp"
           alt="Top Right Glass"
           width={591}
           height={943}
@@ -197,7 +197,7 @@ export default function Footer() {
                    xl:max-w-[600px]"
       >
         <Image
-          src="/footer-bottomleft.png"
+          src="/footer-bottomleft.webp"
           alt="Bottom Left Glass"
           width={929}
           height={969}
@@ -217,7 +217,7 @@ export default function Footer() {
            lg:top-[40rem] lg:w-[60%] lg:max-w-[500px]"
       >
         <Image
-          src="/footer-bottomright.png"
+          src="/footer-bottomright.webp"
           alt="Bottom Right Glass"
           width={969}
           height={929}
@@ -236,7 +236,7 @@ export default function Footer() {
   lg:top-[20rem]"
       >
         <Image
-          src="/footer_block.png"
+          src="/footer_block.webp"
           alt="Rect Block"
           width={850}
           height={400}
@@ -249,28 +249,28 @@ export default function Footer() {
       <div className="absolute top-6 left-0 w-full h-96 z-10">
         {[
           {
-            src: "/assets/blob1.png",
+            src: "/assets/blob1.webp",
             alt: "Blob 1",
             className: "top-28 left-1/6",
             delay: 0.1,
             direction: "top",
           },
           {
-            src: "/assets/blob2.png",
+            src: "/assets/blob2.webp",
             alt: "Blob 2",
             className: "top-70 left-2/6",
             delay: 0.2,
             direction: "bottom",
           },
           {
-            src: "/assets/blob3.png",
+            src: "/assets/blob3.webp",
             alt: "Blob 3",
             className: "top-28 left-4/6 md:left-7/12 transform -translate-x-1/2",
             delay: 0.3,
             direction: "top",
           },
           {
-            src: "/assets/blob4.png",
+            src: "/assets/blob4.webp",
             alt: "Blob 4",
             className: "top-70 left-4/6",
             delay: 0.4,

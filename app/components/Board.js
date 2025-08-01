@@ -88,7 +88,7 @@ export default function Board() {
         variants={decorationVariants}
       >
         <Image
-          src="/fullobj.png"
+          src="/fullobj.webp"
           alt="Flower"
           fill
           className="object-contain"
@@ -100,7 +100,7 @@ export default function Board() {
         variants={decorationVariants}
       >
         <Image
-          src="/obj2.png"
+          src="/obj2.webp"
           alt="Flower Bottom Right"
           fill
           className="object-contain"
@@ -116,7 +116,7 @@ export default function Board() {
         variants={ringVariants}
       >
         <Image
-          src="/big_ring.png"
+          src="/big_ring.webp"
           alt="Ring"
           fill
           className="object-contain"
