@@ -166,10 +166,10 @@ export default function AboutUs() {
               
               <div
                 ref={textContentRef}
-                className="text-slate-200 pb-2 text-md md:text-xl whitespace-pre-line font-thin leading-relaxed relative z-10 font-jakarta"
+                className="text-slate-200 pb-2 text-md md:text-xl whitespace-pre-line font-extralight leading-relaxed relative z-10 font-jakarta"
                 style={{
                   lineHeight: 1.3,
-                  fontWeight: 100,
+                  fontWeight: 400,
                   color: '#e2e6f3',
                 }}
               >
