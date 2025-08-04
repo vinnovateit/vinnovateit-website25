@@ -76,7 +76,7 @@ export default function Events() {
       className="relative flex flex-col items-center justify-center min-h-screen px-4 md:px-12 py-16 md:py-20 overflow-hidden"
     >
       {/* Flower Parallax Image with Scroll Animation */}
-      <motion.div
+      {/* <motion.div
         ref={flowerRef}
         style={{ y: flowerY, rotate: flowerRotation }}
         className="absolute -top-8 -right-8 sm:-top-12 sm:-right-12 md:-top-30 md:-right-16 w-24 sm:w-40 md:w-60 lg:w-72 xl:w-80 h-auto pointer-events-none select-none z-10"
@@ -101,7 +101,7 @@ export default function Events() {
           priority={true}
           // loading="lazy"
         />
-      </motion.div>
+      </motion.div> */}
 
       {/* Star Background */}
       <AnimatedStarsBackground variant="simple" starCount={80} zIndex={1} />
