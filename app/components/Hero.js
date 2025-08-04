@@ -288,6 +288,7 @@ export default function Hero() {
           style={{
             transform: 'translateY(20px) scale(0.9)'
           }}
+          aria-label="Explore more about VinnovateIT"
         >
           Explore More
         </button>

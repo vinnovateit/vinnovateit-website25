@@ -175,6 +175,7 @@ export const AnimatedTestimonials = ({
                 <button
                   onClick={handlePrev}
                   className="group/button relative flex h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 border border-purple-400/30 hover:from-purple-500/30 hover:to-indigo-500/30 hover:border-purple-300/50 transition-all duration-300 hover:scale-110 active:scale-95 backdrop-blur-sm shadow-lg shadow-purple-500/20"
+                  aria-label="View previous testimonial"
                 >
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400/10 to-indigo-400/10 opacity-0 group-hover/button:opacity-100 transition-opacity duration-300"></div>
                   <IconArrowLeft className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-purple-200 transition-all duration-300 group-hover/button:rotate-12 group-hover/button:text-purple-100 relative z-10" />
@@ -182,6 +183,7 @@ export const AnimatedTestimonials = ({
                 <button
                   onClick={handleNext}
                   className="group/button relative flex h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 border border-purple-400/30 hover:from-purple-500/30 hover:to-indigo-500/30 hover:border-purple-300/50 transition-all duration-300 hover:scale-110 active:scale-95 backdrop-blur-sm shadow-lg shadow-purple-500/20"
+                  aria-label="View next testimonial"
                 >
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400/10 to-indigo-400/10 opacity-0 group-hover/button:opacity-100 transition-opacity duration-300"></div>
                   <IconArrowRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 text-purple-200 transition-all duration-300 group-hover/button:-rotate-12 group-hover/button:text-purple-100 relative z-10" />
@@ -199,6 +201,7 @@ export const AnimatedTestimonials = ({
                         : "bg-purple-300/30 hover:bg-purple-300/50"
                     }`}
                     onClick={() => setActive(index)}
+                    aria-label={`View testimonial ${index + 1}`}
                   >
                     {active === index && (
                       <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400 to-indigo-400 animate-pulse opacity-50"></div>
