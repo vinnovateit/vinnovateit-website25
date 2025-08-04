@@ -139,7 +139,7 @@ export default function AnimatedStarsBackground({
             {starData.map(star => {
                 const finalClasses = { 'circular': "rounded-full", 'plus': "", 'diamond': "", 'sparkle': "", 'simple': "rounded-full" }[star.type];
                 return (
-                    <div key={star.key} className={`absolute animate-pulse ${finalClasses}`} style={{ ...star.finalStyle, top: star.top, left: star.left }}>
+                    <div key={star.key} className={`absolute animate-pulse ${finalClasses} will-change-transform`} style={{ ...star.finalStyle, top: star.top, left: star.left }}>
                         {star.content}
                     </div>
                 );

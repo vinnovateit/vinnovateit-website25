@@ -38,10 +38,9 @@ export const AnimatedTestimonials = ({
       {/* Enhanced Container with glassmorphism and better gradients */}
       <div className="relative rounded-2xl sm:rounded-3xl bg-gradient-to-br from-purple-900/20 via-indigo-900/15 to-violet-900/20 backdrop-blur-xl border border-white/10 shadow-2xl shadow-purple-500/25 p-4 sm:p-6 md:p-12 lg:p-16 overflow-hidden">
         {/* Animated background elements */}
-        <div className="absolute inset-0 opacity-20 sm:opacity-30">
-          <div className="absolute top-0 left-0 w-48 h-48 sm:w-72 sm:h-72 lg:w-96 lg:h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-0 w-40 h-40 sm:w-60 sm:h-60 lg:w-80 lg:h-80 bg-indigo-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-          <div className="absolute top-1/2 left-1/2 w-36 h-36 sm:w-54 sm:h-54 lg:w-72 lg:h-72 bg-violet-500/15 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute inset-0 opacity-15 sm:opacity-20">
+          <div className="absolute top-0 left-0 w-32 h-32 sm:w-48 sm:h-48 lg:w-64 lg:h-64 bg-purple-500/15 rounded-full blur-2xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-28 h-28 sm:w-40 sm:h-40 lg:w-56 lg:h-56 bg-indigo-500/15 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
         </div>
         
         {/* Multiple layered borders for depth */}
@@ -80,10 +79,10 @@ export const AnimatedTestimonials = ({
                       rotate: randomRotateY(),
                     }}
                     transition={{
-                      duration: 0.4,
+                      duration: 0.3,
                       ease: "easeInOut",
                     }}
-                    className="absolute inset-4 sm:inset-6 md:inset-8 lg:inset-10 xl:inset-12 origin-bottom"
+                    className="absolute inset-4 sm:inset-6 md:inset-8 lg:inset-10 xl:inset-12 origin-bottom will-change-transform"
                   >
                     <div className="relative w-full h-full rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl border border-purple-400/30 hover:border-purple-300/50 transition-all duration-300">
                       {/* Enhanced glow effect */}

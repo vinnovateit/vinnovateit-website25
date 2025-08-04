@@ -29,8 +29,19 @@
   cursor: none !important;
 }
 
+.cursor-trail {
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* Optimize star animations */
+.star-background {
+  will-change: opacity;
+  contain: layout style paint;
+}
+
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px; /* Account for fixed navbar */
-
 }
