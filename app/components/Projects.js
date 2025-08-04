@@ -23,14 +23,12 @@ const Projects= () => {
   const progressRef = useRef(null);
   const contentRef = useRef(null);
   const imageRef = useRef(null);
-  const counterRef = useRef(null);
 
   // Check if elements are in view
   const isHeadingInView = useInView(headingRef, { once: true, margin: "-100px" });
   const isProgressInView = useInView(progressRef, { once: true, margin: "-50px" });
   const isContentInView = useInView(contentRef, { once: true, margin: "-100px" });
   const isImageInView = useInView(imageRef, { once: true, margin: "-100px" });
-  const isCounterInView = useInView(counterRef, { once: true, margin: "-50px" });
 
   const projects = [
     {
@@ -262,17 +260,17 @@ const Projects= () => {
 
           {/* Main Content */}
           <div className="w-full z-20">
-            {/* Animated Heading */}
+            {/* Animated Heading - Made smaller for laptops */}
             <motion.div 
               ref={headingRef}
-              className="mb-4 sm:mb-8 md:mb-12 lg:mb-16 flex justify-center"
+              className="mb-4 sm:mb-8 md:mb-10 lg:mb-8 flex justify-center"
               initial="hidden"
               animate={isHeadingInView ? "visible" : "hidden"}
               variants={fadeInUp}
             >
               <SectionHeading
                 title="PROJECTS"
-                containerClassName="relative inline-block mt-0 sm:mt-2 md:mt-6 lg:mt-8"
+                containerClassName="relative inline-block mt-0 sm:mt-2 md:mt-4 lg:mt-2"
               />
             </motion.div>
 
@@ -285,7 +283,7 @@ const Projects= () => {
                 animate={isProgressInView ? "visible" : "hidden"}
                 variants={fadeInUp}
               >
-                <div className="w-full max-w-6xl h-1 bg-purple-900/30 rounded-full mb-3 sm:mb-6 md:mb-8 overflow-hidden">
+                <div className="w-full max-w-5xl h-1 bg-purple-900/30 rounded-full mb-6 sm:mb-8 md:mb-8 lg:mb-10 overflow-hidden">
                   <motion.div 
                     className="progress-fill h-full bg-gradient-to-r from-purple-400 to-purple-600 rounded-full transition-all duration-500 ease-out" 
                     initial="hidden"
@@ -295,12 +293,12 @@ const Projects= () => {
                 </div>
               </motion.div>
 
-              {/* Animated Project Content */}
-              <div className="project-content flex flex-col-reverse md:grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 items-center max-w-6xl mx-auto px-10">
+              {/* Animated Project Content - Made smaller for laptops */}
+              <div className="project-content flex flex-col-reverse md:grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-8 items-center max-w-5xl mx-auto px-8 lg:px-10">
                 {/* Left Content */}
                 <motion.div 
                   ref={contentRef}
-                  className="space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-6"
+                  className="space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-4"
                   initial="hidden"
                   animate={isContentInView ? "visible" : "hidden"}
                   variants={staggerContainer}
@@ -309,21 +307,21 @@ const Projects= () => {
                     className="flex items-center gap-3 sm:gap-4"
                     variants={staggerItem}
                   >
-                    <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-purple-400 font-orbitron">
+                    <span className="text-2xl sm:text-3xl md:text-4xl lg:text-3xl font-bold text-purple-400 font-orbitron">
                       {String(projects[currentProject].id).padStart(2, '0')}
                     </span>
                     <div className="h-px flex-1 bg-gradient-to-r from-purple-400 to-transparent"></div>
                   </motion.div>
 
                   <motion.h2 
-                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-wider mt-1 sm:mt-2 font-orbitron"
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-3xl font-bold text-white tracking-wider mt-1 sm:mt-2 font-orbitron"
                     variants={staggerItem}
                   >
                     {projects[currentProject].name}
                   </motion.h2>
 
                   <motion.p 
-                    className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed font-jakarta"
+                    className="text-sm sm:text-base md:text-lg lg:text-base text-gray-300 leading-relaxed font-jakarta"
                     variants={staggerItem}
                   >
                     {projects[currentProject].description}
@@ -332,12 +330,12 @@ const Projects= () => {
                   {(projects[currentProject].viewLink || projects[currentProject].sourceLink) && (
                     <motion.div 
                       ref={el => buttonsRef.current[currentProject] = el} 
-                      className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 pt-2 sm:pt-3 md:pt-4"
+                      className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 lg:gap-3 pt-2 sm:pt-3 md:pt-4 lg:pt-3"
                       variants={staggerItem}
                     >
                       {projects[currentProject].viewLink && (
                         <motion.button
-                          className="px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 border-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm sm:text-base font-jakarta"
+                          className="px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 lg:px-6 lg:py-2.5 border-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm sm:text-base lg:text-sm font-jakarta"
                           onClick={() => window.open(projects[currentProject].viewLink, '_blank')}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
@@ -347,7 +345,7 @@ const Projects= () => {
                       )}
                       {projects[currentProject].sourceLink && (
                         <motion.button
-                          className="px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 border-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm sm:text-base font-jakarta"
+                          className="px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 lg:px-6 lg:py-2.5 border-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-sm sm:text-base lg:text-sm font-jakarta"
                           onClick={() => window.open(projects[currentProject].sourceLink, '_blank')}
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
@@ -359,7 +357,7 @@ const Projects= () => {
                   )}
                 </motion.div>
 
-                {/* Right Image */}
+                {/* Right Image - Made smaller for laptops */}
                 <motion.div 
                   ref={imageRef}
                   className="relative group w-full"
@@ -367,10 +365,10 @@ const Projects= () => {
                   animate={isImageInView ? "visible" : "hidden"}
                   variants={fadeInRight}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg sm:rounded-xl md:rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-                  <div className="relative bg-gray-900/50 rounded-lg sm:rounded-xl md:rounded-2xl overflow-hidden border border-purple-600/20 backdrop-blur-sm">
-                    <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-96">
-                      <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-96">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+                  <div className="relative bg-gray-900/50 rounded-lg sm:rounded-xl md:rounded-2xl lg:rounded-xl overflow-hidden border border-purple-600/20 backdrop-blur-sm">
+                    <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-64">
+                      <div className="relative w-full h-48 sm:h-64 md:h-80 lg:h-64">
                         <Image
                           src={projects[currentProject].image}
                           alt={projects[currentProject].name}
@@ -388,19 +386,6 @@ const Projects= () => {
                   </div>
                 </motion.div>
               </div>
-
-              {/* Animated Counter */}
-              <motion.div 
-                ref={counterRef}
-                className="flex justify-center mt-4 sm:mt-6 md:mt-8 lg:mt-12"
-                initial="hidden"
-                animate={isCounterInView ? "visible" : "hidden"}
-                variants={fadeInUp}
-              >
-                <div className="text-xs sm:text-sm text-purple-400 tracking-widest font-orbitron">
-                  {String(currentProject + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
-                </div>
-              </motion.div>
             </div>
           </div>
         </section>
