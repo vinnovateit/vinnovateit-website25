@@ -181,11 +181,7 @@ const MainNavbar = () => {
   ];
 
   return (
-    <>
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
-      `}</style>
-      
+    <>      
       {/* Main Navbar */}
       <nav ref={navRef} className="z-[100] fixed top-4 left-1/2 transform -translate-x-1/2 w-full lg:w-2/3 max-w-4xl rounded-full px-4 sm:px-6 opacity-0 ">
         <div className="relative overflow-hidden rounded-full border border-purple-500/30 shadow-[0_0_30px_rgba(147,51,234,0.3)]">

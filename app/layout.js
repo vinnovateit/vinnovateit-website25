@@ -3,28 +3,28 @@ import { Orbitron, Plus_Jakarta_Sans, DM_Sans, JetBrains_Mono } from 'next/font/
 
 const orbitron = Orbitron({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-orbitron',
   display: 'swap',
 });
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['200', '400', '600'],
+  weight: ['200', '400', '600', '700'],
   variable: '--font-jakarta',
   display: 'swap',
 });
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['400'],
+  weight: ['400', '500'],
   variable: '--font-dm-sans',
   display: 'swap',
 });
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '600', '700'],
   variable: '--font-jetbrains',
   display: 'swap',
 });
