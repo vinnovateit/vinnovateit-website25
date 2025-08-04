@@ -137,7 +137,7 @@ export default function Board() {
 
         {/* Carousel Container */}
         <div className="z-10 relative w-full perspective-1000">
-          <div className="w-full overflow-hidden flex items-center">
+          <div className="w-full overflow-hidden flex items-center py-8 px-4">
             <div
               ref={carouselRef}
               className="flex items-center md:space-x-5 lg:space-x-10"

@@ -84,9 +84,10 @@ export default function AboutUs() {
       
       <SectionHeading 
         title="ABOUT US"
+        containerClassName="relative inline-block"
       />
 
-      <div className="px-10 w-full max-w-6xl mx-auto relative z-10 -mt-20">
+      <div className="px-10 w-full max-w-6xl mx-auto relative z-10">
         {/* Terminal window */}
         <div 
           ref={terminalRef}

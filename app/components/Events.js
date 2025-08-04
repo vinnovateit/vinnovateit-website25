@@ -120,12 +120,16 @@ export default function Events() {
           }}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <SectionHeading title="EVENTS" className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl" />
+          <SectionHeading 
+            title="EVENTS" 
+            containerClassName="relative inline-block mb-20" 
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl" 
+          />
         </motion.div>
 
         {/* Testimonials Section - Increased width on desktop */}
         <motion.div
-          className="-mt-4 mb-24 w-full max-w-none lg:max-w-[140rem] xl:max-w-[160rem] 2xl:max-w-[180rem] mx-auto"
+          className="mb-24 w-full max-w-none lg:max-w-[140rem] xl:max-w-[160rem] 2xl:max-w-[180rem] mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{
             opacity: testimonialsInView ? 1 : 0,

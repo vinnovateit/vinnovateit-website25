@@ -245,10 +245,10 @@ export default function Domains() {
 
      <div className="max-w-7xl mx-auto text-center z-20 w-full relative mt-4 md:mt-12 mb-0">
   <div ref={headingRef}>
-    <SectionHeading title="DOMAINS" />
+    <SectionHeading title="DOMAINS" containerClassName="relative inline-block mb-20" />
   </div>
         <div
-           className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mt-[-80] mb-20 relative z-30 font-jakarta">
+           className="flex flex-wrap justify-center gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto mb-20 relative z-30 font-jakarta">
 
 
         
