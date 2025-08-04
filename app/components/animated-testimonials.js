@@ -53,7 +53,7 @@ export const AnimatedTestimonials = ({
         <div className="relative grid grid-cols-1 gap-4 sm:gap-6 md:gap-8 lg:gap-16 xl:gap-24 2xl:gap-64 lg:grid-cols-2">
           {/* Enhanced Image Section */}
           <div className="order-1 lg:order-1 -mt-4 sm:-mt-6 md:-mt-8 lg:mt-0">
-            <div className="relative h-48 sm:h-56 md:h-64 w-full lg:h-[400px] xl:h-[500px] 2xl:h-[550px]">
+            <div className="relative h-48 sm:h-56 md:h-64 w-full lg:h-[340px] xl:h-[400px] 2xl:h-[440px]">
               <AnimatePresence>
                 {events.map((event, index) => (
                   <motion.div
@@ -108,7 +108,7 @@ export const AnimatedTestimonials = ({
           </div>
 
           {/* Enhanced Text Section */}
-          <div className="order-2 lg:order-2 flex flex-col py-2 sm:py-4 md:py-6 lg:py-8 xl:py-12 relative min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[400px] xl:min-h-[500px] 2xl:min-h-[550px]">
+          <div className="order-2 lg:order-2 flex flex-col py-2 sm:py-4 md:py-6 lg:py-8 xl:py-12 relative min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[340px] xl:min-h-[4000px] 2xl:min-h-[440px]">
             {/* Content Container with improved positioning */}
             <div className="flex-1 flex flex-col justify-start">
               <motion.div
