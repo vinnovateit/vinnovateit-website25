@@ -108,7 +108,7 @@ export const AnimatedTestimonials = ({
           </div>
 
           {/* Enhanced Text Section */}
-          <div className="order-2 lg:order-2 flex flex-col py-2 sm:py-4 md:py-6 lg:py-8 xl:py-12 relative min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[340px] xl:min-h-[4000px] 2xl:min-h-[440px]">
+          <div className="order-2 lg:order-2 flex flex-col py-2 sm:py-4 md:py-6 lg:py-8 xl:py-12 relative min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[340px] xl:min-h-[400px] 2xl:min-h-[440px]">
             {/* Content Container with improved positioning */}
             <div className="flex-1 flex flex-col justify-start">
               <motion.div
