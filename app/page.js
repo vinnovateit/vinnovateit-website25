@@ -29,7 +29,7 @@ export default function Home() {
         variant="simple" 
         starCount={100}
         zIndex={0}
-        className="fixed inset-0"
+        className="inset-0"
       />
       
       <CustomCursor/>

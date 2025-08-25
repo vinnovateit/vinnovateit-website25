@@ -28,9 +28,9 @@ const getStarConfig = (variant, starCount, width) => {
     if (width < 1024) return { circular: 45, plus: 15, diamond: 12, sparkle: 8 };
     return { circular: 60, plus: 20, diamond: 15, sparkle: 10 };
   }
-  const baseCount = variant === 'structured' ? starCount : 100;
-  if (width < 640) return { total: Math.floor(baseCount * 0.5) };
-  if (width < 1024) return { total: Math.floor(baseCount * 0.75) };
+  const baseCount = variant === 'structured' ? starCount : 350;
+  if (width < 640) return { total: Math.floor(baseCount * 0.6) };
+  if (width < 1024) return { total: Math.floor(baseCount * 0.8) };
   return { total: baseCount };
 };
 
