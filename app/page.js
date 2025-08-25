@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Loading from "./components/Loading";
 import CustomCursor from "./components/CustomCursor";
+import AnimatedStarsBackground from "./components/AnimatedStarsBackground";
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,7 +23,15 @@ export default function Home() {
   // if (!isMounted) return <Loading />;
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden relative">
+      {/* Common stars background for all sections except Hero */}
+      <AnimatedStarsBackground 
+        variant="simple" 
+        starCount={100}
+        zIndex={0}
+        className="fixed inset-0"
+      />
+      
       <CustomCursor/>
       <Navbar />
       <Hero />

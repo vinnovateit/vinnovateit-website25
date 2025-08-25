@@ -143,7 +143,7 @@ export default function Hero() {
   return (
     <div
       ref={heroRef}
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center overflow-hidden"
+      className="relative bg-black flex flex-col items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center overflow-hidden"
     >
       {/* Floating Orbs */}
       <div className="absolute inset-0 z-2">

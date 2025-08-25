@@ -6,7 +6,6 @@ import { motion } from "framer-motion"
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import AnimatedStarsBackground from "./AnimatedStarsBackground"
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
@@ -149,8 +148,6 @@ export default function Footer() {
 
   return (
     <div ref={footerRef} className="relative text-white overflow-hidden pt-20 flex flex-col">
-      <AnimatedStarsBackground variant="simple" starCount={80} zIndex={1} />
-
       {/* Glass Border webps - Responsive positioning */}
       {/* Top Left Glass */}
       <div

@@ -4,7 +4,6 @@ import Image from "next/image"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { AnimatedTestimonials } from "./animated-testimonials"
 import SectionHeading from "./SectionHeading"
-import AnimatedStarsBackground from "./AnimatedStarsBackground"
 import { gsap } from "gsap"
 
 const events = [
@@ -102,9 +101,6 @@ export default function Events() {
           // loading="lazy"
         />
       </motion.div> */}
-
-      {/* Star Background */}
-      <AnimatedStarsBackground variant="simple" starCount={80} zIndex={1} />
 
       {/* Glow Background */}
       

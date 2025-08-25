@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DomainCard from './DomainCard';
-import AnimatedStarsBackground from './AnimatedStarsBackground';
 import SectionHeading from './SectionHeading';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -226,11 +225,6 @@ export default function Domains() {
       </div>
 
       {/* <ShootingStars count={8} /> */}
-      <AnimatedStarsBackground 
-        variant="simple" 
-        starCount={80}
-        zIndex={1}
-      />
       
       <Image
   ref={overlayRef}
