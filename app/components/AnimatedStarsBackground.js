@@ -43,8 +43,8 @@ const StarKeyframes = () => (
       100% { transform: rotate(var(--angle)) translateX(var(--distance)) scaleX(1); opacity: 0; }
     }
     @keyframes pulse {
-      from { opacity: 0.6; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1.05); }
+      from { opacity: 0.5; transform: scale(0.7); }
+      to { opacity: 1; transform: scale(1.3); }
     }
   `}</style>
 );
@@ -146,7 +146,7 @@ export default function AnimatedStarsBackground({
               ...star.pulseStyle,
               top: star.top,
               left: star.left,
-              animation: 'pulse infinite alternate',
+              animation: star.type === 'simple' ? 'none' : `pulse infinite alternate ${star.pulseStyle.animationDuration || '2s'} ${star.pulseStyle.animationDelay || '0s'}`,
             };
 
             return (
