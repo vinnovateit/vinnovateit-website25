@@ -215,7 +215,7 @@ export default function Hero() {
       {/* Smaller About Us 3D Object */}
       <div
         ref={aboutObjectRef}
-        className="absolute bottom-0 right-0 sm:right-0 md:right-0 lg:right-0 
+        className="absolute md:bottom-2 bottom-4 right-0 sm:right-0 md:right-0 lg:right-0 
                    w-20 sm:w-28 md:w-36 lg:w-44 xl:w-52 
                    h-auto pointer-events-none select-none z-10 opacity-0"
         style={{

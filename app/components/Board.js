@@ -2,7 +2,7 @@
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useScreenSize } from '@/app/components/hooks/useScreenSize';
@@ -17,12 +17,98 @@ export default function Board() {
   const carouselRef = useRef(null);
   const containerRef = useRef(null);
   const screenSize = useScreenSize();
+  
+  // Drag state
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollStart, setScrollStart] = useState(0);
+  
+  // Sensitivity factor - adjust this to control how much scroll per drag
+  const dragSensitivity = 1;
 
   useCarouselAnimation(containerRef, carouselRef, screenSize, boardMembers);
 
   const getCardWidth = () => {
     return screenSize === 'mobile' ? 360 : screenSize === 'tablet' ? 320 : 340;
   };
+
+  // Handle drag start
+  const handleDragStart = useCallback((clientX) => {
+    setIsDragging(true);
+    setStartX(clientX);
+    setScrollStart(window.pageYOffset || document.documentElement.scrollTop);
+    document.body.style.cursor = 'grabbing';
+    document.body.style.userSelect = 'none';
+  }, []);
+
+  // Handle drag move
+  const handleDragMove = useCallback((clientX) => {
+    if (!isDragging) return;
+    
+    const deltaX = startX - clientX; // Reversed: left drag = positive delta
+    const newScrollY = scrollStart + (deltaX * dragSensitivity);
+    
+    // Smooth scroll to new position
+    window.scrollTo({
+      top: Math.max(0, newScrollY),
+      behavior: 'auto' // Use 'auto' for immediate response during drag
+    });
+  }, [isDragging, startX, scrollStart]);
+
+  // Handle drag end
+  const handleDragEnd = useCallback(() => {
+    setIsDragging(false);
+    document.body.style.cursor = '';
+    document.body.style.userSelect = '';
+  }, []);
+
+  // Mouse events
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    handleDragStart(e.clientX);
+  };
+
+  const handleMouseMove = (e) => {
+    handleDragMove(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    handleDragEnd();
+  };
+
+  // Touch events
+  const handleTouchStart = (e) => {
+    handleDragStart(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    e.preventDefault(); // Prevent default scroll behavior
+    handleDragMove(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    handleDragEnd();
+  };
+
+  // Set up global event listeners
+  useEffect(() => {
+    if (isDragging) {
+      // Mouse events
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      
+      // Touch events
+      document.addEventListener('touchmove', handleTouchMove, { passive: false });
+      document.addEventListener('touchend', handleTouchEnd);
+
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+        document.removeEventListener('touchmove', handleTouchMove);
+        document.removeEventListener('touchend', handleTouchEnd);
+      };
+    }
+  }, [isDragging, handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
 
   // Animation variants
   const containerVariants = {
@@ -127,12 +213,17 @@ export default function Board() {
           isMultiline={true}
         />
 
-        {/* Carousel Container */}
+        {/* Carousel Container with Drag Functionality */}
         <div className="z-10 relative w-full perspective-1000">
-          <div className="w-full overflow-hidden flex items-center py-8 px-4">
+          <div 
+            className={`w-full overflow-hidden flex items-center py-8 px-4 ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
+            style={{ touchAction: 'none' }} // Disable default touch behaviors
+          >
             <div
               ref={carouselRef}
-              className="flex items-center md:space-x-5 lg:space-x-10"
+              className="flex items-center md:space-x-5 lg:space-x-10 pointer-events-none" // Disable pointer events on cards during drag
               style={{ 
                 width: `${boardMembers.length * getCardWidth()}px`,
                 willChange: 'transform',
@@ -144,6 +235,7 @@ export default function Board() {
                   key={`member-${index}`} 
                   member={member} 
                   screenSize={screenSize} 
+                  style={{ pointerEvents: isDragging ? 'none' : 'auto' }} // Allow card interactions when not dragging
                 />
               ))}
             </div>

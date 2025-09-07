@@ -225,12 +225,8 @@ export default function Footer() {
 
       {/* Footer Block - Adjusted vertical position for smaller screens, stays on right */}
       <div
-        className="absolute pointer-events-none z-5 w-full
-  top-[20rem] right-0 
-  xs:top-[22rem]
-  sm:top-[22rem] 
-  md:top-[25rem] 
-  lg:top-[20rem]"
+        className="absolute pointer-events-none z-5
+  top-[20rem] right-0  md:top-[25rem] lg:top-[20rem] w-full h-full"
       >
         <Image
           src="/footer_block.webp"
@@ -238,7 +234,7 @@ export default function Footer() {
           width={850}
           height={400}
           className="w-full h-auto"
-          sizes="100vw"
+          sizes="100vh md:100vw"
         />
       </div>
 
