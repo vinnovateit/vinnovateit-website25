@@ -83,6 +83,7 @@ card: "relative w-72 h-[23rem] bg-purple-900/20 rounded-3xl shadow-2xl border bo
               target="_blank"
               rel="noopener noreferrer"
               className="text-purple-400 hover:text-purple-300 transition-all duration-200"
+              aria-label={`Visit ${member.name}'s LinkedIn profile`}
             >
               <Linkedin className={styles.iconSize} />
             </a>
@@ -91,6 +92,7 @@ card: "relative w-72 h-[23rem] bg-purple-900/20 rounded-3xl shadow-2xl border bo
               target="_blank"
               rel="noopener noreferrer"
               className="text-purple-400 hover:text-purple-300 transition-all duration-200"
+              aria-label={`Visit ${member.name}'s Instagram profile`}
             >
               <Instagram className={styles.iconSize} />
             </a>
@@ -99,6 +101,7 @@ card: "relative w-72 h-[23rem] bg-purple-900/20 rounded-3xl shadow-2xl border bo
               target="_blank"
               rel="noopener noreferrer"
               className="text-purple-400 hover:text-purple-300 transition-all duration-200"
+              aria-label={`Visit ${member.name}'s GitHub profile`}
             >
               <Github className={styles.iconSize} />
             </a>

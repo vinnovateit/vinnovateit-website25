@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import SplitType from 'split-type';
 import { motion, useInView } from 'framer-motion';
 import SectionHeading from './SectionHeading';
-import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -250,14 +249,6 @@ const Projects= () => {
     <div id="projects" ref={containerRef} className="relative min-h-screen text-white overflow-hidden z-20 w-screen">
       <div className="w-screen flex flex-col items-center z-30 relative">
         <section ref={stickyRef} className="relative z-40 min-h-screen w-screen flex flex-col items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <AnimatedStarsBackground
-              variant="structured" 
-              starCount={80}
-              zIndex={1}
-            />
-          </div>
-
           {/* Main Content */}
           <div className="w-full z-20">
             {/* Animated Heading - Made smaller for laptops */}

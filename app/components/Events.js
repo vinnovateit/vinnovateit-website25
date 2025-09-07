@@ -4,7 +4,6 @@ import Image from "next/image"
 import { motion, useScroll, useTransform, useInView } from "framer-motion"
 import { AnimatedTestimonials } from "./animated-testimonials"
 import SectionHeading from "./SectionHeading"
-import AnimatedStarsBackground from "./AnimatedStarsBackground"
 import { gsap } from "gsap"
 
 const events = [
@@ -76,7 +75,7 @@ export default function Events() {
       className="relative flex flex-col items-center justify-center min-h-screen px-4 md:px-12 py-16 md:py-20 overflow-hidden"
     >
       {/* Flower Parallax Image with Scroll Animation */}
-      <motion.div
+      {/* <motion.div
         ref={flowerRef}
         style={{ y: flowerY, rotate: flowerRotation }}
         className="absolute -top-8 -right-8 sm:-top-12 sm:-right-12 md:-top-30 md:-right-16 w-24 sm:w-40 md:w-60 lg:w-72 xl:w-80 h-auto pointer-events-none select-none z-10"
@@ -101,10 +100,7 @@ export default function Events() {
           priority={true}
           // loading="lazy"
         />
-      </motion.div>
-
-      {/* Star Background */}
-      <AnimatedStarsBackground variant="simple" starCount={80} zIndex={1} />
+      </motion.div> */}
 
       {/* Glow Background */}
       
@@ -120,12 +116,16 @@ export default function Events() {
           }}
           transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <SectionHeading title="EVENTS" className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl" />
+          <SectionHeading 
+            title="EVENTS" 
+            containerClassName="relative inline-block mb-20" 
+            className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl" 
+          />
         </motion.div>
 
         {/* Testimonials Section - Increased width on desktop */}
         <motion.div
-          className="-mt-4 mb-24 w-full max-w-none lg:max-w-[140rem] xl:max-w-[160rem] 2xl:max-w-[180rem] mx-auto"
+          className="mb-24 w-full max-w-none lg:max-w-[140rem] xl:max-w-[160rem] 2xl:max-w-[180rem] mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{
             opacity: testimonialsInView ? 1 : 0,

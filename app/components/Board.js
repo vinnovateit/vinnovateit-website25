@@ -10,7 +10,6 @@ import { useCarouselAnimation } from '@/app/components/hooks/useCarouselAnimatio
 import MemberCard from './BoardCard';
 import { boardMembers } from '@/app/components/data/boardMembers';
 import SectionHeading from './SectionHeading';
-import AnimatedStarsBackground from './AnimatedStarsBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,13 +74,6 @@ export default function Board() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      {/* Animated stars background */}
-      <AnimatedStarsBackground 
-        variant="simple" 
-        starCount={100}
-        zIndex={1}
-      />
-
       {/* Background Decorations */}
       <motion.div 
         className="block md:hidden lg:block absolute -top-15 md:top-0 -left-40 md:-left-40 w-70 h-70  md:w-[30rem] md:h-[30rem] lg:top-[-80] lg:w-[30rem] lg:h-[30rem] pointer-events-none z-5"
@@ -137,7 +129,7 @@ export default function Board() {
 
         {/* Carousel Container */}
         <div className="z-10 relative w-full perspective-1000">
-          <div className="w-full overflow-hidden flex items-center">
+          <div className="w-full overflow-hidden flex items-center py-8 px-4">
             <div
               ref={carouselRef}
               className="flex items-center md:space-x-5 lg:space-x-10"

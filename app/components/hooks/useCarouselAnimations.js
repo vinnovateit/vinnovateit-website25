@@ -59,20 +59,21 @@ export const useCarouselAnimation = (containerRef, carouselRef, screenSize, boar
       scrollTrigger: {
         trigger: container,
         pin: true,
-        scrub: 0.8, // Reduced from 1.5 for smoother feel
+        scrub: 0.8,
         start: "center center",
-        end: () => `+=${scrollDistance * 2}`, // Increased multiplier for more control
+        end: () => `+=${scrollDistance * 2}`,
         invalidateOnRefresh: true,
         anticipatePin: 1,
         preventOverlaps: true,
         onUpdate: (self) => {
           const containerCenter = containerWidth / 2;
           
-          cards.forEach((card, index) => {
-            const cardRect = card.getBoundingClientRect();
-            const containerRect = container.getBoundingClientRect();
-            const cardCenter = cardRect.left + cardRect.width / 2 - containerRect.left;
-            
+          requestAnimationFrame(() => {
+            cards.forEach((card, index) => {
+              const cardRect = card.getBoundingClientRect();
+              const containerRect = container.getBoundingClientRect();
+              const cardCenter = cardRect.left + cardRect.width / 2 - containerRect.left;
+              
             // Adjust distance calculation to account for larger gaps in desktop
             const distanceFromCenter = Math.abs(cardCenter - containerCenter) / containerCenter;
             const clampedDistance = Math.min(distanceFromCenter, 1);
@@ -99,15 +100,16 @@ export const useCarouselAnimation = (containerRef, carouselRef, screenSize, boar
             
             // Enhanced rotation for desktop view with spacing
             const maxRotation = screenSize === 'mobile' ? 0 : screenSize === 'tablet' ? 12 : 18;
-            
-            gsap.set(card, {
-              scale: scale,
-              opacity: opacity,
-              filter: `blur(${blur}px)`,
-              y: yOffset,
-              zIndex: Math.round((1 - clampedDistance) * 100),
-              transformOrigin: "center center",
-              rotationY: clampedDistance * maxRotation,
+              
+              gsap.set(card, {
+                scale: scale,
+                opacity: opacity,
+                filter: `blur(${blur}px)`,
+                y: yOffset,
+                zIndex: Math.round((1 - clampedDistance) * 100),
+                transformOrigin: "center center",
+                rotationY: clampedDistance * maxRotation,
+              });
             });
           });
         }
@@ -162,5 +164,5 @@ export const useCarouselAnimation = (containerRef, carouselRef, screenSize, boar
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, [screenSize, boardMembers.length]); // Only include stable dependencies
+  }, [screenSize, boardMembers.length, containerRef, carouselRef]);
 };

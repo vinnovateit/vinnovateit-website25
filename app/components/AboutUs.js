@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from 'react';
 import Image from "next/image";
 import gsap from 'gsap';
 import { ScrollTrigger, TextPlugin } from 'gsap/all';
-import AnimatedStarsBackground from './AnimatedStarsBackground';
 import SectionHeading from './SectionHeading';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
@@ -76,17 +75,12 @@ export default function AboutUs() {
       ref={containerRef}
       className="pt-10 flex flex-col items-center justify-center min-h-screen w-full relative p-0 m-0 overflow-visible"
     >
-      <AnimatedStarsBackground 
-        variant="simple" 
-        starCount={100}
-        zIndex={0}
-      />
-      
       <SectionHeading 
         title="ABOUT US"
+        containerClassName="relative inline-block"
       />
 
-      <div className="px-10 w-full max-w-6xl mx-auto relative z-10 -mt-20">
+      <div className="px-10 w-full max-w-6xl mx-auto relative z-10">
         {/* Terminal window */}
         <div 
           ref={terminalRef}
@@ -165,10 +159,10 @@ export default function AboutUs() {
               
               <div
                 ref={textContentRef}
-                className="text-slate-200 pb-2 text-md md:text-xl whitespace-pre-line font-thin leading-relaxed relative z-10 font-jakarta"
+                className="text-slate-200 pb-2 text-md md:text-xl whitespace-pre-line font-extralight leading-relaxed relative z-10 font-jakarta"
                 style={{
                   lineHeight: 1.3,
-                  fontWeight: 100,
+                  fontWeight: 400,
                   color: '#e2e6f3',
                 }}
               >

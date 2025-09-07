@@ -1,15 +1,16 @@
 'use client';
 
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 
-/**
- * @param {string} variant - 'simple', 'complex', or 'structured'
- * @param {number} starCount - Total number of stars
- * @param {string} className - Additional CSS classes
- * @param {number} zIndex - Z-index for positioning
- * @param {number} seed - Seed for consistent random number generation
- * @param {boolean} loading - Set to true to activate the hyperdrive effect
- */
+const debounce = (func, delay) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+};
 
 const THEME_COLORS = ['#A378FF', '#C4A4FF', '#8B5CF6', '#A855F7', '#6D28D9'];
 
@@ -27,11 +28,27 @@ const getStarConfig = (variant, starCount, width) => {
     if (width < 1024) return { circular: 45, plus: 15, diamond: 12, sparkle: 8 };
     return { circular: 60, plus: 20, diamond: 15, sparkle: 10 };
   }
-  const baseCount = variant === 'structured' ? starCount : 100;
-  if (width < 640) return { total: Math.floor(baseCount * 0.5) };
-  if (width < 1024) return { total: Math.floor(baseCount * 0.75) };
+  const baseCount = variant === 'structured' ? starCount : 350;
+  if (width < 640) return { total: Math.floor(baseCount * 0.6) };
+  if (width < 1024) return { total: Math.floor(baseCount * 0.8) };
   return { total: baseCount };
 };
+
+const StarKeyframes = () => (
+  <style>{`
+    @keyframes fly-by {
+      0%   { transform: rotate(var(--angle)) translateX(0) scaleX(0.001); opacity: 0.5; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: rotate(var(--angle)) translateX(var(--distance)) scaleX(1); opacity: 0; }
+    }
+    @keyframes pulse {
+      from { opacity: 0.5; transform: scale(0.7); }
+      to { opacity: 1; transform: scale(1.3); }
+    }
+  `}</style>
+);
+
 
 export default function AnimatedStarsBackground({
   variant = 'simple',
@@ -41,17 +58,17 @@ export default function AnimatedStarsBackground({
   seed = 50,
   loading = false,
 }) {
-  const [config, setConfig] = useState(() => getStarConfig(variant, starCount, 1024));
+  const [config, setConfig] = useState(() => getStarConfig(variant, starCount, typeof window !== 'undefined' ? window.innerWidth : 1024));
 
   useEffect(() => {
     const handleResize = () => {
       setConfig(getStarConfig(variant, starCount, window.innerWidth));
     };
     
-    handleResize(); 
+    const debouncedHandleResize = debounce(handleResize, 250);
     
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('resize', debouncedHandleResize);
+    return () => window.removeEventListener('resize', debouncedHandleResize);
   }, [variant, starCount]);
 
 
@@ -79,10 +96,10 @@ export default function AnimatedStarsBackground({
       newStars.push({
         key: `star-${type}-${newStars.length}`,
         type, content, top: `${finalTop}%`, left: `${finalLeft}%`, angle, color,
-        animationDelay: `${seededRandom() * depthProperties.speed}s`,
-        animationDuration: `${depthProperties.speed}s`,
+        flyByDuration: `${depthProperties.speed}s`,
+        flyByDelay: `${seededRandom() * depthProperties.speed}s`,
         depthProperties,
-        finalStyle: styleFn(seededRandom, color),
+        pulseStyle: styleFn(seededRandom, color),
       });
     };
     
@@ -100,50 +117,50 @@ export default function AnimatedStarsBackground({
 
   return (
     <>
-      <style>{`
-        @keyframes fly-by {
-          0%   { transform: rotate(var(--angle)) translateX(0) scaleX(0.001); opacity: 0; }
-          10%  { opacity: 1; }
-          90%  { opacity: 1; }
-          100% { transform: rotate(var(--angle)) translateX(var(--distance)) scaleX(1); transform-origin: 0% 50%; opacity: 0; }
-        }
-        @keyframes pulse {
-          from { opacity: 0.6; transform: scale(0.95); }
-          to { opacity: 1; transform: scale(1.05); }
-        }
-      `}</style>
-      
+      <StarKeyframes />
       <div className={`absolute inset-0 overflow-hidden ${className}`} style={{ zIndex, perspective: '500px' }}>
-        {/* Hyperdrive Effect Container */}
-        <div 
-          className="absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-out"
-          style={{ opacity: loading ? 1 : 0, transformStyle: 'preserve-3d' }}
-        >
-          {starData.map(star => (
-            <div key={star.key} className="absolute" style={{
-                '--angle': `${star.angle}deg`, '--distance': `${star.depthProperties.distance}px`,
-                top: '50%', left: '50%',
-                width: `${star.depthProperties.streakLength}px`, height: `${star.depthProperties.thickness}px`,
-                background: `linear-gradient(to left, ${star.color}, rgba(255, 255, 255, 0))`,
-                animation: `fly-by ${star.animationDuration} ${star.animationDelay} infinite linear backwards`,
-                transformOrigin: '0% 50%',
-            }}/>
-          ))}
-        </div>
+        <div className="absolute inset-0 w-full h-full" style={{ transformStyle: 'preserve-3d' }}>
+          {starData.map(star => {
+            const isHyperdrive = loading;
+            const finalClasses = { 'circular': "rounded-full", 'plus': "", 'diamond': "", 'sparkle': "", 'simple': "rounded-full" }[star.type];
 
-        {/* Static Stars Container */}
-        <div 
-          className="absolute inset-0 w-full h-full transition-opacity duration-[2000ms] ease-in"
-          style={{ opacity: loading ? 0 : 1, transformStyle: 'preserve-3d' }}
-        >
-            {starData.map(star => {
-                const finalClasses = { 'circular': "rounded-full", 'plus': "", 'diamond': "", 'sparkle': "", 'simple': "rounded-full" }[star.type];
-                return (
-                    <div key={star.key} className={`absolute animate-pulse ${finalClasses}`} style={{ ...star.finalStyle, top: star.top, left: star.left }}>
-                        {star.content}
-                    </div>
-                );
-            })}
+            // Base styles for positioning and transition
+            const baseStyle = {
+              '--angle': `${star.angle}deg`,
+              '--distance': `${star.depthProperties.distance}px`,
+              transition: 'transform 1.5s ease-out, opacity 1.5s ease-out, background 1.5s ease-out',
+              willChange: 'transform, opacity',
+            };
+
+            const hyperdriveStyle = {
+              top: '50%',
+              left: '50%',
+              width: `${star.depthProperties.streakLength}px`,
+              height: `${star.depthProperties.thickness}px`,
+              background: `linear-gradient(to left, ${star.color}, rgba(255, 255, 255, 0))`,
+              animation: `fly-by ${star.flyByDuration} ${star.flyByDelay} infinite linear backwards`,
+              transformOrigin: '0% 50%',
+            };
+            
+            const staticStyle = {
+              ...star.pulseStyle,
+              top: star.top,
+              left: star.left,
+              animation: star.type === 'simple' ? 'none' : `pulse infinite alternate ${star.pulseStyle.animationDuration || '2s'} ${star.pulseStyle.animationDelay || '0s'}`,
+            };
+
+            return (
+              <div 
+                key={star.key} 
+                className={`absolute ${finalClasses}`} 
+                style={{
+                  ...baseStyle,
+                  ...(isHyperdrive ? hyperdriveStyle : staticStyle)
+                }}>
+                {!isHyperdrive ? star.content : null}
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
