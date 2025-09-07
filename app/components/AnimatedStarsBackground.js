@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import { motion } from 'framer-motion';
 
 const debounce = (func, delay) => {
   let timeoutId;
@@ -49,7 +50,6 @@ const StarKeyframes = () => (
   `}</style>
 );
 
-
 export default function AnimatedStarsBackground({
   variant = 'simple',
   starCount = 100,
@@ -70,7 +70,6 @@ export default function AnimatedStarsBackground({
     window.addEventListener('resize', debouncedHandleResize);
     return () => window.removeEventListener('resize', debouncedHandleResize);
   }, [variant, starCount]);
-
 
   const starData = useMemo(() => {
     const seededRandom = createSeededRandom(seed);
@@ -100,6 +99,8 @@ export default function AnimatedStarsBackground({
         flyByDelay: `${seededRandom() * depthProperties.speed}s`,
         depthProperties,
         pulseStyle: styleFn(seededRandom, color),
+        // Add a delay for the appear animation based on star index for staggered effect
+        appearDelay: seededRandom() * 0.8, // Random delay up to 0.8s for more natural appearance
       });
     };
     
@@ -115,6 +116,22 @@ export default function AnimatedStarsBackground({
     return newStars;
   }, [config, variant, seed]);
 
+  // Framer Motion variants for the fade-in animation
+  const fadeInVariants = {
+    hidden: { 
+      opacity: 0,
+      scale: 0.3
+    },
+    visible: { 
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
     <>
       <StarKeyframes />
@@ -123,6 +140,7 @@ export default function AnimatedStarsBackground({
           {starData.map(star => {
             const isHyperdrive = loading;
             const finalClasses = { 'circular': "rounded-full", 'plus': "", 'diamond': "", 'sparkle': "", 'simple': "rounded-full" }[star.type];
+            const isComplexStar = variant === 'complex';
 
             // Base styles for positioning and transition
             const baseStyle = {
@@ -149,16 +167,31 @@ export default function AnimatedStarsBackground({
               animation: star.type === 'simple' ? 'none' : `pulse infinite alternate ${star.pulseStyle.animationDuration || '2s'} ${star.pulseStyle.animationDelay || '0s'}`,
             };
 
+            // Use motion.div for complex stars, regular div for simple stars
+            const StarComponent = isComplexStar && !isHyperdrive ? motion.div : 'div';
+            
+            const motionProps = isComplexStar && !isHyperdrive ? {
+              initial: "hidden",
+              animate: "visible",
+              variants: fadeInVariants,
+              transition: {
+                delay: star.appearDelay,
+                duration: 0.6,
+                ease: "easeOut"
+              }
+            } : {};
+
             return (
-              <div 
+              <StarComponent 
                 key={star.key} 
                 className={`absolute ${finalClasses}`} 
                 style={{
                   ...baseStyle,
                   ...(isHyperdrive ? hyperdriveStyle : staticStyle)
-                }}>
+                }}
+                {...motionProps}>
                 {!isHyperdrive ? star.content : null}
-              </div>
+              </StarComponent>
             );
           })}
         </div>
