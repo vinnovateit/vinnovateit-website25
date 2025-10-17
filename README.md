@@ -105,8 +105,8 @@ _For more examples, please refer to the [Documentation](https://github.com/vinno
 
 ### Top contributors:
 
-<a href="https://github.com/vinnovateit/repo_name/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=vinnovateit/vinnovateit-website25" alt="contrib.rocks image" />
+<a href="https://github.com/vinnovateit/vinnovateit-website25/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=vinnovateit/vinnovateit-website25" />
 </a>
 
 
