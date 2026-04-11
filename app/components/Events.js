@@ -12,6 +12,14 @@ const events = [
     description:
       "Our flagship hackathon challenges participants to develop creative, user-friendly solutions to real-world social issues...with top teams winning exciting rewards.",
     image: "/events1.webp",
+    websiteLink: "https://vinhack.vinnovateit.com/",
+  },
+  {
+    name: "B³",
+    description:
+      "B³ - Build. Block. Break. our in-house 30-hour blockchain hackathon, brought builders together to reimagine Web2 ideas on-chain across Web3 for Good, Developer Tools, and Web3 x AI.",
+    image: "/b3.webp",
+    websiteLink: "https://b3.vinnovateit.com/",
   },
   {
     name: "VINCODE",

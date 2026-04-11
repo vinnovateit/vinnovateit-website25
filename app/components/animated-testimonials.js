@@ -164,6 +164,20 @@ export const AnimatedTestimonials = ({
                     </motion.span>
                   ))}
                 </motion.p>
+
+                {events[active].websiteLink && (
+                  <motion.a
+                    href={events[active].websiteLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex mt-4 sm:mt-6 md:mt-8 px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg border border-purple-300/40 bg-purple-500/15 text-purple-100 font-semibold text-xs sm:text-sm md:text-base hover:bg-purple-500/25 hover:border-purple-200/60 transition-all duration-300 hover:scale-105 shadow-lg shadow-purple-500/20"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.25, ease: "easeOut", delay: 0.1 }}
+                  >
+                    VISIT WEBSITE
+                  </motion.a>
+                )}
               </motion.div>
             </div>
           </div>

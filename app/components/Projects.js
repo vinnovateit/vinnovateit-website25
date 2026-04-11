@@ -39,6 +39,14 @@ const Projects= () => {
     },
     {
       id: 2,
+      name: "LATCH",
+      description: "Tired of typing your WiFi credentials again and again?\nLATCH helps you connect once and stay connected without the manual hassle.",
+      image: "/latch.webp",
+      viewLink: "https://play.google.com/store/apps/details?id=com.vinnovateit.latch",
+      sourceLink: "https://github.com/vinnovateit/auto-net-connector"
+    },
+    {
+      id: 3,
       name: "STUDYHUB",
       description: "Your saviour during exams and assignment panic! Find notes, study material — basically everything you need to survive (and maybe ace) your courses.",
       image: "/proj_studyhub.webp",
@@ -46,14 +54,15 @@ const Projects= () => {
       sourceLink: "https://github.com/vinnovateit/StudyHub2"
     },
     {
-      id: 3,
+      id: 4,
       name: "BUNKBUDDIES",
       description: "No one likes rooming with a random stranger. Find your perfect hostel roommate *before* counselling — because good company makes hostel life way better!",
       image: "/bb2.webp",
       viewLink: "https://bunkbuddies.vinnovateit.com/",
+      sourceLink: "https://github.com/vinnovateit/BunkBuddies-Frontend"
     },
     {
-      id: 4,
+      id: 5,
       name: "SWAPIT",
       description: "A hassle-free platform to manage course add and drop after allocation. Connect with peers looking to swap courses and optimize your timetable smoothly.",
       image: "/swapitt.webp",
@@ -312,7 +321,7 @@ const Projects= () => {
                   </motion.h2>
 
                   <motion.p 
-                    className="text-sm sm:text-base md:text-lg lg:text-base text-gray-300 leading-relaxed font-jakarta"
+                    className="text-sm sm:text-base md:text-lg lg:text-base text-gray-300 leading-relaxed whitespace-pre-line font-jakarta"
                     variants={staggerItem}
                   >
                     {projects[currentProject].description}
