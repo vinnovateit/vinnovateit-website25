@@ -11,7 +11,7 @@ const events = [
     name: "VINHACK",
     description:
       "Our flagship hackathon challenges participants to develop creative, user-friendly solutions to real-world social issues...with top teams winning exciting rewards.",
-    image: "/events1.webp",
+    image: "/vinhack.webp",
     websiteLink: "https://vinhack.vinnovateit.com/",
   },
   {
