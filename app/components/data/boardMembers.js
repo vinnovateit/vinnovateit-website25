@@ -34,7 +34,7 @@ export const boardMembers = [
   {
     name: "Atiksh Chawla",
     post: "Technical Head",
-    photo: "/board/atiksh.webp",
+    photo: "/board/Atiksh.webp",
     linkedin: "https://www.linkedin.com/in/atikshchawla/",
     instagram: "https://www.instagram.com/atiksh_chawla/",
     github: "https://github.com/atikshchawla/"
