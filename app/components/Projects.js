@@ -42,7 +42,7 @@ const Projects= () => {
       name: "LATCH",
       description: "Tired of typing your WiFi credentials again and again?\nLATCH helps you connect once and stay connected without the manual hassle.",
       image: "/latch.webp",
-      viewLink: "https://play.google.com/store/apps/details?id=com.vinnovateit.latch",
+      viewLink: "https://latch.vinnovateit.com",
       sourceLink: "https://github.com/vinnovateit/auto-net-connector"
     },
     {
