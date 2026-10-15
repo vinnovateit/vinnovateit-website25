@@ -16,3 +16,6 @@ export default function cloudflareLoader({ src, width, quality }: ImageLoaderPro
   const paramsString = params.join(",");
   return `/cdn-cgi/image/${paramsString}/${normalizeSrc(src)}`;
 }
+
+// Ensure loader implements width for Next.js image loader interface
+(cloudflareLoader as any).width = true;

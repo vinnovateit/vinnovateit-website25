@@ -31,7 +31,7 @@ export default function FooterBottom() {
           </p>
 
           {/* Copyright */}
-          <p className="text-xs text-gray-500">© 2025 VinnovateIT, Vellore Institute of Technology</p>
+          <p className="text-xs text-gray-500">© 2026 VinnovateIT, Vellore Institute of Technology</p>
         </div>
 
         {/* Right side */}
@@ -39,11 +39,11 @@ export default function FooterBottom() {
           {/* Social Icons */}
           <div className="flex flex-row flex-wrap justify-center md:justify-end gap-2 md:gap-6">
             {socials.map(({ name, icon: Icon, href }) => (
-              <a 
-                key={name} 
-                href={href} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                key={name}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={`Visit VinnovateIT's ${name} page`}
                 className="backdrop-blur-sm bg-gradient-to-br from-purple-500/30 via-purple-600/20 to-purple-800/25 border border-purple-400/50 p-2 md:p-2.5 rounded-full shadow-xl hover:from-purple-400/40 hover:via-purple-500/30 hover:to-purple-700/35 hover:border-purple-300/60 hover:scale-110 hover:shadow-[0_0_25px_rgba(147,51,234,0.6)] transition-all duration-300 group"
               >
@@ -54,7 +54,7 @@ export default function FooterBottom() {
 
           {/* Connect Button */}
           <a href="mailto:vinnovateit@gmail.com">
-            <button 
+            <button
               className="mt-5 bg-gradient-to-r from-purple-600 to-purple-800 text-white py-2.5 px-6 md:py-3 md:px-8 rounded-full shadow-lg hover:scale-105 hover:shadow-[0_0_25px_rgba(160,97,255,0.7)] transition-all duration-300 font-medium font-orbitron"
               aria-label="Send email to connect with VinnovateIT"
             >

@@ -223,21 +223,6 @@ export default function Footer() {
         />
       </div>
 
-      {/* Footer Block - Adjusted vertical position for smaller screens, stays on right */}
-      <div
-        className="absolute pointer-events-none z-5
-  top-[20rem] right-0  md:top-[25rem] lg:top-[20rem] w-full h-full"
-      >
-        <Image
-          src="/footer_block.webp"
-          alt="Rect Block"
-          width={850}
-          height={400}
-          className="w-full h-auto"
-          sizes="100vh md:100vw"
-        />
-      </div>
-
       {/* Decorative Blobs - With GSAP oscillatory animation */}
       <div className="absolute top-6 left-0 w-full h-96 z-10">
         {[
