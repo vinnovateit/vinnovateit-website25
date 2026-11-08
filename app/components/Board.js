@@ -132,7 +132,10 @@ export default function Board() {
           <div className="w-full overflow-hidden flex items-center py-8 px-4">
             <div
               ref={carouselRef}
-              className="flex items-center md:space-x-5 lg:space-x-10"
+              // pointer-events-none: with preserve-3d, rotated cards dip behind
+              // this track's plane, so the track would swallow clicks on their
+              // right edge (the GitHub icon). Cards re-enable pointer events.
+              className="flex items-center md:space-x-5 lg:space-x-10 pointer-events-none"
               style={{ 
                 width: `${boardMembers.length * getCardWidth()}px`,
                 willChange: 'transform',

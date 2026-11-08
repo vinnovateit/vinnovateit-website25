@@ -51,7 +51,7 @@ card: "relative w-72 h-[23rem] bg-purple-900/20 rounded-3xl shadow-2xl border bo
 
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
+      <div className={`${styles.card} pointer-events-auto`}>
         <div className={styles.imageContainer}>
           <div className={styles.imageWrapper}>
             <Image
