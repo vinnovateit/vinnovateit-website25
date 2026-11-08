@@ -77,7 +77,7 @@ export const boardMembers = [
     photo: "/board/apurv.webp",
     linkedin: "apurv-kahalekar",
     instagram: "apurvv_09",
-    github: ""
+    github: "ApurvCodes"
   },
   {
     name: "Sahaj Madan",
